@@ -12,7 +12,8 @@
 @import 'components/protocol.css';
 @import 'components/notifications.css';
 @import 'components/forms.css';
-@import 'components/cyber-grid.css';  /* Nuovo modulo per l'effetto Cyber Grid */
+@import 'components/cyber-grid.css';  /* Effetto Cyber Grid */
+@import 'components/red-effects.css'; /* Nuovi effetti per la palette rossa */
 /* @import 'components/neural-effects.css';  Rimosso - sostituito da cyber-grid.css */
 
 @import 'layouts/grid.css';
@@ -155,7 +156,7 @@ body {
 
 /* Stile per focus accessibility */
 :focus-visible {
-    outline: 2px solid var(--neon-blue);
+    outline: 2px solid var(--neon-red);
     outline-offset: 2px;
 }
 
