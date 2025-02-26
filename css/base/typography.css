@@ -1,0 +1,236 @@
+/* typography.css - Tipografia e font per La Veglia */
+
+/* Import dei font se non già inclusi nell'HTML */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    /* Variabili per la tipografia */
+    --font-primary: 'Share Tech Mono', monospace;
+    --font-display: 'Orbitron', sans-serif;
+    
+    /* Scale dei font */
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.875rem;    /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg: 1.125rem;    /* 18px */
+    --text-xl: 1.25rem;     /* 20px */
+    --text-2xl: 1.5rem;     /* 24px */
+    --text-3xl: 1.875rem;   /* 30px */
+    --text-4xl: 2.25rem;    /* 36px */
+    --text-5xl: 3rem;       /* 48px */
+    --text-6xl: 3.75rem;    /* 60px */
+    
+    /* Line heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Letter spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+}
+
+/* Headings */
+h1 {
+    font-size: var(--text-5xl);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+}
+
+h4 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+}
+
+h5 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+}
+
+h6 {
+    font-size: var(--text-base);
+    font-weight: 700;
+}
+
+/* Heading con effetto glitch */
+.glitch-title {
+    position: relative;
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+}
+
+.glitch-title::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--neon-pink);
+    opacity: 0.8;
+    filter: blur(3px);
+    animation: glitch 2s infinite alternate-reverse;
+}
+
+/* Paragrafi */
+p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+}
+
+.lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+}
+
+.small-text {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+}
+
+.micro-text {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+}
+
+/* Testo con aspetto terminale */
+.terminal-text {
+    font-family: var(--font-primary);
+    color: var(--neon-blue);
+}
+
+/* Links */
+.link {
+    color: var(--neon-blue);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background: var(--neon-blue);
+    transition: width 0.3s ease;
+}
+
+.link:hover {
+    color: var(--neon-pink);
+}
+
+.link:hover::after {
+    width: 100%;
+    background: var(--neon-pink);
+}
+
+/* Testo Neon */
+.neon-text-blue {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.neon-text-pink {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+}
+
+.neon-text-purple {
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+}
+
+.neon-text-red {
+    color: var(--neon-red);
+    text-shadow: 0 0 5px var(--neon-red), 0 0 10px var(--neon-red);
+}
+
+/* Citazioni */
+blockquote {
+    font-style: italic;
+    border-left: 3px solid var(--neon-red);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* Testo con gradiente */
+.gradient-text {
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Keyframe per effetto glitch */
+@keyframes glitch {
+    0% {
+        clip-path: inset(40% 0 61% 0);
+        transform: translate(-2px, 2px);
+    }
+    20% {
+        clip-path: inset(92% 0 1% 0);
+        transform: translate(1px, 1px);
+    }
+    40% {
+        clip-path: inset(43% 0 1% 0);
+        transform: translate(3px, 1px);
+    }
+    60% {
+        clip-path: inset(25% 0 58% 0);
+        transform: translate(2px, -3px);
+    }
+    80% {
+        clip-path: inset(54% 0 7% 0);
+        transform: translate(-1px, -1px);
+    }
+    100% {
+        clip-path: inset(58% 0 43% 0);
+        transform: translate(-2px, 2px);
+    }
+}
+
+/* Media queries per tipografia responsive */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: var(--text-4xl);
+    }
+    
+    h2 {
+        font-size: var(--text-2xl);
+    }
+    
+    h3 {
+        font-size: var(--text-xl);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: var(--text-3xl);
+    }
+    
+    h2 {
+        font-size: var(--text-xl);
+    }
+}

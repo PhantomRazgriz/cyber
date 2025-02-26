@@ -1,0 +1,325 @@
+/* data-cell.css - Stili per le celle di dati */
+
+/* Griglia dati */
+.data-grid {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.triple-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Cella dati base */
+.data-cell {
+    background-color: var(--cell-bg);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-normal);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header della cella */
+.cell-header {
+    background-color: var(--darker-bg);
+    border-bottom: 1px solid var(--border-light);
+    padding: 8px 15px;
+    font-size: 0.75rem;
+    color: var(--neon-blue);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: var(--font-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cell-header::before {
+    content: "•";
+    color: var(--neon-blue);
+    margin-right: 8px;
+}
+
+/* Contenuto della cella */
+.cell-content {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Immagine nella cella */
+.cell-img {
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cell-img img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.cell-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(0, 255, 255, 0.1) 0%, 
+        rgba(255, 42, 42, 0.1) 100%);
+    pointer-events: none;
+}
+
+.data-cell:hover .cell-img img {
+    transform: scale(1.05);
+}
+
+/* Titoli e testo nella cella */
+.data-cell h2 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.data-cell p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Statistiche nella cella */
+.data-stats {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-family: var(--font-primary);
+    margin-bottom: 8px;
+}
+
+.stat-bar {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.08);
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--neon-blue-dark), var(--neon-blue));
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 1s ease;
+}
+
+/* Cella memoria / citazione */
+.memory-log {
+    background-color: var(--darkest-bg);
+    border-color: var(--neon-red-dark);
+}
+
+.memory-log .cell-header {
+    color: var(--neon-red);
+    border-bottom-color: var(--neon-red-dark);
+}
+
+.memory-log .cell-header::before {
+    color: var(--neon-red);
+}
+
+.quote-content {
+    padding: 20px;
+}
+
+.quote-text {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.quote-text::before {
+    content: open-quote;
+    font-size: 2.5rem;
+    color: var(--neon-red-dark);
+    position: absolute;
+    left: -15px;
+    top: -15px;
+    opacity: 0.5;
+}
+
+.quote-source {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+/* Stato della cella */
+.cell-status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cell-timestamp {
+    font-family: monospace;
+}
+
+.cell-tag {
+    color: var(--neon-blue);
+}
+
+/* Tipi di cella */
+.data-cell-error {
+    border-color: var(--neon-red-dark);
+}
+
+.data-cell-error .cell-header {
+    color: var(--neon-red);
+}
+
+.data-cell-error .cell-header::before {
+    color: var(--neon-red);
+}
+
+.data-cell-error .stat-fill {
+    background: linear-gradient(to right, var(--neon-red-dark), var(--neon-red));
+}
+
+.data-cell-warning {
+    border-color: var(--warning);
+}
+
+.data-cell-warning .cell-header {
+    color: var(--warning);
+}
+
+.data-cell-warning .cell-header::before {
+    color: var(--warning);
+}
+
+.data-cell-warning .stat-fill {
+    background: linear-gradient(to right, var(--warning-dim), var(--warning));
+}
+
+.data-cell-success {
+    border-color: var(--success-dim);
+}
+
+.data-cell-success .cell-header {
+    color: var(--success);
+}
+
+.data-cell-success .cell-header::before {
+    color: var(--success);
+}
+
+.data-cell-success .stat-fill {
+    background: linear-gradient(to right, var(--success-dim), var(--success));
+}
+
+/* Effetto hover cella */
+.data-cell:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+.memory-log:hover {
+    box-shadow: 0 0 15px rgba(255, 42, 42, 0.1);
+}
+
+/* Animazione di caricamento dati */
+.cell-loading .cell-content {
+    position: relative;
+    min-height: 150px;
+}
+
+.cell-loading .cell-content::after {
+    content: "CARICAMENTO DATI...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.cell-loading .cell-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--neon-blue), transparent);
+    animation: loading 2s infinite linear;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Media queries */
+@media screen and (max-width: 992px) {
+    .triple-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .triple-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cell-img {
+        height: auto;
+    }
+    
+    .cell-img img {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .cell-header {
+        font-size: 0.7rem;
+    }
+    
+    .data-cell h2 {
+        font-size: 1.1rem;
+    }
+    
+    .quote-text {
+        font-size: 0.9rem;
+    }
+}

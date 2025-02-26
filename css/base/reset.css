@@ -1,0 +1,115 @@
+/* reset.css - Reset e normalizzazione */
+
+/* Box sizing per tutti gli elementi */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML root impostazioni */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body impostazioni di base */
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Tipografia di base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--neon-pink);
+}
+
+/* Liste */
+ul, ol {
+    list-style-position: inside;
+    margin-bottom: 1rem;
+}
+
+/* Immagini */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Form elementi */
+input, button, textarea, select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Tabelle */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Accessibilità - focus visibile */
+:focus-visible {
+    outline: 2px solid var(--neon-blue);
+    outline-offset: 2px;
+}
+
+/* Selezione testo */
+::selection {
+    background-color: var(--neon-blue);
+    color: var(--darker-bg);
+}
+
+/* Hidden attribute */
+[hidden] {
+    display: none !important;
+}
+
+/* Rimuovi gli stili predefiniti su iphone */
+input, 
+textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+/* Rimuovi gli stili predefiniti sui pulsanti */
+button {
+    background: none;
+    border: none;
+}
+
+/* Evita overflow su testo lungo */
+div, p, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+}

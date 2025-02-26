@@ -1,0 +1,336 @@
+/* buttons.css - Stili per pulsanti e CTA */
+
+/* Base button style */
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* Effetto hover primario */
+.btn::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background-color: var(--neon-blue);
+    opacity: 0.3;
+    transform: skewX(-30deg);
+    transition: all 0.5s ease;
+}
+
+.btn:hover {
+    color: black;
+    text-shadow: none;
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.btn:hover::before {
+    width: 140%;
+    left: -20px;
+}
+
+/* Variazioni di colore */
+.btn-blue {
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+}
+
+.btn-blue::before {
+    background-color: var(--neon-blue);
+}
+
+.btn-blue:hover {
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.btn-pink {
+    color: var(--neon-pink);
+    border-color: var(--neon-pink);
+}
+
+.btn-pink::before {
+    background-color: var(--neon-pink);
+}
+
+.btn-pink:hover {
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.btn-purple {
+    color: var(--neon-purple);
+    border-color: var(--neon-purple);
+}
+
+.btn-purple::before {
+    background-color: var(--neon-purple);
+}
+
+.btn-purple:hover {
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.btn-red {
+    color: var(--neon-red);
+    border-color: var(--neon-red);
+}
+
+.btn-red::before {
+    background-color: var(--neon-red);
+}
+
+.btn-red:hover {
+    box-shadow: 0 0 10px var(--neon-red);
+}
+
+/* Pulsante pieno */
+.btn-filled {
+    background-color: var(--neon-blue);
+    color: var(--darker-bg);
+}
+
+.btn-filled::before {
+    display: none;
+}
+
+.btn-filled:hover {
+    background-color: transparent;
+    color: var(--neon-blue);
+}
+
+/* Variazioni dimensioni */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+/* Pulsante con bordo glitchato */
+.btn-glitch {
+    animation: borderGlitch 4s infinite;
+}
+
+@keyframes borderGlitch {
+    0%, 100% {
+        border-color: var(--neon-blue);
+    }
+    25% {
+        border-color: var(--neon-pink);
+    }
+    50% {
+        border-color: var(--neon-purple);
+    }
+    75% {
+        border-color: var(--neon-red);
+    }
+}
+
+/* Pulsante con icona */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-icon i, 
+.btn-icon svg {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-icon:hover i,
+.btn-icon:hover svg {
+    transform: translateX(5px);
+}
+
+/* Pulsante "digital" con effetto numeri che cadono */
+.btn-digital {
+    position: relative;
+}
+
+.btn-digital span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-digital::after {
+    content: "10101";
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-primary);
+    font-size: 0.6rem;
+    color: var(--neon-blue);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-digital:hover::after {
+    opacity: 0.5;
+    top: 0;
+}
+
+/* Pulsante con caricamento */
+.btn-loading {
+    position: relative;
+}
+
+.btn-loading.active {
+    pointer-events: none;
+}
+
+.btn-loading.active span {
+    opacity: 0;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    opacity: 0;
+    animation: rotate 0.8s linear infinite;
+    transition: opacity 0.3s ease;
+}
+
+.btn-loading.active::after {
+    opacity: 1;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Gruppo di pulsanti */
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-group.btn-group-attached {
+    gap: 0;
+}
+
+.btn-group.btn-group-attached .btn {
+    border-right: none;
+}
+
+.btn-group.btn-group-attached .btn:last-child {
+    border-right: 1px solid currentColor;
+}
+
+/* Pulsante con effetto distorsione */
+.btn-distort:hover {
+    animation: buttonDistort 0.5s ease-in-out;
+}
+
+@keyframes buttonDistort {
+    0% {
+        transform: scale(1) skew(0deg, 0deg);
+    }
+    25% {
+        transform: scale(1.05) skew(2deg, 1deg);
+    }
+    50% {
+        transform: scale(0.95) skew(-1deg, 2deg);
+    }
+    75% {
+        transform: scale(1.02) skew(-2deg, -1deg);
+    }
+    100% {
+        transform: scale(1) skew(0deg, 0deg);
+    }
+}
+
+/* Pulsante con scan line */
+.btn-scan {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-scan::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgba(0, 255, 255, 0.5);
+    animation: buttonScan 2s linear infinite;
+}
+
+@keyframes buttonScan {
+    0% {
+        top: -10%;
+    }
+    100% {
+        top: 110%;
+    }
+}
+
+/* Pulsante disabilitato */
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Pulsante con effetto 3D */
+.btn-3d {
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 2px 0 var(--neon-blue-dark), 0 0 5px var(--neon-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-3d:hover {
+    transform: perspective(1px) translateZ(0) translateY(-2px);
+    box-shadow: 0 4px 0 var(--neon-blue-dark), 0 0 10px var(--neon-blue);
+}
+
+.btn-3d:active {
+    transform: perspective(1px) translateZ(0) translateY(0);
+    box-shadow: 0 0 0 var(--neon-blue-dark), 0 0 3px var(--neon-blue);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group.btn-group-attached {
+        flex-direction: row;
+    }
+}

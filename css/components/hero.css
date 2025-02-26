@@ -1,0 +1,273 @@
+/* hero.css - Layout hero section */
+
+/* Hero base */
+.hero {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(0, 255, 255, 0.15) 100%);
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #fff, var(--neon-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+}
+
+.hero h1 span {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.hero h1 .highlight {
+    color: var(--neon-red);
+    text-shadow: 0 0 5px var(--neon-red);
+    position: relative;
+}
+
+.hero h1 .highlight::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: var(--neon-pink);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* Hero con immagine di sfondo */
+.hero-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, var(--dark-bg) 0%, rgba(10, 10, 18, 0.7) 100%);
+    z-index: -1;
+}
+
+/* Hero con video di sfondo */
+.hero-video {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-video video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -2;
+}
+
+.hero-video::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 8, 0.6);
+    z-index: -1;
+}
+
+/* Hero con pattern */
+.hero-pattern {
+    position: relative;
+}
+
+.hero-pattern::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.9)),
+        url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' fill='none' stroke='rgba(0, 255, 255, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: auto, 20px 20px;
+    z-index: -1;
+}
+
+/* Hero con effetto parallasse */
+.hero-parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Hero split (testo e immagine) */
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    min-height: 600px;
+    align-items: center;
+}
+
+.hero-split-img {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-split-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-split-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+}
+
+/* Hero con effetto scanline */
+.hero-scanline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        transparent 50%,
+        rgba(0, 0, 0, 0.05) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Hero con animazione di particles */
+.hero-particles {
+    position: relative;
+}
+
+.hero-particles::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(0, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+}
+
+/* Hero con forma futuristica */
+.hero-shape {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-shape::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M1200 120L0 16.48V0h1200v120z' fill='%230a0a12'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+}
+
+/* Media queries */
+@media screen and (max-width: 992px) {
+    .hero-split {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .hero-split-img {
+        height: 400px;
+        order: -1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        min-height: 400px;
+        margin-bottom: 60px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .hero {
+        min-height: 350px;
+        margin-bottom: 40px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-split-img {
+        height: 300px;
+    }
+}

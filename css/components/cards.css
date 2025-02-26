@@ -1,0 +1,327 @@
+/* cards.css - Stili per le card */
+
+/* Card base */
+.card {
+    background-color: var(--darker-bg);
+    border: var(--border-light);
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-standard);
+}
+
+/* Card con linea bordo colorata */
+.card-bordered {
+    position: relative;
+}
+
+.card-bordered::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple));
+}
+
+.card-bordered-top {
+    border-top: 3px solid var(--neon-blue);
+}
+
+.card-bordered-left {
+    border-left: 3px solid var(--neon-blue);
+}
+
+/* Card con variazioni di colore bordo */
+.card-blue::before,
+.card-bordered-top.card-blue {
+    border-color: var(--neon-blue);
+}
+
+.card-blue::before {
+    background: linear-gradient(to bottom, var(--neon-blue), var(--neon-blue-dark));
+}
+
+.card-pink::before,
+.card-bordered-top.card-pink {
+    border-color: var(--neon-pink);
+}
+
+.card-pink::before {
+    background: linear-gradient(to bottom, var(--neon-pink), var(--neon-pink-dark));
+}
+
+.card-purple::before,
+.card-bordered-top.card-purple {
+    border-color: var(--neon-purple);
+}
+
+.card-purple::before {
+    background: linear-gradient(to bottom, var(--neon-purple), var(--neon-blue-dark));
+}
+
+.card-red::before,
+.card-bordered-top.card-red {
+    border-color: var(--neon-red);
+}
+
+.card-red::before {
+    background: linear-gradient(to bottom, var(--neon-red), var(--neon-pink-dark));
+}
+
+/* Card con padding aggiunstato */
+.card-sm {
+    padding: 0.875rem;
+}
+
+.card-lg {
+    padding: 1.5rem;
+}
+
+/* Card con immagine */
+.card-img {
+    margin-bottom: 1rem;
+}
+
+.card-img img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border: var(--border-light);
+}
+
+/* Tipografia card */
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.card-text {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.card-link {
+    color: var(--neon-blue);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card-link::after {
+    content: ">";
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover {
+    color: var(--neon-pink);
+}
+
+.card-link:hover::after {
+    transform: translateX(5px);
+}
+
+/* Card con data highlight */
+.card-data {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.25rem 0;
+    padding: 0.625rem;
+    background-color: var(--darkest-bg);
+    border-left: 2px solid var(--neon-red);
+    font-family: var(--font-primary);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.card-data-value {
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+}
+
+/* Card con overlay */
+.card-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1.25rem;
+}
+
+.card-overlay:hover .card-overlay-content {
+    opacity: 1;
+}
+
+/* Card con sfondo gradient */
+.card-gradient {
+    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--darkest-bg) 100%);
+}
+
+/* Card con effetto glitch */
+.card-glitch {
+    position: relative;
+}
+
+.card-glitch::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--neon-blue);
+    opacity: 0;
+    z-index: -1;
+}
+
+.card-glitch:hover::after {
+    opacity: 0.05;
+    animation: cardGlitch 0.3s ease-in-out;
+}
+
+@keyframes cardGlitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-5px, 5px);
+    }
+    40% {
+        transform: translate(5px, -5px);
+    }
+    60% {
+        transform: translate(-3px, -3px);
+    }
+    80% {
+        transform: translate(3px, 3px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Card con effetto terminal */
+.card-terminal {
+    border: 1px solid var(--neon-blue);
+    background-color: var(--darkest-bg);
+    position: relative;
+}
+
+.card-terminal::before {
+    content: "$ DATA_STREAM";
+    position: absolute;
+    top: -0.6rem;
+    left: 0.8rem;
+    background-color: var(--dark-bg);
+    padding: 0 0.5rem;
+    color: var(--neon-blue);
+    font-size: 0.7rem;
+    font-family: var(--font-primary);
+}
+
+/* Card news/articolo */
+.card-news {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.card-news-img {
+    flex: 0 0 100px;
+}
+
+.card-news-img img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: var(--border-light);
+}
+
+.card-news-content {
+    flex: 1;
+}
+
+.card-news-date {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.3rem;
+    font-family: var(--font-primary);
+}
+
+.card-news-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Card griglia */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card con effetto di rivelazione */
+.card-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-reveal-content {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    padding: 1.25rem;
+    background-color: var(--neon-blue);
+    color: var(--darker-bg);
+    transition: bottom 0.3s ease-in-out;
+}
+
+.card-reveal:hover .card-reveal-content {
+    bottom: 0;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .card-news {
+        flex-direction: column;
+    }
+    
+    .card-news-img {
+        flex: 0 0 auto;
+    }
+    
+    .card-news-img img {
+        width: 100%;
+        height: auto;
+    }
+}

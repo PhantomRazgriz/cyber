@@ -1,0 +1,271 @@
+/* notifications.css - Stili per le notifiche */
+
+/* Notifica base */
+.notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--darker-bg);
+    border-left: 3px solid var(--neon-blue);
+    padding: 15px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+    font-family: var(--font-primary);
+    z-index: 100;
+    opacity: 0;
+    min-width: 300px;
+}
+
+.notification.show {
+    bottom: 20px;
+    opacity: 1;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: var(--neon-blue);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.notification-close:hover {
+    color: var(--neon-pink);
+}
+
+/* Varianti di colore per le notifiche */
+.notification-success {
+    border-left-color: var(--success);
+}
+
+.notification-success .notification-close {
+    color: var(--success);
+}
+
+.notification-warning {
+    border-left-color: var(--warning);
+}
+
+.notification-warning .notification-close {
+    color: var(--warning);
+}
+
+.notification-error {
+    border-left-color: var(--error);
+}
+
+.notification-error .notification-close {
+    color: var(--error);
+}
+
+.notification-info {
+    border-left-color: var(--info);
+}
+
+.notification-info .notification-close {
+    color: var(--info);
+}
+
+/* Notifica con icona */
+.notification-icon {
+    padding-left: 50px;
+    position: relative;
+}
+
+.notification-icon::before {
+    content: "i";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--neon-blue);
+    color: var(--darker-bg);
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.notification-success.notification-icon::before {
+    content: "✓";
+    background-color: var(--success);
+}
+
+.notification-warning.notification-icon::before {
+    content: "!";
+    background-color: var(--warning);
+}
+
+.notification-error.notification-icon::before {
+    content: "×";
+    background-color: var(--error);
+}
+
+/* Posizioni alternative */
+.notification-top {
+    top: -100px;
+    bottom: auto;
+}
+
+.notification-top.show {
+    top: 20px;
+}
+
+.notification-top-right {
+    top: -100px;
+    bottom: auto;
+    left: auto;
+    right: 20px;
+    transform: translateX(0);
+}
+
+.notification-top-right.show {
+    top: 20px;
+}
+
+.notification-bottom-right {
+    bottom: -100px;
+    left: auto;
+    right: 20px;
+    transform: translateX(0);
+}
+
+.notification-bottom-right.show {
+    bottom: 20px;
+}
+
+/* Notifica con effetto terminal */
+.notification-terminal {
+    background-color: var(--darkest-bg);
+    border: 1px solid var(--neon-blue);
+    border-left: 1px solid var(--neon-blue);
+    font-family: var(--font-primary);
+    padding-top: 25px;
+    position: relative;
+}
+
+.notification-terminal::before {
+    content: "$ SYSTEM_ALERT";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: var(--dark-bg);
+    padding: 0 10px;
+    color: var(--neon-blue);
+    font-size: 0.8rem;
+}
+
+.notification-terminal-content {
+    color: var(--neon-blue);
+}
+
+/* Notifica con progress bar */
+.notification-progress {
+    position: relative;
+    overflow: hidden;
+}
+
+.notification-progress::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: var(--neon-blue);
+    animation: notificationProgress 5s linear forwards;
+}
+
+@keyframes notificationProgress {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+/* Notifica con effetto glitch */
+.notification-glitch {
+    position: relative;
+    overflow: hidden;
+}
+
+.notification-glitch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 255, 0.2),
+        transparent
+    );
+    animation: notificationGlitch 3s ease infinite;
+}
+
+@keyframes notificationGlitch {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+/* Toast notification (più piccola) */
+.notification-toast {
+    min-width: auto;
+    max-width: 250px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+}
+
+/* Sistema di notifica con stacking */
+.notification-stack .notification {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    opacity: 1;
+    margin-bottom: 10px;
+}
+
+.notification-stack {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .notification {
+        min-width: 250px;
+        max-width: 80%;
+    }
+    
+    .notification-stack {
+        max-width: 80%;
+    }
+}

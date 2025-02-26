@@ -1,0 +1,248 @@
+/* animations.css - Animazioni globali per La Veglia */
+
+/* Scan line */
+@keyframes scan {
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+.scan-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 255, 255, 0.2);
+    animation: scan 6s linear infinite;
+    pointer-events: none;
+    z-index: 11;
+}
+
+/* Effetto lampeggiante */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+/* Effetto glitch */
+@keyframes glitch {
+    0% {
+        clip-path: inset(40% 0 61% 0);
+        transform: translate(-2px, 2px);
+    }
+    20% {
+        clip-path: inset(92% 0 1% 0);
+        transform: translate(1px, 1px);
+    }
+    40% {
+        clip-path: inset(43% 0 1% 0);
+        transform: translate(3px, 1px);
+    }
+    60% {
+        clip-path: inset(25% 0 58% 0);
+        transform: translate(2px, -3px);
+    }
+    80% {
+        clip-path: inset(54% 0 7% 0);
+        transform: translate(-1px, -1px);
+    }
+    100% {
+        clip-path: inset(58% 0 43% 0);
+        transform: translate(-2px, 2px);
+    }
+}
+
+.glitch {
+    animation: glitch 2s infinite alternate-reverse;
+}
+
+/* Effetto pulsazione */
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 4s infinite ease-in-out;
+}
+
+/* Effetto scrittura terminale */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--neon-blue);
+    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* Effetto hover glow */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+    }
+    100% {
+        box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+    }
+}
+
+.glow-hover:hover {
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Effetto di sfocatura in entrata */
+@keyframes blurIn {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.blur-in {
+    animation: blurIn 0.8s ease-out forwards;
+}
+
+/* Effetto di sfarfallio neon */
+@keyframes flicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.4;
+        text-shadow: none;
+    }
+}
+
+.flicker {
+    animation: flicker 3s linear infinite;
+}
+
+/* Effetto matrice di numeri che cadono */
+@keyframes matrixRain {
+    0% {
+        transform: translateY(-200%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+}
+
+.matrix-rain {
+    animation: matrixRain 10s linear infinite;
+}
+
+/* Effetto di distorsione su hover */
+@keyframes distort {
+    0% {
+        transform: skew(0deg, 0deg);
+    }
+    25% {
+        transform: skew(2deg, 1deg);
+    }
+    50% {
+        transform: skew(-1deg, 2deg);
+    }
+    75% {
+        transform: skew(-2deg, -1deg);
+    }
+    100% {
+        transform: skew(0deg, 0deg);
+    }
+}
+
+.distort-hover:hover {
+    animation: distort 0.5s ease-in-out;
+}
+
+/* Animazione di fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in forwards;
+}
+
+/* Effetto di rivelazione digitale */
+@keyframes digitalReveal {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.digital-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.digital-reveal::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.1) 2px,
+        rgba(0, 255, 255, 0.1) 4px
+    );
+    background-size: 200% 100%;
+    animation: digitalReveal 2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+/* Classe helper per disabilitare animazioni */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

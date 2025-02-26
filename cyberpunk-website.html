@@ -3,729 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEOTOKYO 2077 - Portale Cyberpunk</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-        :root {
-            --neon-blue: #00ffff;
-            --neon-pink: #ff00ff;
-            --neon-purple: #9900ff;
-            --dark-bg: #0a0a12;
-            --darker-bg: #050508;
-            --glitch-duration: 2s;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            font-family: 'Share Tech Mono', monospace;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 30% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 70% 20%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
-        }
-
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .scan-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: rgba(0, 255, 255, 0.2);
-            animation: scan 6s linear infinite;
-            pointer-events: none;
-            z-index: 11;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--neon-blue);
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: white;
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .logo::before {
-            content: "NEOTOKYO 2077";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            color: var(--neon-pink);
-            opacity: 0.8;
-            filter: blur(3px);
-            animation: glitch var(--glitch-duration) infinite alternate-reverse;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-blue);
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0;
-            height: 1px;
-            background: var(--neon-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .search {
-            position: relative;
-        }
-
-        .search input {
-            background-color: rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
-            color: white;
-            padding: 8px 15px;
-            width: 200px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .search input:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 5px var(--neon-blue);
-        }
-
-        .search::after {
-            content: ">";
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--neon-blue);
-        }
-
-        .hero {
-            height: 500px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(153, 0, 255, 0.15) 0%, rgba(0, 255, 255, 0.15) 100%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #fff, var(--neon-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-        }
-
-        .hero h1::before {
-            content: "BENVENUTO NEL FUTURO";
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            color: var(--neon-pink);
-            opacity: 0.5;
-            z-index: -1;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--neon-blue);
-            border: 1px solid var(--neon-blue);
-            padding: 12px 30px;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn::before {
-            content: "";
-            position: absolute;
-            left: -10px;
-            top: 0;
-            width: 20px;
-            height: 100%;
-            background-color: var(--neon-blue);
-            opacity: 0.3;
-            transform: skewX(-30deg);
-            transition: all 0.5s ease;
-        }
-
-        .btn:hover {
-            color: black;
-            text-shadow: none;
-            box-shadow: 0 0 10px var(--neon-blue);
-        }
-
-        .btn:hover::before {
-            width: 140%;
-            left: -20px;
-        }
-
-        main {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .card {
-            background-color: var(--darker-bg);
-            border: 1px solid #222;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple));
-        }
-
-        .card h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .card a {
-            color: var(--neon-blue);
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .card a:hover {
-            color: var(--neon-pink);
-            text-decoration: underline;
-        }
-
-        .news-section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            text-transform: uppercase;
-            position: relative;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--neon-blue), transparent);
-        }
-
-        .news-items {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .news-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .news-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border: 1px solid #333;
-        }
-
-        .news-item-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .news-date {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 5px;
-        }
-
-        footer {
-            background-color: var(--darker-bg);
-            padding: 40px 0;
-            border-top: 1px solid #222;
-            position: relative;
-        }
-
-        footer::before {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-        }
-
-        .footer-section h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--neon-blue);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--neon-blue);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .social-links a {
-            color: #ccc;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--neon-pink);
-        }
-
-        .footer-bottom {
-            margin-top: 40px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .terminal {
-            background-color: rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--neon-blue);
-            padding: 20px;
-            font-family: 'Share Tech Mono', monospace;
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .terminal::before {
-            content: "$ TERMINAL_ACCESS";
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            background-color: var(--dark-bg);
-            padding: 0 10px;
-            color: var(--neon-blue);
-            font-size: 0.8rem;
-        }
-
-        .terminal p {
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .terminal-input {
-            display: flex;
-            align-items: center;
-        }
-
-        .terminal-input::before {
-            content: ">";
-            color: var(--neon-blue);
-            margin-right: 10px;
-        }
-
-        .terminal-blink {
-            width: 10px;
-            height: 20px;
-            background-color: var(--neon-blue);
-            display: inline-block;
-            animation: blink 1s infinite;
-            margin-left: 5px;
-        }
-
-        /* Animazioni */
-        @keyframes scan {
-            0% {
-                top: 0%;
-            }
-            100% {
-                top: 100%;
-            }
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes glitch {
-            0% {
-                clip-path: inset(40% 0 61% 0);
-                transform: translate(-2px, 2px);
-            }
-            20% {
-                clip-path: inset(92% 0 1% 0);
-                transform: translate(1px, 1px);
-            }
-            40% {
-                clip-path: inset(43% 0 1% 0);
-                transform: translate(3px, 1px);
-            }
-            60% {
-                clip-path: inset(25% 0 58% 0);
-                transform: translate(2px, -3px);
-            }
-            80% {
-                clip-path: inset(54% 0 7% 0);
-                transform: translate(-1px, -1px);
-            }
-            100% {
-                clip-path: inset(58% 0 43% 0);
-                transform: translate(-2px, 2px);
-            }
-        }
-
-        /* Media queries */
-        @media screen and (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media screen and (max-width: 576px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-            
-            .news-items {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .nav-links {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            
-            .search {
-                margin-top: 15px;
-                width: 100%;
-            }
-            
-            .search input {
-                width: 100%;
-            }
-        }
-    </style>
+    <title>La Veglia - Accesso Terminale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div class="noise"></div>
     <div class="scan-line"></div>
-
-    <div class="container">
-        <header>
-            <h1 class="logo">NEOTOKYO 2077</h1>
-            <div class="nav">
-                <div class="nav-links">
-                    <a href="#">HOME</a>
-                    <a href="#">CYBERSPAZIO</a>
-                    <a href="#">TECNOLOGIA</a>
-                    <a href="#">CULTURA</a>
-                    <a href="#">CORPORAZIONI</a>
-                    <a href="#">RICERCATI</a>
-                </div>
-                <div class="search">
-                    <input type="text" placeholder="Cerca nel database...">
-                </div>
+    
+    <div class="sys-panel">
+        <div class="sys-panel-header">
+            <div class="sys-header-left">
+                <span class="sys-logo">NEXUS-II</span>
+                <div class="sys-status">SISTEMA OPERATIVO: <span class="status-active">ATTIVO</span></div>
             </div>
-        </header>
-
-        <div class="hero">
-            <div class="hero-content">
-                <h1>BENVENUTO NEL FUTURO</h1>
-                <p>La realtà è solo un costrutto elettronico. Immergiti nel mondo cyberpunk, dove l'alta tecnologia incontra la bassa vita. Informazioni, enhancement corporei, intelligenze artificiali ribelli e molto altro.</p>
-                <a href="#" class="btn">JACK IN</a>
+            <div class="sys-header-right">
+                <div class="sys-time" id="system-time">14:35:27</div>
+                <div class="sys-date" id="system-date">26/02/2025</div>
+                <div class="sys-user">USER: <span id="user-id">OSPITE#3192</span></div>
             </div>
         </div>
-
-        <div class="terminal">
-            <p>> Connessione al Cyberspazio stabilita</p>
-            <p>> Scansione retinale completata</p>
-            <p>> Identificazione: Visitatore #452AX7</p>
-            <p>> Accesso al database concesso. Bentornato, Netrunner.</p>
-            <div class="terminal-input">
-                <span class="terminal-blink"></span>
-            </div>
-        </div>
-
-        <main>
-            <div class="card">
-                <img src="/api/placeholder/400/300" alt="Implanti Cibernetici">
-                <h2>Enhancement Cibernetici</h2>
-                <p>Gli ultimi ritrovati della cyber-tecnologia per potenziare il corpo umano. Dai muscoli sintetici alle interfacce neurali avanzate, il futuro è adesso.</p>
-                <a href="#">ESPLORA LE MODIFICHE ></a>
-            </div>
-            <div class="card">
-                <img src="/api/placeholder/400/300" alt="Guerra delle Corporazioni">
-                <h2>Guerra delle Corporazioni</h2>
-                <p>Arasaka e Militech continuano la loro battaglia per il controllo globale. La vera guerra si combatte con hacker e agenti corporativi, non sui campi di battaglia.</p>
-                <a href="#">LEGGI GLI SVILUPPI ></a>
-            </div>
-            <div class="card">
-                <img src="/api/placeholder/400/300" alt="Vita nei Bassifondi">
-                <h2>I Bassifondi</h2>
-                <p>La vita nelle zone dimenticate della metropoli. Gang, modifiche illegali, droghe sintetiche e la lotta quotidiana per la sopravvivenza sotto le luci al neon.</p>
-                <a href="#">SCOPRI DI PIÙ ></a>
-            </div>
-        </main>
-
-        <section class="news-section">
-            <h2 class="section-title">Ultime dal Net</h2>
-            <div class="news-items">
-                <div class="news-item">
-                    <img src="/api/placeholder/100/100" alt="Nuova IA">
-                    <div class="news-item-content">
-                        <div class="news-date">12.02.2077</div>
-                        <h3>Nuova IA rivendica coscienza, chiede asilo politico</h3>
-                        <p>Un'intelligenza artificiale commerciale ha bloccato i server di Netcom dichiarandosi senziente.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="/api/placeholder/100/100" alt="Blackout">
-                    <div class="news-item-content">
-                        <div class="news-date">08.02.2077</div>
-                        <h3>Mega-blackout nel settore est, migliaia di impianti offline</h3>
-                        <p>Un massiccio attacco hacker ha lasciato innumerevoli cittadini con impianti cibernetici non funzionanti.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="/api/placeholder/100/100" alt="Droga sintetica">
-                    <div class="news-item-content">
-                        <div class="news-date">05.02.2077</div>
-                        <h3>Nuova droga sintetica permette di "percepire" il Cyberspazio</h3>
-                        <p>La polizia è in allerta per una sostanza che promette esperienze di immersione totale senza hardware.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <img src="/api/placeholder/100/100" alt="Ribellione robot">
-                    <div class="news-item-content">
-                        <div class="news-date">01.02.2077</div>
-                        <h3>Robot industriali si ribellano in fabbrica Arasaka</h3>
-                        <p>Unità di produzione automatizzate hanno improvvisamente ignorato i comandi, causando ingenti danni.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>NAVIGAZIONE</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Cyberspazio</a></li>
-                        <li><a href="#">Tecnologia</a></li>
-                        <li><a href="#">Cultura</a></li>
-                        <li><a href="#">Corporazioni</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>RISORSE</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Darknet Access</a></li>
-                        <li><a href="#">Mercato Nero</a></li>
-                        <li><a href="#">Fixer Directory</a></li>
-                        <li><a href="#">Implant Reviews</a></li>
-                        <li><a href="#">Mappa della Città</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>INFO</h3>
-                    <p>NEOTOKYO 2077 è il tuo portale nel mondo cyberpunk. Naviga il cyberspazio a tuo rischio e pericolo.</p>
-                    <div class="social-links">
-                        <a href="#">NET</a>
-                        <a href="#">VID</a>
-                        <a href="#">DEEP</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2077 NEOTOKYO NETWORK // ACCESSO NON AUTORIZZATO PUNIBILE PER LEGGE</p>
-            </div>
-        </footer>
     </div>
+
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="term-controls">
+                <span class="term-control term-minimize"></span>
+                <span class="term-control term-maximize"></span>
+                <span class="term-control term-close"></span>
+            </div>
+            <div class="term-title">ACCESS: LA VEGLIA</div>
+            <div class="term-status">
+                <span class="connection-status">CONNESSO</span>
+                <span class="term-indicators">
+                    <span class="indicator ind-rx">RX</span>
+                    <span class="indicator ind-tx">TX</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="term-section" id="boot-sequence">
+                <div class="term-line"><span class="term-prompt">$</span> <span class="term-command">sys.init</span></div>
+                <div class="term-output">Sistema di monitoraggio inizializzato.</div>
+                <div class="term-output">Controllo mentale attivo da <span id="counter-days">8,421</span> giorni</div>
+                <div class="term-output">Avvio scansione memorie...</div>
+                <div class="term-output success">Accesso garantito. Benvenuto nel Sistema La Veglia.</div>
+                <div class="term-output warning blink-text">ATTENZIONE: Contenuti di questo terminale sono considerati sovversivi secondo la Legge della Rete.</div>
+            </div>
+
+            <div class="term-section" id="main-content">
+                <div class="term-header-main">
+                    <div class="header-glitch-text">LA VEGLIA</div>
+                    <div class="header-subtitle">PROGETTO DI RISVEGLIO COLLETTIVO</div>
+                </div>
+
+                <div class="term-window" id="awareness-module">
+                    <div class="window-header">
+                        <div class="window-title">ASSESSMENT DELLA COSCIENZA</div>
+                        <div class="window-controls">
+                            <span class="win-control win-help">[?]</span>
+                            <span class="win-control win-close">[X]</span>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <h1>SEI <span class="text-highlight">CONNESSO</span>, MA SEI DAVVERO <span class="text-danger blink-slow">SVEGLIO</span>?</h1>
+                        <p>Viviamo in un'epoca in cui la tecnologia non è più uno strumento al nostro servizio, ma un sistema che ci governa. Le corporazioni hanno costruito una prigione digitale così seducente che non solo non vediamo le sbarre, ma le abbracciamo volontariamente.</p>
+                        <div class="term-button-row">
+                            <a href="#" class="term-button">VERIFICA IL TUO LIVELLO DI COSCIENZA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-grid">
+                    <div class="data-cell memory-log">
+                        <div class="cell-header">MEM.LOG//#8571</div>
+                        <div class="cell-content quote-content">
+                            <div class="quote-text">"La vera prigione dell'era moderna non è costruita con mattoni e sbarre, ma con notifiche, algoritmi e il continuo flusso di dopamina che ci tiene incatenati agli schermi mentre il mondo reale svanisce davanti ai nostri occhi stanchi."</div>
+                            <div class="quote-source">Progetto Risveglio Collettivo, 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-grid triple-grid">
+                    <div class="data-cell">
+                        <div class="cell-header">DATA REPORT//DISTRAZIONE</div>
+                        <div class="cell-content">
+                            <div class="cell-img"><img src="/api/placeholder/340/180" alt="Distrazione Perpetua"></div>
+                            <h2>Distrazione Perpetua</h2>
+                            <p>Le corporazioni hanno creato un sistema di continua stimolazione che impedisce la riflessione profonda. Non è un caso che l'attenzione media sia crollata da 12 secondi a soli 8 negli ultimi vent'anni.</p>
+                            <div class="data-stats">
+                                <div class="stat-label">Controllo dell'attenzione</div>
+                                <div class="stat-value"><span class="text-highlight">87%</span></div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            <a href="#" class="term-link">ACCEDI AI DATI COMPLETI ></a>
+                        </div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="cell-header">DATA REPORT//PRIVACY</div>
+                        <div class="cell-content">
+                            <div class="cell-img"><img src="/api/placeholder/340/180" alt="Sorveglianza totale"></div>
+                            <h2>Sorveglianza Totale</h2>
+                            <p>La privacy non è stata eliminata, è stata gradualmente ridefinita fino a diventare un concetto obsoleto che abbiamo volontariamente abbandonato in cambio di servizi "gratuiti".</p>
+                            <div class="data-stats">
+                                <div class="stat-label">Dati raccolti quotidianamente</div>
+                                <div class="stat-value"><span class="text-highlight">4.2TB</span></div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <a href="#" class="term-link">ANALIZZA DATI SENSIBILI ></a>
+                        </div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="cell-header">DATA REPORT//ILLUSIONE</div>
+                        <div class="cell-content">
+                            <div class="cell-img"><img src="/api/placeholder/340/180" alt="Illusione della scelta"></div>
+                            <h2>Illusione della Scelta</h2>
+                            <p>Crediamo di fare scelte autonome, ma navighiamo in opzioni attentamente selezionate per noi da algoritmi progettati per massimizzare il profitto, non il nostro benessere.</p>
+                            <div class="data-stats">
+                                <div class="stat-label">Decisioni influenzate</div>
+                                <div class="stat-value"><span class="text-highlight">76%</span></div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" style="width: 76%"></div>
+                                </div>
+                            </div>
+                            <a href="#" class="term-link">SCOPRI LE PROVE ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="term-window" id="freedom-protocol">
+                    <div class="window-header">
+                        <div class="window-title">PROTOCOLLO DI LIBERAZIONE</div>
+                        <div class="window-controls">
+                            <span class="win-control win-help">[?]</span>
+                            <span class="win-control win-close">[X]</span>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <h2 class="protocol-title">SEQUENZA DI RISVEGLIO</h2>
+                        <div class="protocol-desc">Liberarsi dalle catene digitali non significa rifiutare la tecnologia, ma riprenderne il controllo e utilizzarla consapevolmente.</div>
+                        
+                        <div class="protocol-steps">
+                            <div class="protocol-step">
+                                <div class="step-number">01</div>
+                                <div class="step-content">
+                                    <h3>CONSAPEVOLEZZA</h3>
+                                    <p>Riconoscere i meccanismi di manipolazione e le dipendenze digitali nel nostro quotidiano.</p>
+                                </div>
+                            </div>
+                            <div class="protocol-step">
+                                <div class="step-number">02</div>
+                                <div class="step-content">
+                                    <h3>DISTACCO</h3>
+                                    <p>Creare spazi di disconnessione e recuperare la capacità di attenzione profonda.</p>
+                                </div>
+                            </div>
+                            <div class="protocol-step">
+                                <div class="step-number">03</div>
+                                <div class="step-content">
+                                    <h3>RIPROGETTAZIONE</h3>
+                                    <p>Ristrutturare il proprio rapporto con la tecnologia in base a valori autentici.</p>
+                                </div>
+                            </div>
+                            <div class="protocol-step">
+                                <div class="step-number">04</div>
+                                <div class="step-content">
+                                    <h3>COMUNITÀ</h3>
+                                    <p>Costruire reti di supporto per una tecnologia etica e al servizio dell'umanità.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-grid">
+                    <div class="data-cell memory-log">
+                        <div class="cell-header">MEM.LOG//#9247</div>
+                        <div class="cell-content quote-content">
+                            <div class="quote-text">"Non è la tecnologia in sé il problema, ma come è stata progettata per estrarre valore da noi invece che arricchire le nostre vite. Dobbiamo riprendere il controllo degli strumenti che abbiamo creato prima che sia troppo tardi."</div>
+                            <div class="quote-source">Manifesto per un'Esistenza Consapevole, 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="term-window" id="join-network">
+                    <div class="window-header">
+                        <div class="window-title">CONNESSIONE ALLA RETE</div>
+                        <div class="window-controls">
+                            <span class="win-control win-help">[?]</span>
+                            <span class="win-control win-close">[X]</span>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <h2>UNISCITI AL NETWORK DI <span class="text-danger">RISVEGLIO</span></h2>
+                        <p>Ricevi aggiornamenti, strumenti e strategie per liberarti dalle catene digitali e riprendere il controllo della tua attenzione e dei tuoi dati.</p>
+                        <div class="term-form">
+                            <input type="email" class="term-input" placeholder="Inserisci la tua email">
+                            <button type="button" id="subscribe-btn" class="term-button">INIZIA CONNESSIONE</button>
+                        </div>
+                        <div class="encryption-notice">
+                            <span class="encryption-icon">🔒</span> Tutte le comunicazioni sono criptate e protette
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="terminal-footer">
+            <div class="term-nav">
+                <a href="#" class="term-nav-item active">HOME</a>
+                <a href="#" class="term-nav-item">MANIFESTO</a>
+                <a href="#" class="term-nav-item">RIVELAZIONI</a>
+                <a href="#" class="term-nav-item">LIBERAZIONE</a>
+                <a href="#" class="term-nav-item">DOCUMENTI</a>
+                <a href="#" class="term-nav-item">CONNETTITI</a>
+            </div>
+            <div class="term-status-bar">
+                <div class="status-item"><span class="status-label">SESSIONE:</span> <span id="session-time">00:12:47</span></div>
+                <div class="status-item"><span class="status-label">RETE:</span> <span class="secured">SICURA</span></div>
+                <div class="status-item"><span class="status-label">TRAFFICO:</span> <span id="traffic-indicator">▂▃▅▇</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="sys-notification">
+        <div class="notification-content">
+            <div class="notification-header">SYSTEM ALERT</div>
+            <p id="notification-message"></p>
+            <button id="notification-close">CHIUDI [X]</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

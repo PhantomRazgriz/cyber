@@ -1,0 +1,263 @@
+/* protocol.css - Stili per il protocollo di liberazione */
+
+/* Titolo protocollo */
+.protocol-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.protocol-title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--neon-blue), transparent);
+    margin: 15px auto 0;
+}
+
+/* Descrizione protocollo */
+.protocol-desc {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* Container dei passaggi */
+.protocol-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Singolo step */
+.protocol-step {
+    background-color: var(--darkest-bg);
+    border: 1px solid var(--border-light);
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.protocol-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--neon-blue);
+}
+
+/* Numero dello step */
+.step-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.step-number::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 255, 255, 0.3);
+}
+
+/* Contenuto dello step */
+.step-content {
+    padding-top: 5px;
+}
+
+.step-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* Connettori tra gli step */
+.protocol-steps {
+    position: relative;
+}
+
+.protocol-step::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: -21px;
+    width: 20px;
+    height: 1px;
+    background-color: var(--border-light);
+    z-index: 1;
+}
+
+.protocol-step:last-child::before {
+    display: none;
+}
+
+/* Step attivo */
+.protocol-step.active {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.protocol-step.active .step-number {
+    text-shadow: 0 0 10px var(--neon-blue-glow);
+}
+
+.protocol-step.active::after {
+    content: "ATTIVO";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: var(--neon-blue);
+    color: var(--darkest-bg);
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+}
+
+/* Step completato */
+.protocol-step.completed {
+    border-color: var(--success);
+}
+
+.protocol-step.completed .step-number {
+    color: var(--success);
+}
+
+.protocol-step.completed .step-number::after {
+    background-color: rgba(0, 255, 102, 0.3);
+}
+
+.protocol-step.completed::after {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--success);
+    font-size: 1rem;
+}
+
+/* Step bloccato */
+.protocol-step.locked {
+    opacity: 0.7;
+    border-color: var(--error-dim);
+}
+
+.protocol-step.locked .step-content {
+    filter: blur(1px);
+}
+
+.protocol-step.locked .step-number {
+    color: var(--error-dim);
+}
+
+.protocol-step.locked::after {
+    content: "BLOCCATO";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: var(--error);
+    color: var(--text-bright);
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+}
+
+/* Barra di avanzamento protocollo */
+.protocol-progress {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--neon-blue-dark), var(--neon-blue));
+    width: 0;
+    transition: width 1s ease;
+}
+
+/* Stato del protocollo */
+.protocol-status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 20px;
+}
+
+.protocol-status-label {
+    color: var(--text-secondary);
+}
+
+/* Media queries */
+@media screen and (max-width: 992px) {
+    .protocol-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .protocol-step:nth-child(2n)::before {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .protocol-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .protocol-step::before {
+        display: none;
+    }
+    
+    .protocol-title {
+        font-size: 1.5rem;
+    }
+    
+    .protocol-desc {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .protocol-step {
+        padding: 15px;
+    }
+    
+    .step-number {
+        font-size: 1.8rem;
+    }
+    
+    .step-content h3 {
+        font-size: 1rem;
+    }
+}

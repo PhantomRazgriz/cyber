@@ -1,0 +1,344 @@
+/* sections.css - Layout sezioni standard */
+
+/* Sezione base */
+.section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.section-sm {
+    padding: 40px 0;
+}
+
+.section-lg {
+    padding: 120px 0;
+}
+
+/* Titoli sezione */
+.section-heading {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 2px;
+    background: var(--neon-blue);
+}
+
+.section-title-center {
+    text-align: center;
+}
+
+.section-title-center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--text-secondary);
+}
+
+/* Sezione con sfondo scuro */
+.section-dark {
+    background-color: var(--darker-bg);
+}
+
+/* Sezione con sfondo pattern */
+.section-pattern {
+    background-image: 
+        linear-gradient(rgba(10, 10, 18, 0.95), rgba(10, 10, 18, 0.95)),
+        url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' fill='none' stroke='rgba(0, 255, 255, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: auto, 20px 20px;
+}
+
+/* Sezione con sfondo gradient */
+.section-gradient {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+}
+
+/* Sezione con divisore */
+.section-divider {
+    position: relative;
+}
+
+.section-divider::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+}
+
+/* Sezione con forma futuristica */
+.section-shape-top {
+    position: relative;
+    padding-top: 120px;
+}
+
+.section-shape-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M1200 0L0 0 598.97 114.72 1200 0z' fill='%230a0a12'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+}
+
+.section-shape-bottom {
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.section-shape-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M1200 120L0 16.48 0 0 1200 0 1200 120z' fill='%230a0a12'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+}
+
+/* Sezione risveglio (awaking section) */
+.awakening-section {
+    margin-bottom: 80px;
+}
+
+.awakening-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.awakening-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.awakening-subtitle {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+    background-color: var(--darker-bg);
+    padding: 30px 20px;
+    border-top: 2px solid var(--neon-blue);
+}
+
+.step-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+.step-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.step-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Sezione newsletter */
+.newsletter {
+    background-color: var(--darker-bg);
+    padding: 60px;
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.newsletter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-red));
+}
+
+.newsletter-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.highlight-text {
+    color: var(--neon-red);
+    text-shadow: 0 0 5px var(--neon-red);
+}
+
+.newsletter-text {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.form-container {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Sezione con animazione di griglia */
+.section-grid-animation {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-grid-animation::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(10, 10, 18, 0.97), rgba(10, 10, 18, 0.97)),
+        linear-gradient(0deg, transparent 24px, rgba(0, 255, 255, 0.05) 25px, rgba(0, 255, 255, 0.05) 26px, transparent 27px, transparent 49px, rgba(0, 255, 255, 0.05) 50px, rgba(0, 255, 255, 0.05) 51px, transparent 52px, transparent 74px, rgba(0, 255, 255, 0.05) 75px, rgba(0, 255, 255, 0.05) 76px, transparent 77px),
+        linear-gradient(90deg, transparent 24px, rgba(0, 255, 255, 0.05) 25px, rgba(0, 255, 255, 0.05) 26px, transparent 27px, transparent 49px, rgba(0, 255, 255, 0.05) 50px, rgba(0, 255, 255, 0.05) 51px, transparent 52px, transparent 74px, rgba(0, 255, 255, 0.05) 75px, rgba(0, 255, 255, 0.05) 76px, transparent 77px);
+    background-size: 100% 100%, 100px 100px, 100px 100px;
+    animation: gridAnimation 20s linear infinite;
+}
+
+@keyframes gridAnimation {
+    0% {
+        background-position: 0 0, 0 0, 0 0;
+    }
+    100% {
+        background-position: 0 0, 0 100px, 100px 0;
+    }
+}
+
+/* Sezione con overlay */
+.section-overlay {
+    position: relative;
+    z-index: 1;
+}
+
+.section-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 18, 0.8);
+    z-index: -1;
+}
+
+/* Media queries */
+@media screen and (max-width: 992px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-lg {
+        padding: 90px 0;
+    }
+
+    .awakening-title {
+        font-size: 2.4rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-lg {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .steps-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .newsletter {
+        padding: 40px 30px;
+    }
+
+    .newsletter-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .section-lg {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .awakening-title {
+        font-size: 2rem;
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr;
+    }
+}
