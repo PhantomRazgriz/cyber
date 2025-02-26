@@ -12,6 +12,8 @@
 @import 'components/protocol.css';
 @import 'components/notifications.css';
 @import 'components/forms.css';
+@import 'components/cyber-grid.css';  /* Nuovo modulo per l'effetto Cyber Grid */
+/* @import 'components/neural-effects.css';  Rimosso - sostituito da cyber-grid.css */
 
 @import 'layouts/grid.css';
 @import 'layouts/responsive.css';
@@ -151,55 +153,6 @@ body {
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
 
-/* Animazioni chiave */
-@keyframes scan {
-    0% {
-        top: 0%;
-    }
-    100% {
-        top: 100%;
-    }
-}
-
-@keyframes blink {
-    0%, 49% {
-        opacity: 1;
-    }
-    50%, 100% {
-        opacity: 0.3;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes glitch {
-    0% {
-        transform: translate(0);
-    }
-    20% {
-        transform: translate(-3px, 3px);
-    }
-    40% {
-        transform: translate(-3px, -3px);
-    }
-    60% {
-        transform: translate(3px, 3px);
-    }
-    80% {
-        transform: translate(3px, -3px);
-    }
-    100% {
-        transform: translate(0);
-    }
-}
-
 /* Stile per focus accessibility */
 :focus-visible {
     outline: 2px solid var(--neon-blue);
@@ -219,16 +172,5 @@ body {
     }
     .grid-3 {
         grid-template-columns: 1fr;
-    }
-}
-
-/* Prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .scan-line,
-    .blink-text,
-    .blink-slow,
-    .glitch-text::before,
-    .glitch-text::after {
-        animation: none !important;
     }
 }

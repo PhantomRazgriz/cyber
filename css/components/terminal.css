@@ -23,6 +23,7 @@
     border-bottom: 1px solid var(--border-header);
     padding: 8px 15px;
     height: 36px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .term-controls {
@@ -213,7 +214,16 @@
     background-color: var(--window-bg);
     border: 1px solid var(--border-light);
     margin-bottom: 30px;
-    box-shadow: var(--shadow-normal);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 
+                0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.term-window:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 
+                0 20px 45px rgba(0, 0, 0, 0.3),
+                0 0 15px var(--neon-blue-glow);
 }
 
 .window-header {
@@ -409,6 +419,148 @@
     color: var(--success);
 }
 
+/* Nuovi effetti neurali per terminale */
+/* Effetto pulse per titolo */
+.header-glitch-text.pulse-element {
+    animation: neural-pulse 6s infinite ease-in-out;
+}
+
+/* Effetto glitch 3D */
+.header-glitch-text.glitch-3d {
+    text-shadow: 
+        0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+        0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    animation: glitch3d 2s infinite;
+}
+
+/* Effetto awakened per titolo */
+.header-subtitle.awakened {
+    position: relative;
+    overflow: hidden;
+}
+
+.header-subtitle.awakened::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 255, 255, 0) 0%,
+        rgba(0, 255, 255, 0.1) 50%,
+        rgba(0, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: neural-scan 5s infinite ease-out;
+}
+
+/* Finestra neurale */
+.term-window.neural-focus {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.term-window.neural-focus:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 
+                0 20px 45px rgba(0, 0, 0, 0.3),
+                0 0 20px var(--neon-blue-glow);
+    z-index: 2;
+}
+
+/* Parallax section */
+.parallax-section {
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-layer-back {
+    transform: translateZ(-10px) scale(2);
+    opacity: 0.2;
+}
+
+.parallax-layer-mid {
+    transform: translateZ(-5px) scale(1.5);
+    opacity: 0.5;
+}
+
+.parallax-layer-front {
+    transform: translateZ(0);
+}
+
+/* Pulsante risveglio */
+.term-button.awaken-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.term-button.awaken-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 255, 255, 0.1) 0%,
+        rgba(255, 42, 42, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.term-button.awaken-button:hover::after {
+    opacity: 1;
+}
+
+.term-button.awaken-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+}
+
+/* Contenuto con riflessione */
+.window-content.awakened-reflection {
+    position: relative;
+    overflow: hidden;
+}
+
+.window-content.awakened-reflection::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 255, 255, 0.05) 100%
+    );
+    pointer-events: none;
+}
+
+/* Window pulsante */
+.term-window.pulse-element {
+    animation: neural-pulse 6s infinite ease-in-out;
+}
+
 /* Animazioni specifiche del terminale */
 @keyframes glitch-anim {
     0% {
@@ -480,6 +632,11 @@
     .term-form {
         flex-direction: column;
     }
+
+    .term-window:hover,
+    .term-window.neural-focus:hover {
+        transform: translateY(-3px);
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -497,5 +654,19 @@
     
     .header-glitch-text {
         font-size: 1.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .term-window:hover,
+    .term-window.neural-focus:hover,
+    .term-button.awaken-button:hover,
+    .header-subtitle.awakened::before,
+    .header-glitch-text.pulse-element,
+    .term-window.pulse-element,
+    .parallax-layer {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
     }
 }

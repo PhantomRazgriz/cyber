@@ -9,19 +9,22 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <!-- Effetti globali di profondità -->
     <div class="noise"></div>
     <div class="scan-line"></div>
+    <div class="foggy-bg"></div>
+    <div class="grid-background"></div>
     
     <div class="sys-panel">
         <div class="sys-panel-header">
             <div class="sys-header-left">
-                <span class="sys-logo">NEXUS-II</span>
-                <div class="sys-status">SISTEMA OPERATIVO: <span class="status-active">ATTIVO</span></div>
+                <span class="sys-logo pulse-element">NEXUS-II</span>
+                <div class="sys-status">SISTEMA OPERATIVO: <span class="status-active consciousness-level">ATTIVO</span></div>
             </div>
             <div class="sys-header-right">
                 <div class="sys-time" id="system-time">14:35:27</div>
                 <div class="sys-date" id="system-date">26/02/2025</div>
-                <div class="sys-user">USER: <span id="user-id">OSPITE#3192</span></div>
+                <div class="sys-user">USER: <span id="user-id" class="awakened">OSPITE#3192</span></div>
             </div>
         </div>
     </div>
@@ -47,19 +50,20 @@
             <div class="term-section" id="boot-sequence">
                 <div class="term-line"><span class="term-prompt">$</span> <span class="term-command">sys.init</span></div>
                 <div class="term-output">Sistema di monitoraggio inizializzato.</div>
-                <div class="term-output">Controllo mentale attivo da <span id="counter-days">8,421</span> giorni</div>
+                <div class="term-output">Controllo mentale attivo da <span id="counter-days" class="consciousness-level consciousness-high">8,421</span> giorni</div>
                 <div class="term-output">Avvio scansione memorie...</div>
                 <div class="term-output success">Accesso garantito. Benvenuto nel Sistema La Veglia.</div>
                 <div class="term-output warning blink-text">ATTENZIONE: Contenuti di questo terminale sono considerati sovversivi secondo la Legge della Rete.</div>
             </div>
 
-            <div class="term-section" id="main-content">
+            <div class="term-section parallax-section synapse-container" id="main-content">
+                <div class="parallax-layer parallax-layer-back"></div>
                 <div class="term-header-main">
-                    <div class="header-glitch-text">LA VEGLIA</div>
-                    <div class="header-subtitle">PROGETTO DI RISVEGLIO COLLETTIVO</div>
+                    <div class="header-glitch-text glitch-3d pulse-element">LA VEGLIA</div>
+                    <div class="header-subtitle awakened">PROGETTO DI RISVEGLIO COLLETTIVO</div>
                 </div>
 
-                <div class="term-window" id="awareness-module">
+                <div class="term-window neural-focus" id="awareness-module">
                     <div class="window-header">
                         <div class="window-title">ASSESSMENT DELLA COSCIENZA</div>
                         <div class="window-controls">
@@ -67,17 +71,17 @@
                             <span class="win-control win-close">[X]</span>
                         </div>
                     </div>
-                    <div class="window-content">
+                    <div class="window-content reflection awakened-reflection">
                         <h1>SEI <span class="text-highlight">CONNESSO</span>, MA SEI DAVVERO <span class="text-danger blink-slow">SVEGLIO</span>?</h1>
                         <p>Viviamo in un'epoca in cui la tecnologia non è più uno strumento al nostro servizio, ma un sistema che ci governa. Le corporazioni hanno costruito una prigione digitale così seducente che non solo non vediamo le sbarre, ma le abbracciamo volontariamente.</p>
                         <div class="term-button-row">
-                            <a href="#" class="term-button">VERIFICA IL TUO LIVELLO DI COSCIENZA</a>
+                            <a href="#" class="term-button awaken-button">VERIFICA IL TUO LIVELLO DI COSCIENZA</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="data-grid">
-                    <div class="data-cell memory-log">
+                    <div class="data-cell memory-log side-light neural-pattern">
                         <div class="cell-header">MEM.LOG//#8571</div>
                         <div class="cell-content quote-content">
                             <div class="quote-text">"La vera prigione dell'era moderna non è costruita con mattoni e sbarre, ma con notifiche, algoritmi e il continuo flusso di dopamina che ci tiene incatenati agli schermi mentre il mondo reale svanisce davanti ai nostri occhi stanchi."</div>
@@ -86,16 +90,18 @@
                     </div>
                 </div>
 
-                <div class="data-grid triple-grid">
-                    <div class="data-cell">
+                <div class="data-grid triple-grid focus-container">
+                    <div class="data-cell focus-item neural-focus">
                         <div class="cell-header">DATA REPORT//DISTRAZIONE</div>
                         <div class="cell-content">
-                            <div class="cell-img"><img src="/api/placeholder/340/180" alt="Distrazione Perpetua"></div>
+                            <div class="cell-img">
+                                <img src="/api/placeholder/340/180" alt="Distrazione Perpetua">
+                            </div>
                             <h2>Distrazione Perpetua</h2>
                             <p>Le corporazioni hanno creato un sistema di continua stimolazione che impedisce la riflessione profonda. Non è un caso che l'attenzione media sia crollata da 12 secondi a soli 8 negli ultimi vent'anni.</p>
                             <div class="data-stats">
                                 <div class="stat-label">Controllo dell'attenzione</div>
-                                <div class="stat-value"><span class="text-highlight">87%</span></div>
+                                <div class="stat-value"><span class="text-highlight consciousness-level consciousness-low">87%</span></div>
                                 <div class="stat-bar">
                                     <div class="stat-fill" style="width: 87%"></div>
                                 </div>
@@ -103,15 +109,17 @@
                             <a href="#" class="term-link">ACCEDI AI DATI COMPLETI ></a>
                         </div>
                     </div>
-                    <div class="data-cell">
+                    <div class="data-cell focus-item neural-focus">
                         <div class="cell-header">DATA REPORT//PRIVACY</div>
                         <div class="cell-content">
-                            <div class="cell-img"><img src="/api/placeholder/340/180" alt="Sorveglianza totale"></div>
+                            <div class="cell-img">
+                                <img src="/api/placeholder/340/180" alt="Sorveglianza totale">
+                            </div>
                             <h2>Sorveglianza Totale</h2>
                             <p>La privacy non è stata eliminata, è stata gradualmente ridefinita fino a diventare un concetto obsoleto che abbiamo volontariamente abbandonato in cambio di servizi "gratuiti".</p>
                             <div class="data-stats">
                                 <div class="stat-label">Dati raccolti quotidianamente</div>
-                                <div class="stat-value"><span class="text-highlight">4.2TB</span></div>
+                                <div class="stat-value"><span class="text-highlight consciousness-level consciousness-medium">4.2TB</span></div>
                                 <div class="stat-bar">
                                     <div class="stat-fill" style="width: 78%"></div>
                                 </div>
@@ -119,15 +127,17 @@
                             <a href="#" class="term-link">ANALIZZA DATI SENSIBILI ></a>
                         </div>
                     </div>
-                    <div class="data-cell">
+                    <div class="data-cell focus-item neural-focus">
                         <div class="cell-header">DATA REPORT//ILLUSIONE</div>
                         <div class="cell-content">
-                            <div class="cell-img"><img src="/api/placeholder/340/180" alt="Illusione della scelta"></div>
+                            <div class="cell-img">
+                                <img src="/api/placeholder/340/180" alt="Illusione della scelta">
+                            </div>
                             <h2>Illusione della Scelta</h2>
                             <p>Crediamo di fare scelte autonome, ma navighiamo in opzioni attentamente selezionate per noi da algoritmi progettati per massimizzare il profitto, non il nostro benessere.</p>
                             <div class="data-stats">
                                 <div class="stat-label">Decisioni influenzate</div>
-                                <div class="stat-value"><span class="text-highlight">76%</span></div>
+                                <div class="stat-value"><span class="text-highlight consciousness-level">76%</span></div>
                                 <div class="stat-bar">
                                     <div class="stat-fill" style="width: 76%"></div>
                                 </div>
@@ -137,7 +147,7 @@
                     </div>
                 </div>
 
-                <div class="term-window" id="freedom-protocol">
+                <div class="term-window neural-focus" id="freedom-protocol">
                     <div class="window-header">
                         <div class="window-title">PROTOCOLLO DI LIBERAZIONE</div>
                         <div class="window-controls">
@@ -145,12 +155,12 @@
                             <span class="win-control win-close">[X]</span>
                         </div>
                     </div>
-                    <div class="window-content">
-                        <h2 class="protocol-title">SEQUENZA DI RISVEGLIO</h2>
+                    <div class="window-content neural-pattern">
+                        <h2 class="protocol-title awakened">SEQUENZA DI RISVEGLIO</h2>
                         <div class="protocol-desc">Liberarsi dalle catene digitali non significa rifiutare la tecnologia, ma riprenderne il controllo e utilizzarla consapevolmente.</div>
                         
-                        <div class="protocol-steps">
-                            <div class="protocol-step">
+                        <div class="protocol-steps synapse-container">
+                            <div class="protocol-step section-active">
                                 <div class="step-number">01</div>
                                 <div class="step-content">
                                     <h3>CONSAPEVOLEZZA</h3>
@@ -183,7 +193,7 @@
                 </div>
 
                 <div class="data-grid">
-                    <div class="data-cell memory-log">
+                    <div class="data-cell memory-log neural-pattern side-light">
                         <div class="cell-header">MEM.LOG//#9247</div>
                         <div class="cell-content quote-content">
                             <div class="quote-text">"Non è la tecnologia in sé il problema, ma come è stata progettata per estrarre valore da noi invece che arricchire le nostre vite. Dobbiamo riprendere il controllo degli strumenti che abbiamo creato prima che sia troppo tardi."</div>
@@ -192,7 +202,7 @@
                     </div>
                 </div>
 
-                <div class="term-window" id="join-network">
+                <div class="term-window neural-focus pulse-element" id="join-network">
                     <div class="window-header">
                         <div class="window-title">CONNESSIONE ALLA RETE</div>
                         <div class="window-controls">
@@ -200,12 +210,12 @@
                             <span class="win-control win-close">[X]</span>
                         </div>
                     </div>
-                    <div class="window-content">
+                    <div class="window-content awakened-reflection">
                         <h2>UNISCITI AL NETWORK DI <span class="text-danger">RISVEGLIO</span></h2>
                         <p>Ricevi aggiornamenti, strumenti e strategie per liberarti dalle catene digitali e riprendere il controllo della tua attenzione e dei tuoi dati.</p>
                         <div class="term-form">
                             <input type="email" class="term-input" placeholder="Inserisci la tua email">
-                            <button type="button" id="subscribe-btn" class="term-button">INIZIA CONNESSIONE</button>
+                            <button type="button" id="subscribe-btn" class="term-button awaken-button">INIZIA CONNESSIONE</button>
                         </div>
                         <div class="encryption-notice">
                             <span class="encryption-icon">🔒</span> Tutte le comunicazioni sono criptate e protette
@@ -226,7 +236,7 @@
             </div>
             <div class="term-status-bar">
                 <div class="status-item"><span class="status-label">SESSIONE:</span> <span id="session-time">00:12:47</span></div>
-                <div class="status-item"><span class="status-label">RETE:</span> <span class="secured">SICURA</span></div>
+                <div class="status-item"><span class="status-label">RETE:</span> <span class="secured consciousness-level">SICURA</span></div>
                 <div class="status-item"><span class="status-label">TRAFFICO:</span> <span id="traffic-indicator">▂▃▅▇</span></div>
             </div>
         </div>
@@ -240,6 +250,7 @@
         </div>
     </div>
 
+    <script src="cyber-grid.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
