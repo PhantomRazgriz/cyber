@@ -1,53 +1,53 @@
 /**
- * awakening-sequence.js - Implementa una sequenza di dichiarazioni provocatorie 
- * per "risvegliare" i visitatori prima di mostrare il sito principale
+ * awakening-sequence.js - Implements a sequence of provocative statements
+ * to "awaken" visitors before showing the main site
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Dichiarazioni d'impatto per risvegliare la coscienza
+    // Impact statements to awaken consciousness
     const statements = [
         {
-            text: "La tecnologia non è al <span class='statement-highlight'>tuo</span> servizio. <span class='statement-danger'>Tu</span> sei al servizio della tecnologia.",
+            text: "Technology is not at <span class='statement-highlight'>your</span> service. <span class='statement-danger'>You</span> are at the service of technology.",
             duration: 7000
         },
         {
-            text: "Le tue <span class='statement-highlight'>notifiche</span> sono <span class='statement-danger glitch-effect' data-text='catene'>catene</span> che indossi volontariamente.",
+            text: "Your <span class='statement-highlight'>notifications</span> are <span class='statement-danger glitch-effect' data-text='chains'>chains</span> that you wear voluntarily.",
             duration: 7000
         },
         {
-            text: "Ti <span class='statement-highlight'>connetti</span> con mille persone mentre <span class='statement-danger'>perdi la connessione</span> con te stesso.",
+            text: "You <span class='statement-highlight'>connect</span> with a thousand people while <span class='statement-danger'>losing connection</span> with yourself.",
             duration: 7000
         },
         {
-            text: "Ogni <span class='statement-highlight'>click</span> che fai alimenta il sistema che ti <span class='statement-danger'>controlla</span>.",
+            text: "Every <span class='statement-highlight'>click</span> you make feeds the system that <span class='statement-danger'>controls</span> you.",
             duration: 7000
         },
         {
-            text: "La tua <span class='statement-highlight'>attenzione</span> è stata <span class='statement-danger'>hackerata</span>. È tempo di riprendertela.",
+            text: "Your <span class='statement-highlight'>attention</span> has been <span class='statement-danger'>hacked</span>. It's time to take it back.",
             duration: 7000
         },
         {
-            text: "Non stai <span class='statement-highlight'>navigando</span> liberamente. Stai seguendo un <span class='statement-danger'>percorso programmato</span>.",
+            text: "You're not <span class='statement-highlight'>browsing</span> freely. You're following a <span class='statement-danger'>programmed path</span>.",
             duration: 7000
         },
         {
-            text: "Gli <span class='statement-highlight'>algoritmi</span> non ti conoscono. Ti <span class='statement-danger'>costruiscono</span>.",
+            text: "<span class='statement-highlight'>Algorithms</span> don't know you. They <span class='statement-danger'>build</span> you.",
             duration: 7000
         },
         {
-            text: "Ogni <span class='statement-highlight'>servizio gratuito</span> rende <span class='statement-danger'>te</span> il prodotto.",
+            text: "Every <span class='statement-highlight'>free service</span> makes <span class='statement-danger'>you</span> the product.",
             duration: 7000
         },
         {
-            text: "La tua <span class='statement-highlight'>identità digitale</span> è una <span class='statement-danger'>merce</span> che viene venduta al miglior offerente.",
+            text: "Your <span class='statement-highlight'>digital identity</span> is a <span class='statement-danger'>commodity</span> sold to the highest bidder.",
             duration: 7000
         },
         {
-            text: "<span class='statement-highlight'>Quanto tempo fa</span> hai vissuto una giornata senza guardare uno <span class='statement-danger'>schermo</span>?",
+            text: "<span class='statement-highlight'>How long ago</span> did you live a day without looking at a <span class='statement-danger'>screen</span>?",
             duration: 7000
         },
         {
-            text: "È ora di <span class='statement-highlight'>svegliarsi</span> e riprendere il <span class='statement-danger'>controllo</span>.",
+            text: "It's time to <span class='statement-highlight'>wake up</span> and regain <span class='statement-danger'>control</span>.",
             duration: 8000,
             final: true
         }
@@ -201,14 +201,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.cyberGrid.triggerBurst();
                 }
                 
-                // Mostra notifica di benvenuto
+                // Show welcome notification
                 if (typeof showNotification === 'function') {
-                    showNotification('[INIZIALIZZAZIONE] Sistema La Veglia avviato. Risveglio in corso...');
+                    showNotification('[INITIALIZATION] The Awakening System started. Awakening in progress...');
                 }
             }, 1000);
         }, 200);
     }
 
-    // Avvia la sequenza di risveglio
+    // Start the awakening sequence
     startAwakeningSequence();
 });

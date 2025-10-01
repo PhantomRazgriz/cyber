@@ -1,11 +1,11 @@
 /**
- * La Veglia - Terminale Cyberpunk
- * Script principale per funzionalità interattive e visuali
+ * The Awakening - Cyberpunk Terminal
+ * Main script for interactive and visual functionality
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     // =========================================
-    // COMPONENTI E RIFERIMENTI GLOBALI
+    // COMPONENTS AND GLOBAL REFERENCES
     // =========================================
     const systemTime = document.getElementById('system-time');
     const systemDate = document.getElementById('system-date');
@@ -16,27 +16,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const notificationClose = document.getElementById('notification-close');
     const subscribeBtn = document.getElementById('subscribe-btn');
     
-    // Tempo di inizio sessione per calcolare la durata
+    // Session start time to calculate duration
     const sessionStartTime = new Date();
     
     // =========================================
-    // FUNZIONI DI UTILITÀ
+    // UTILITY FUNCTIONS
     // =========================================
     
     /**
-     * Formatta un numero con zeri iniziali
+     * Format a number with leading zeros
      */
     function padZero(num) {
         return num.toString().padStart(2, '0');
     }
     
     /**
-     * Aggiorna l'orologio di sistema
+     * Update system clock
      */
     function updateSystemClock() {
         const now = new Date();
         
-        // Aggiorna ora di sistema
+        // Update system time
         if (systemTime) {
             const hours = padZero(now.getHours());
             const minutes = padZero(now.getMinutes());
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             systemTime.textContent = `${hours}:${minutes}:${seconds}`;
         }
         
-        // Aggiorna data di sistema
+        // Update system date
         if (systemDate) {
             const day = padZero(now.getDate());
             const month = padZero(now.getMonth() + 1);
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
-     * Aggiorna il tempo di sessione
+     * Update session time
      */
     function updateSessionTime() {
         if (sessionTime) {
             const now = new Date();
-            const diff = Math.floor((now - sessionStartTime) / 1000); // differenza in secondi
+            const diff = Math.floor((now - sessionStartTime) / 1000); // difference in seconds
             
             const hours = padZero(Math.floor(diff / 3600));
             const minutes = padZero(Math.floor((diff % 3600) / 60));
@@ -70,16 +70,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
-     * Simula l'effetto di digitazione per gli elementi di testo
+     * Simulate typing effect for text elements
      */
     function typeWriterEffect(element, text, speed = 30, delay = 0) {
         if (!element) return;
         
-        // Salva il testo originale e svuota l'elemento
+        // Save original text and empty the element
         const originalText = text || element.textContent;
         element.textContent = '';
         
-        // Ritarda l'inizio dell'effetto se necessario
+        // Delay the start of the effect if necessary
         setTimeout(() => {
             let i = 0;
             const typeInterval = setInterval(() => {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             notificationMessage.textContent = message;
             notification.classList.add('show');
             
-            // Nascondi la notifica dopo la durata specificata
+            // Hide notification after specified duration
             setTimeout(() => {
                 notification.classList.remove('show');
             }, duration);
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
-     * Simula caricamento dati
+     * Simulate data loading
      */
     function simulateDataLoading(element, onComplete) {
         if (!element) return;
@@ -123,11 +123,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof onComplete === 'function') {
                 onComplete();
             }
-        }, Math.random() * 2000 + 1000); // 1-3 secondi di caricamento
+        }, Math.random() * 2000 + 1000); // 1-3 seconds of loading
     }
     
     // =========================================
-    // ANIMAZIONI E EFFETTI VISIVI
+    // ANIMATIONS AND VISUAL EFFECTS
     // =========================================
     
     /**
@@ -136,10 +136,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyRandomGlitch(element) {
         if (!element) return;
         
-        // Verifica se l'elemento è già in glitch (per evitare sovrapposizioni)
+        // Check if element is already in glitch (to avoid overlaps)
         if (element.classList.contains('active-glitch')) return;
         
-        // Aggiungi classe per il tracciamento
+        // Add class for tracking
         element.classList.add('active-glitch');
         
         // Salva lo stile originale
@@ -173,14 +173,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.transform = originalTransform;
                 element.style.clipPath = originalClipPath;
                 
-                // Rimuovi classe di tracciamento
+                // Remove tracking class
                 element.classList.remove('active-glitch');
             }
         }, 100);
     }
     
     /**
-     * Applica glitch casuale a elementi della pagina
+     * Apply random glitch to page elements
      */
     function startRandomGlitches() {
         const glitchableElements = [
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
         
         setInterval(() => {
-            if (Math.random() > 0.7) { // 30% di probabilità
+            if (Math.random() > 0.7) { // 30% probability
                 const selector = glitchableElements[Math.floor(Math.random() * glitchableElements.length)];
                 const elements = document.querySelectorAll(selector);
                 
@@ -201,18 +201,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     applyRandomGlitch(randomElement);
                 }
             }
-        }, 5000); // Controlla ogni 5 secondi
+        }, 5000); // Check every 5 seconds
     }
     
     /**
-     * Simula interferenza nel terminale
+     * Simulate terminal interference
      */
     function simulateTerminalInterference() {
         const terminal = document.querySelector('.terminal-body');
         if (!terminal) return;
         
         setInterval(() => {
-            if (Math.random() > 0.9) { // 10% di probabilità
+            if (Math.random() > 0.9) { // 10% probability
                 // Crea un flash di interferenza
                 const interference = document.createElement('div');
                 interference.style.position = 'absolute';
@@ -226,16 +226,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 terminal.appendChild(interference);
                 
-                // Rimuovi dopo un breve periodo
+                // Remove after a brief period
                 setTimeout(() => {
                     interference.remove();
                 }, 100);
             }
-        }, 10000); // Controlla ogni 10 secondi
+        }, 10000); // Check every 10 seconds
     }
     
     /**
-     * Aggiorna casualmente indicatori di traffico
+     * Randomly update traffic indicators
      */
     function updateTrafficIndicator() {
         const indicator = document.getElementById('traffic-indicator');
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
-     * Gestisce l'effetto parallasse in base al movimento del mouse
+     * Handle parallax effect based on mouse movement
      */
     function initParallaxEffect() {
         const parallaxContainers = document.querySelectorAll('.parallax-section');
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
             parallaxContainers.forEach(container => {
                 const rect = container.getBoundingClientRect();
                 
-                // Verifica se il contenitore è visibile
+                // Check if the container is visible
                 if (
                     rect.bottom >= 0 &&
                     rect.top <= window.innerHeight
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const mouseX = (e.clientX / window.innerWidth - 0.5) * 2; // da -1 a 1
                     const mouseY = (e.clientY / window.innerHeight - 0.5) * 2; // da -1 a 1
                     
-                    // Applica lo spostamento agli strati parallasse
+                    // Apply movement to parallax layers
                     const layers = container.querySelectorAll('.parallax-layer');
                     layers.forEach(layer => {
                         let depth = 10;
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Attiva l'effetto parallasse solo se il dispositivo non è mobile
+        // Activate parallax effect only if device is not mobile
         if (window.innerWidth > 768) {
             document.addEventListener('mousemove', handleMouseMove);
         }
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
             activatableElements.forEach(element => {
                 const rect = element.getBoundingClientRect();
                 
-                // Se l'elemento è visibile nella viewport
+                // If the element is visible in the viewport
                 if (
                     rect.top < window.innerHeight * 0.8 &&
                     rect.bottom > window.innerHeight * 0.2
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         setTimeout(() => {
                             element.classList.add('section-active');
                             
-                            // Attiva un nodo neurale nelle vicinanze se l'API è disponibile
+                            // Activate a neural node nearby if the API is available
                             if (window.cyberGrid) {
                                 window.cyberGrid.activateRandomPoint();
                             }
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const synapseContainers = document.querySelectorAll('.synapse-container');
         
         synapseContainers.forEach(container => {
-            // Trova gli elementi da connettere all'interno del contenitore
+            // Find elements to connect within the container
             const connectableElements = container.querySelectorAll('.protocol-step, .data-cell, .term-window');
             
             // Crea le connessioni tra elementi vicini
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 synapseLine.style.top = `${startY}px`;
                 synapseLine.style.transform = `rotate(${angle}rad)`;
                 
-                // Aggiungi al contenitore
+                // Add to container
                 container.appendChild(synapseLine);
             }
         });
@@ -387,27 +387,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Bottone sottoscrizione
+    // Subscription button
     if (subscribeBtn) {
         subscribeBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const emailInput = document.querySelector('.term-form input[type="email"]');
             
             if (emailInput && emailInput.value && emailInput.value.includes('@')) {
-                showNotification('[CONNESSIONE STABILITA] Accesso alla rete concesso. Attendere istruzioni.');
+                showNotification('[CONNECTION ESTABLISHED] Network access granted. Awaiting instructions.');
                 emailInput.value = '';
                 
-                // Attiva un burst di nodi neurali
+                // Activate a neural node burst
                 if (window.cyberGrid) {
                     window.cyberGrid.triggerBurst();
                 }
             } else {
-                showNotification('[ERRORE] Formato di autenticazione non valido. Riprovare.');
+                showNotification('[ERROR] Invalid authentication format. Please retry.');
             }
         });
     }
     
-    // Interazione con le finestre
+    // Window interaction
     document.querySelectorAll('.win-close').forEach(closeBtn => {
         closeBtn.addEventListener('click', function() {
             const window = this.closest('.term-window');
@@ -429,29 +429,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Pulsanti di verifica coscienza
+    // Consciousness verification buttons
     document.querySelectorAll('.awaken-button').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Mostra notifica di risveglio
-            showNotification('[ANALISI] Scansione livello di coscienza in corso... Attendere...');
+            // Show awakening notification
+            showNotification('[ANALYSIS] Consciousness level scan in progress... Please wait...');
             
-            // Simula l'analisi
+            // Simulate analysis
             setTimeout(() => {
                 const level = Math.floor(Math.random() * 3);
                 let result;
                 
                 switch(level) {
                     case 0:
-                        result = '[RISULTATO] Livello di coscienza: BASSO. Il sistema suggerisce di completare il programma di risveglio.';
+                        result = '[RESULT] Consciousness level: LOW. System suggests completing the awakening program.';
                         break;
                     case 1:
-                        result = '[RISULTATO] Livello di coscienza: MEDIO. Il processo di risveglio è in corso.';
+                        result = '[RESULT] Consciousness level: MEDIUM. Awakening process is underway.';
                         break;
                     case 2:
-                        result = '[RISULTATO] Livello di coscienza: ELEVATO. Accesso a contenuti di livello superiore sbloccato.';
-                        // Sblocca un elemento del protocollo
+                        result = '[RESULT] Consciousness level: HIGH. Access to higher level content unlocked.';
+                        // Unlock a protocol element
                         const lockedSteps = document.querySelectorAll('.protocol-step:not(.section-active)');
                         if (lockedSteps.length > 0) {
                             lockedSteps[0].classList.add('section-active');
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         break;
                 }
                 
-                // Attiva un burst di nodi
+                // Activate a node burst
                 if (window.cyberGrid) {
                     window.cyberGrid.triggerBurst();
                 }
@@ -469,17 +469,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Easter egg: digitare "sveglia" in qualsiasi input
+    // Easter egg: typing "awaken" in any input
     document.addEventListener('input', function(e) {
-        if (e.target.tagName === 'INPUT' && e.target.value.toLowerCase() === 'sveglia') {
+        if (e.target.tagName === 'INPUT' && e.target.value.toLowerCase() === 'awaken') {
             document.body.classList.add('glitch-mode');
-            showNotification('[SEQUENZA ATTIVATA] Protocollo di risveglio in corso...', 3000);
+            showNotification('[SEQUENCE ACTIVATED] Awakening protocol in progress...', 3000);
             
             setTimeout(() => {
                 document.body.classList.remove('glitch-mode');
             }, 3000);
             
-            // Attiva un burst di nodi
+            // Activate a node burst
             if (window.cyberGrid) {
                 window.cyberGrid.triggerBurst();
             }
@@ -487,7 +487,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // =========================================
-    // INIZIALIZZAZIONE
+    // INITIALIZATION
     // =========================================
     
     // Aggiorna l'orario all'avvio
@@ -497,12 +497,12 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateSystemClock, 1000);
     setInterval(updateSessionTime, 1000);
     
-    // Simulazione incremento contatore giorni
+    // Day counter increment simulation
     if (counterDays) {
         const baseValue = parseInt(counterDays.textContent.replace(/,/g, ''), 10);
         let currentValue = baseValue;
         
-        // Incrementa il contatore ogni 10 secondi (simulato)
+        // Increment counter every 10 seconds (simulated)
         setInterval(() => {
             currentValue++;
             counterDays.textContent = currentValue.toLocaleString();
@@ -530,13 +530,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollActivation();
     createSynapseEffects();
     
-    // Simula caricamento iniziale
+    // Simulate initial loading
     document.querySelectorAll('.data-cell').forEach(cell => {
         simulateDataLoading(cell);
     });
     
-    // Messaggio di benvenuto
+    // Welcome message
     setTimeout(() => {
-        showNotification('[SISTEMA] Terminale inizializzato. Benvenuto nella Veglia.');
+        showNotification('[SYSTEM] Terminal initialized. Welcome to The Awakening.');
     }, 2000);
 });
