@@ -1,336 +1,582 @@
-/* buttons.css - Stili per pulsanti e CTA */
+/* ==========================================================================
+   BUTTONS
+   Button components with variants, sizes, and states
+   ========================================================================== */
 
-/* Base button style */
+/* ==================== BASE BUTTON ==================== */
+
 .btn {
-    display: inline-block;
-    background-color: transparent;
-    color: var(--neon-blue);
-    border: 1px solid var(--neon-blue);
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-/* Effetto hover primario */
-.btn::before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    top: 0;
-    width: 20px;
-    height: 100%;
-    background-color: var(--neon-blue);
-    opacity: 0.3;
-    transform: skewX(-30deg);
-    transition: all 0.5s ease;
-}
-
-.btn:hover {
-    color: black;
-    text-shadow: none;
-    box-shadow: 0 0 10px var(--neon-blue);
-}
-
-.btn:hover::before {
-    width: 140%;
-    left: -20px;
-}
-
-/* Variazioni di colore */
-.btn-blue {
-    color: var(--neon-blue);
-    border-color: var(--neon-blue);
-}
-
-.btn-blue::before {
-    background-color: var(--neon-blue);
-}
-
-.btn-blue:hover {
-    box-shadow: 0 0 10px var(--neon-blue);
-}
-
-.btn-pink {
-    color: var(--neon-pink);
-    border-color: var(--neon-pink);
-}
-
-.btn-pink::before {
-    background-color: var(--neon-pink);
-}
-
-.btn-pink:hover {
-    box-shadow: 0 0 10px var(--neon-pink);
-}
-
-.btn-purple {
-    color: var(--neon-purple);
-    border-color: var(--neon-purple);
-}
-
-.btn-purple::before {
-    background-color: var(--neon-purple);
-}
-
-.btn-purple:hover {
-    box-shadow: 0 0 10px var(--neon-purple);
-}
-
-.btn-red {
-    color: var(--neon-red);
-    border-color: var(--neon-red);
-}
-
-.btn-red::before {
-    background-color: var(--neon-red);
-}
-
-.btn-red:hover {
-    box-shadow: 0 0 10px var(--neon-red);
-}
-
-/* Pulsante pieno */
-.btn-filled {
-    background-color: var(--neon-blue);
-    color: var(--darker-bg);
-}
-
-.btn-filled::before {
-    display: none;
-}
-
-.btn-filled:hover {
-    background-color: transparent;
-    color: var(--neon-blue);
-}
-
-/* Variazioni dimensioni */
-.btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-}
-
-.btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-}
-
-/* Pulsante con bordo glitchato */
-.btn-glitch {
-    animation: borderGlitch 4s infinite;
-}
-
-@keyframes borderGlitch {
-    0%, 100% {
-        border-color: var(--neon-blue);
-    }
-    25% {
-        border-color: var(--neon-pink);
-    }
-    50% {
-        border-color: var(--neon-purple);
-    }
-    75% {
-        border-color: var(--neon-red);
-    }
-}
-
-/* Pulsante con icona */
-.btn-icon {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-}
-
-.btn-icon i, 
-.btn-icon svg {
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.btn-icon:hover i,
-.btn-icon:hover svg {
-    transform: translateX(5px);
-}
-
-/* Pulsante "digital" con effetto numeri che cadono */
-.btn-digital {
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    line-height: 1;
+    border: 1px solid transparent;
+    background: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
     position: relative;
+    overflow: hidden;
+    user-select: none;
+    white-space: nowrap;
 }
 
-.btn-digital span {
-    position: relative;
-    z-index: 2;
-}
-
-.btn-digital::after {
-    content: "10101";
-    position: absolute;
-    top: -50%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-family: var(--font-primary);
-    font-size: 0.6rem;
-    color: var(--neon-blue);
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.btn-digital:hover::after {
-    opacity: 0.5;
-    top: 0;
-}
-
-/* Pulsante con caricamento */
-.btn-loading {
-    position: relative;
-}
-
-.btn-loading.active {
-    pointer-events: none;
-}
-
-.btn-loading.active span {
-    opacity: 0;
-}
-
-.btn-loading::after {
-    content: "";
+.btn::before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
     transform: translate(-50%, -50%);
-    width: 1.2rem;
-    height: 1.2rem;
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ==================== BUTTON VARIANTS ==================== */
+
+/* Primary Button (Red) */
+.btn-primary {
+    background: var(--gradient-red);
+    border-color: var(--neon-red);
+    color: var(--text-bright);
+    box-shadow: 0 0 10px rgba(255, 26, 62, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px var(--neon-red-glow),
+                0 0 40px rgba(255, 26, 62, 0.4);
+    border-color: var(--neon-magenta);
+}
+
+/* Secondary Button (Blue) */
+.btn-secondary {
+    background-color: transparent;
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+}
+
+.btn-secondary:hover {
+    background-color: var(--neon-blue);
+    color: var(--bg-darkest);
+    box-shadow: 0 0 20px var(--neon-blue-glow);
+}
+
+/* Outline Button */
+.btn-outline {
+    background-color: transparent;
+    border-color: var(--border-light);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    box-shadow: 0 0 15px rgba(255, 26, 62, 0.3);
+}
+
+/* Ghost Button (Minimal) */
+.btn-ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+    color: var(--neon-red);
+    background-color: rgba(255, 26, 62, 0.1);
+}
+
+/* Danger Button */
+.btn-danger {
+    background: linear-gradient(90deg, var(--neon-orange-dark), var(--neon-orange));
+    border-color: var(--neon-orange);
+    color: var(--text-bright);
+    box-shadow: 0 0 10px rgba(255, 51, 0, 0.3);
+}
+
+.btn-danger:hover {
+    box-shadow: 0 0 20px rgba(255, 51, 0, 0.6);
+}
+
+/* Success Button */
+.btn-success {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: var(--bg-darkest);
+    font-weight: var(--font-bold);
+}
+
+.btn-success:hover {
+    box-shadow: 0 0 20px var(--success-glow);
+}
+
+/* Warning Button */
+.btn-warning {
+    background-color: var(--warning);
+    border-color: var(--warning);
+    color: var(--bg-darkest);
+    font-weight: var(--font-bold);
+}
+
+.btn-warning:hover {
+    box-shadow: 0 0 20px var(--warning-glow);
+}
+
+/* ==================== BUTTON SIZES ==================== */
+
+.btn-xs {
+    padding: 4px 8px;
+    font-size: var(--text-xs);
+    gap: 4px;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: var(--text-xs);
+}
+
+.btn-md {
+    /* Default size - already defined in base */
+}
+
+.btn-lg {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--text-base);
+}
+
+.btn-xl {
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--text-lg);
+}
+
+/* Full width button */
+.btn-block {
+    width: 100%;
+    display: flex;
+}
+
+/* ==================== BUTTON STATES ==================== */
+
+/* Disabled */
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Loading */
+.btn.loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
     border: 2px solid transparent;
     border-top-color: currentColor;
     border-radius: 50%;
-    opacity: 0;
-    animation: rotate 0.8s linear infinite;
-    transition: opacity 0.3s ease;
+    animation: spin 0.6s linear infinite;
 }
 
-.btn-loading.active::after {
-    opacity: 1;
+.btn-primary.loading::after,
+.btn-danger.loading::after {
+    border-top-color: var(--text-bright);
 }
 
-@keyframes rotate {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
+/* Active state */
+.btn.active {
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Gruppo di pulsanti */
-.btn-group {
-    display: flex;
-    gap: 0.5rem;
+/* ==================== BUTTON WITH ICONS ==================== */
+
+.btn-icon {
+    padding: var(--space-sm);
+    aspect-ratio: 1;
 }
 
-.btn-group.btn-group-attached {
-    gap: 0;
+.btn-icon.btn-sm {
+    padding: 6px;
 }
 
-.btn-group.btn-group-attached .btn {
-    border-right: none;
+.btn-icon.btn-lg {
+    padding: var(--space-md);
 }
 
-.btn-group.btn-group-attached .btn:last-child {
-    border-right: 1px solid currentColor;
+/* Icon positioning */
+.btn .icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
 }
 
-/* Pulsante con effetto distorsione */
-.btn-distort:hover {
-    animation: buttonDistort 0.5s ease-in-out;
+.btn-lg .icon {
+    width: 20px;
+    height: 20px;
 }
 
-@keyframes buttonDistort {
-    0% {
-        transform: scale(1) skew(0deg, 0deg);
-    }
-    25% {
-        transform: scale(1.05) skew(2deg, 1deg);
-    }
-    50% {
-        transform: scale(0.95) skew(-1deg, 2deg);
-    }
-    75% {
-        transform: scale(1.02) skew(-2deg, -1deg);
-    }
-    100% {
-        transform: scale(1) skew(0deg, 0deg);
-    }
+.btn .icon-left {
+    margin-right: var(--space-xs);
 }
 
-/* Pulsante con scan line */
+.btn .icon-right {
+    margin-left: var(--space-xs);
+}
+
+/* ==================== SPECIAL EFFECTS ==================== */
+
+/* Glitch Button */
+.btn-glitch {
+    position: relative;
+}
+
+.btn-glitch:hover {
+    animation: glitch-anim 0.3s ease-in-out;
+}
+
+/* Neon Pulse Button */
+.btn-pulse {
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Scan Line Button */
 .btn-scan {
     position: relative;
     overflow: hidden;
 }
 
 .btn-scan::after {
-    content: "";
+    content: '';
     position: absolute;
     top: -100%;
     left: 0;
     width: 100%;
-    height: 3px;
-    background-color: rgba(0, 255, 255, 0.5);
-    animation: buttonScan 2s linear infinite;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: scan 2s linear infinite;
 }
 
-@keyframes buttonScan {
+/* Gradient Animation Button */
+.btn-gradient-animate {
+    background: linear-gradient(
+        90deg,
+        var(--neon-red),
+        var(--neon-magenta),
+        var(--neon-purple),
+        var(--neon-blue)
+    );
+    background-size: 300% 100%;
+    animation: gradientShift 3s ease infinite;
+    border: none;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Digital Rain Button */
+.btn-matrix {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-matrix::before {
+    content: '01010101';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    font-size: 0.6em;
+    color: var(--neon-green);
+    opacity: 0.3;
+    animation: digitalRain 3s linear infinite;
+}
+
+@keyframes digitalRain {
     0% {
-        top: -10%;
+        top: -100%;
     }
     100% {
-        top: 110%;
+        top: 100%;
     }
 }
 
-/* Pulsante disabilitato */
-.btn:disabled,
-.btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
+/* ==================== BUTTON GROUPS ==================== */
+
+.btn-group {
+    display: inline-flex;
+    gap: var(--space-xs);
 }
 
-/* Pulsante con effetto 3D */
-.btn-3d {
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 2px 0 var(--neon-blue-dark), 0 0 5px var(--neon-blue);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.btn-group-attached {
+    display: inline-flex;
+    gap: 0;
 }
 
-.btn-3d:hover {
-    transform: perspective(1px) translateZ(0) translateY(-2px);
-    box-shadow: 0 4px 0 var(--neon-blue-dark), 0 0 10px var(--neon-blue);
+.btn-group-attached .btn {
+    border-radius: 0;
 }
 
-.btn-3d:active {
-    transform: perspective(1px) translateZ(0) translateY(0);
-    box-shadow: 0 0 0 var(--neon-blue-dark), 0 0 3px var(--neon-blue);
+.btn-group-attached .btn:not(:last-child) {
+    border-right: none;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .btn-group {
-        flex-direction: column;
+.btn-group-attached .btn:first-child {
+    border-top-left-radius: var(--radius-sm);
+    border-bottom-left-radius: var(--radius-sm);
+}
+
+.btn-group-attached .btn:last-child {
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+}
+
+/* Vertical button group */
+.btn-group-vertical {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.btn-group-vertical.btn-group-attached {
+    gap: 0;
+}
+
+.btn-group-vertical.btn-group-attached .btn {
+    border-radius: 0;
+    border-right: 1px solid currentColor;
+}
+
+.btn-group-vertical.btn-group-attached .btn:not(:last-child) {
+    border-bottom: none;
+}
+
+/* ==================== SPECIALIZED BUTTONS ==================== */
+
+/* Terminal Command Button */
+.btn-command {
+    font-family: var(--font-mono);
+    background-color: var(--bg-darkest);
+    border: 1px solid var(--border-light);
+    color: var(--neon-green);
+    padding: var(--space-xs) var(--space-sm);
+}
+
+.btn-command::before {
+    content: '$ ';
+    color: var(--neon-blue);
+}
+
+.btn-command:hover {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 15px rgba(102, 255, 102, 0.3);
+}
+
+/* Access/Login Button */
+.btn-access {
+    position: relative;
+    background: transparent;
+    border: 2px solid var(--neon-red);
+    color: var(--neon-red);
+    padding: var(--space-md) var(--space-xl);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-black);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    overflow: hidden;
+}
+
+.btn-access::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-red);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.btn-access:hover {
+    color: var(--text-bright);
+    border-color: var(--neon-magenta);
+}
+
+.btn-access:hover::before {
+    left: 0;
+}
+
+/* Awakening Button (Special CTA) */
+.btn-awaken {
+    background: var(--gradient-cyber);
+    border: none;
+    color: var(--text-bright);
+    font-family: var(--font-display);
+    font-weight: var(--font-black);
+    padding: var(--space-md) var(--space-2xl);
+    font-size: var(--text-xl);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(255, 26, 62, 0.4),
+                0 0 40px rgba(255, 26, 62, 0.2);
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.btn-awaken:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 26, 62, 0.6),
+                0 0 60px rgba(255, 26, 62, 0.4);
+}
+
+/* ==================== FLOATING ACTION BUTTON ==================== */
+
+.btn-fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    padding: 0;
+    box-shadow: var(--shadow-lg), var(--shadow-red);
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: var(--z-elevated);
+}
+
+.btn-fab:hover {
+    transform: scale(1.1);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: var(--text-xs);
+        padding: var(--space-xs) var(--space-sm);
     }
     
-    .btn-group.btn-group-attached {
-        flex-direction: row;
+    .btn-lg {
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--text-sm);
+    }
+    
+    .btn-xl {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--text-base);
+    }
+    
+    .btn-awaken {
+        padding: var(--space-sm) var(--space-xl);
+        font-size: var(--text-lg);
+    }
+    
+    .btn-access {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--text-base);
+    }
+    
+    .btn-group {
+        flex-wrap: wrap;
+    }
+    
+    .btn-fab {
+        width: 48px;
+        height: 48px;
+        bottom: var(--space-md);
+        right: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-block-mobile {
+        width: 100%;
+        display: flex;
+    }
+    
+    .btn-group-vertical-mobile {
+        flex-direction: column;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+.btn:focus-visible {
+    outline: 2px solid var(--neon-red);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .btn {
+        border-width: 2px;
+    }
+    
+    .btn-ghost {
+        border: 1px solid currentColor;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .btn::before {
+        transition: none;
+    }
+    
+    .btn-pulse,
+    .btn-scan::after,
+    .btn-matrix::before,
+    .btn-gradient-animate {
+        animation: none;
+    }
+    
+    .btn:active {
+        transform: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .btn {
+        border: 1px solid #000;
+        background: white;
+        color: black;
+        box-shadow: none;
+    }
+    
+    .btn-fab {
+        display: none;
     }
 }

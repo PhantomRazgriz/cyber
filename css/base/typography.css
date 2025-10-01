@@ -1,236 +1,453 @@
-/* typography.css - Tipografia e font per La Veglia */
+/* ==========================================================================
+   TYPOGRAPHY
+   Font styles, headings, text utilities, and effects
+   ========================================================================== */
 
-/* Import dei font se non già inclusi nell'HTML */
+/* ==================== FONT IMPORTS ==================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-:root {
-    /* Variabili per la tipografia */
-    --font-primary: 'Share Tech Mono', monospace;
-    --font-display: 'Orbitron', sans-serif;
-    
-    /* Scale dei font */
-    --text-xs: 0.75rem;     /* 12px */
-    --text-sm: 0.875rem;    /* 14px */
-    --text-base: 1rem;      /* 16px */
-    --text-lg: 1.125rem;    /* 18px */
-    --text-xl: 1.25rem;     /* 20px */
-    --text-2xl: 1.5rem;     /* 24px */
-    --text-3xl: 1.875rem;   /* 30px */
-    --text-4xl: 2.25rem;    /* 36px */
-    --text-5xl: 3rem;       /* 48px */
-    --text-6xl: 3.75rem;    /* 60px */
-    
-    /* Line heights */
-    --leading-none: 1;
-    --leading-tight: 1.25;
-    --leading-snug: 1.375;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.625;
-    --leading-loose: 2;
-    
-    /* Letter spacing */
-    --tracking-tighter: -0.05em;
-    --tracking-tight: -0.025em;
-    --tracking-normal: 0em;
-    --tracking-wide: 0.025em;
-    --tracking-wider: 0.05em;
-    --tracking-widest: 0.1em;
+/* ==================== BASE TYPOGRAPHY ==================== */
+
+body {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--text-primary);
 }
 
-/* Headings */
+/* ==================== HEADINGS ==================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--text-bright);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
 h1 {
     font-size: var(--text-5xl);
-    font-weight: 900;
-    text-transform: uppercase;
+    font-weight: var(--font-black);
+    letter-spacing: var(--tracking-wider);
 }
 
 h2 {
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    text-transform: uppercase;
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
 }
 
 h3 {
-    font-size: var(--text-2xl);
-    font-weight: 700;
+    font-size: var(--text-3xl);
 }
 
 h4 {
-    font-size: var(--text-xl);
-    font-weight: 700;
+    font-size: var(--text-2xl);
 }
 
 h5 {
-    font-size: var(--text-lg);
-    font-weight: 700;
+    font-size: var(--text-xl);
 }
 
 h6 {
-    font-size: var(--text-base);
-    font-weight: 700;
+    font-size: var(--text-lg);
 }
 
-/* Heading con effetto glitch */
-.glitch-title {
+/* ==================== PARAGRAPHS ==================== */
+
+p {
+    margin-bottom: var(--space-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+.lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-primary);
+}
+
+/* ==================== INLINE TEXT ELEMENTS ==================== */
+
+strong, b {
+    font-weight: var(--font-bold);
+    color: var(--text-bright);
+}
+
+em, i {
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background-color: var(--bg-cell);
+    color: var(--neon-green);
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-dim);
+}
+
+pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    background-color: var(--bg-darkest);
+    color: var(--text-primary);
+    padding: var(--space-sm);
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--neon-red);
+    overflow-x: auto;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-sm);
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+}
+
+mark {
+    background-color: var(--neon-red);
+    color: var(--bg-darkest);
+    padding: 0.1em 0.3em;
+}
+
+del {
+    text-decoration: line-through;
+    color: var(--text-dim);
+}
+
+/* ==================== LINKS ==================== */
+
+a {
+    color: var(--neon-blue);
     position: relative;
-    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    transition: color var(--transition-base);
 }
 
-.glitch-title::before {
+a:hover {
+    color: var(--neon-magenta);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--neon-red);
+    outline-offset: 2px;
+}
+
+/* Underline animation */
+.link-animated {
+    position: relative;
+    display: inline-block;
+}
+
+.link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--transition-base);
+}
+
+.link-animated:hover::after {
+    width: 100%;
+}
+
+/* ==================== LISTS ==================== */
+
+ul, ol {
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-lg);
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    position: relative;
+    margin-bottom: var(--space-xs);
+    padding-left: var(--space-sm);
+}
+
+ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--neon-red);
+}
+
+ol {
+    list-style-type: decimal;
+    list-style-position: outside;
+}
+
+ol li {
+    margin-bottom: var(--space-xs);
+    padding-left: var(--space-xs);
+}
+
+/* Terminal-style list */
+.list-terminal li::before {
+    content: '$';
+    color: var(--neon-blue);
+}
+
+/* ==================== BLOCKQUOTES ==================== */
+
+blockquote {
+    margin: var(--space-lg) 0;
+    padding: var(--space-sm) var(--space-md);
+    border-left: 3px solid var(--neon-red);
+    background-color: var(--bg-cell);
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+blockquote p {
+    margin-bottom: var(--space-xs);
+}
+
+blockquote cite {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--text-dim);
+    font-style: normal;
+}
+
+blockquote cite::before {
+    content: '— ';
+}
+
+/* ==================== TEXT UTILITIES ==================== */
+
+/* Size utilities */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+.text-6xl { font-size: var(--text-6xl); }
+
+/* Weight utilities */
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-bold { font-weight: var(--font-bold); }
+.font-black { font-weight: var(--font-black); }
+
+/* Style utilities */
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+/* Alignment utilities */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Line height utilities */
+.leading-none { line-height: var(--leading-none); }
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Letter spacing utilities */
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.tracking-normal { letter-spacing: var(--tracking-normal); }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-wider { letter-spacing: var(--tracking-wider); }
+.tracking-widest { letter-spacing: var(--tracking-widest); }
+
+/* ==================== COLOR UTILITIES ==================== */
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-dim { color: var(--text-dim); }
+.text-bright { color: var(--text-bright); }
+
+.text-red { color: var(--neon-red); }
+.text-magenta { color: var(--neon-magenta); }
+.text-blue { color: var(--neon-blue); }
+.text-purple { color: var(--neon-purple); }
+.text-green { color: var(--neon-green); }
+
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-error { color: var(--error); }
+.text-critical { color: var(--critical); }
+
+/* ==================== TEXT EFFECTS ==================== */
+
+/* Neon glow effect */
+.text-glow-red {
+    color: var(--neon-red);
+    text-shadow: var(--glow-red);
+}
+
+.text-glow-blue {
+    color: var(--neon-blue);
+    text-shadow: var(--glow-blue);
+}
+
+.text-glow-magenta {
+    color: var(--neon-magenta);
+    text-shadow: var(--glow-magenta);
+}
+
+.text-glow-intense {
+    text-shadow: var(--glow-red-intense);
+}
+
+/* Glitch text effect */
+.text-glitch {
+    position: relative;
+    display: inline-block;
+}
+
+.text-glitch::before,
+.text-glitch::after {
     content: attr(data-text);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    color: var(--neon-pink);
     opacity: 0.8;
-    filter: blur(3px);
-    animation: glitch 2s infinite alternate-reverse;
 }
 
-/* Paragrafi */
-p {
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-}
-
-.lead {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-}
-
-.small-text {
-    font-size: var(--text-sm);
-    line-height: var(--leading-normal);
-}
-
-.micro-text {
-    font-size: var(--text-xs);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-}
-
-/* Testo con aspetto terminale */
-.terminal-text {
-    font-family: var(--font-primary);
+.text-glitch::before {
     color: var(--neon-blue);
+    z-index: -1;
+    animation: glitch-1 var(--glitch-duration) infinite;
 }
 
-/* Links */
-.link {
-    color: var(--neon-blue);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background: var(--neon-blue);
-    transition: width 0.3s ease;
-}
-
-.link:hover {
-    color: var(--neon-pink);
-}
-
-.link:hover::after {
-    width: 100%;
-    background: var(--neon-pink);
-}
-
-/* Testo Neon */
-.neon-text-blue {
-    color: var(--neon-blue);
-    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
-}
-
-.neon-text-pink {
-    color: var(--neon-pink);
-    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
-}
-
-.neon-text-purple {
-    color: var(--neon-purple);
-    text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
-}
-
-.neon-text-red {
+.text-glitch::after {
     color: var(--neon-red);
-    text-shadow: 0 0 5px var(--neon-red), 0 0 10px var(--neon-red);
+    z-index: -2;
+    animation: glitch-2 var(--glitch-duration) infinite reverse;
 }
 
-/* Citazioni */
-blockquote {
-    font-style: italic;
-    border-left: 3px solid var(--neon-red);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-}
-
-/* Testo con gradiente */
-.gradient-text {
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+/* Gradient text */
+.text-gradient {
+    background: var(--gradient-cyber);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
-/* Keyframe per effetto glitch */
-@keyframes glitch {
-    0% {
-        clip-path: inset(40% 0 61% 0);
-        transform: translate(-2px, 2px);
-    }
-    20% {
-        clip-path: inset(92% 0 1% 0);
-        transform: translate(1px, 1px);
-    }
-    40% {
-        clip-path: inset(43% 0 1% 0);
-        transform: translate(3px, 1px);
-    }
-    60% {
-        clip-path: inset(25% 0 58% 0);
-        transform: translate(2px, -3px);
-    }
-    80% {
-        clip-path: inset(54% 0 7% 0);
-        transform: translate(-1px, -1px);
-    }
-    100% {
-        clip-path: inset(58% 0 43% 0);
-        transform: translate(-2px, 2px);
-    }
+/* Terminal text */
+.text-terminal {
+    font-family: var(--font-mono);
+    color: var(--neon-green);
+    letter-spacing: var(--tracking-wide);
 }
 
-/* Media queries per tipografia responsive */
-@media screen and (max-width: 768px) {
-    h1 {
-        font-size: var(--text-4xl);
-    }
-    
-    h2 {
-        font-size: var(--text-2xl);
-    }
-    
-    h3 {
-        font-size: var(--text-xl);
-    }
+/* Monospace */
+.text-mono {
+    font-family: var(--font-mono);
 }
 
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: var(--text-3xl);
-    }
-    
-    h2 {
-        font-size: var(--text-xl);
-    }
+/* Display font */
+.text-display {
+    font-family: var(--font-display);
+}
+
+/* ==================== SPECIAL TEXT STYLES ==================== */
+
+/* Blink effect */
+.text-blink {
+    animation: blink var(--blink-duration) infinite;
+}
+
+/* Typewriter cursor */
+.text-cursor::after {
+    content: '_';
+    animation: blink 0.7s infinite;
+}
+
+/* Strikethrough */
+.line-through {
+    text-decoration: line-through;
+}
+
+/* No wrap */
+.no-wrap {
+    white-space: nowrap;
+}
+
+/* Truncate with ellipsis */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ==================== RESPONSIVE TYPOGRAPHY ==================== */
+
+@media (max-width: 768px) {
+    h1 { font-size: var(--text-4xl); }
+    h2 { font-size: var(--text-3xl); }
+    h3 { font-size: var(--text-2xl); }
+    h4 { font-size: var(--text-xl); }
+    h5 { font-size: var(--text-lg); }
+    h6 { font-size: var(--text-base); }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: var(--text-3xl); }
+    h2 { font-size: var(--text-2xl); }
+    h3 { font-size: var(--text-xl); }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Skip to content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--neon-red);
+    color: var(--bg-darkest);
+    padding: var(--space-xs) var(--space-sm);
+    z-index: var(--z-supreme);
+    transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+    top: 0;
 }

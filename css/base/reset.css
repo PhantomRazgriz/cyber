@@ -1,6 +1,9 @@
-/* reset.css - Reset e normalizzazione */
+/* ==========================================================================
+   RESET & NORMALIZE
+   Base reset for consistent styling across browsers
+   ========================================================================== */
 
-/* Box sizing per tutti gli elementi */
+/* Box sizing reset */
 *,
 *::before,
 *::after {
@@ -9,7 +12,7 @@
     box-sizing: border-box;
 }
 
-/* HTML root impostazioni */
+/* HTML & Body base */
 html {
     font-size: 16px;
     scroll-behavior: smooth;
@@ -18,98 +21,262 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Body impostazioni di base */
 body {
-    background-color: var(--dark-bg);
-    color: var(--text-primary);
-    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
-    min-height: 100vh;
+    position: relative;
+    background-color: var(--bg-darkest);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
 }
 
-/* Tipografia di base */
+/* Typography reset */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 0.5em;
+    font-family: var(--font-display);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    margin: 0;
 }
 
 p {
-    margin-bottom: 1rem;
+    margin: 0;
 }
 
 /* Links */
 a {
-    color: var(--neon-blue);
     text-decoration: none;
-    transition: all 0.3s ease;
+    color: inherit;
+    transition: color var(--transition-base);
 }
 
-a:hover {
-    color: var(--neon-pink);
-}
-
-/* Liste */
+/* Lists */
 ul, ol {
-    list-style-position: inside;
-    margin-bottom: 1rem;
+    list-style: none;
 }
 
-/* Immagini */
-img {
+/* Media */
+img, 
+picture, 
+video, 
+canvas, 
+svg {
+    display: block;
     max-width: 100%;
     height: auto;
-    display: block;
 }
 
-/* Form elementi */
-input, button, textarea, select {
+/* Form elements */
+input,
+button,
+textarea,
+select {
     font: inherit;
+    border: none;
+    background: none;
+    outline: none;
+    color: inherit;
 }
 
 button {
     cursor: pointer;
+    user-select: none;
 }
 
-/* Tabelle */
+input,
+textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Tables */
 table {
     border-collapse: collapse;
-    width: 100%;
+    border-spacing: 0;
 }
 
-/* Accessibilità - focus visibile */
-:focus-visible {
-    outline: 2px solid var(--neon-blue);
-    outline-offset: 2px;
-}
-
-/* Selezione testo */
-::selection {
-    background-color: var(--neon-blue);
-    color: var(--darker-bg);
-}
-
-/* Hidden attribute */
+/* Remove default styling */
 [hidden] {
     display: none !important;
 }
 
-/* Rimuovi gli stili predefiniti su iphone */
-input, 
-textarea {
+/* Selection styling */
+::selection {
+    background-color: var(--neon-red);
+    color: var(--bg-darkest);
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background-color: var(--neon-red);
+    color: var(--bg-darkest);
+    text-shadow: none;
+}
+
+/* Scrollbar styling (Webkit browsers) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-red);
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-magenta);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-red) var(--bg-darkest);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+    outline: 2px solid var(--neon-red);
+    outline-offset: 2px;
+}
+
+/* Remove iOS button styling */
+input[type="submit"],
+input[type="button"],
+button {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     border-radius: 0;
 }
 
-/* Rimuovi gli stili predefiniti sui pulsanti */
-button {
-    background: none;
-    border: none;
+/* Remove iOS input shadows */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
 }
 
-/* Evita overflow su testo lungo */
-div, p, h1, h2, h3, h4, h5, h6 {
+/* Prevent text overflow */
+p, h1, h2, h3, h4, h5, h6,
+span, div {
+    overflow-wrap: break-word;
     word-wrap: break-word;
+}
+
+/* Remove tap highlight on mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve text rendering */
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Disable user selection on UI elements */
+button,
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+/* Allow selection on text content */
+p, span, a, li, td, th {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+}
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Remove search input decorations */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+/* Placeholder styling */
+::placeholder {
+    color: var(--text-dim);
+    opacity: 0.7;
+}
+
+/* Disabled elements */
+:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Print styles */
+@media print {
+    *,
+    *::before,
+    *::after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

@@ -1,0 +1,608 @@
+/* ==========================================================================
+   PROTOCOL STEP
+   Step components for the Liberation Protocol
+   ========================================================================== */
+
+/* ==================== PROTOCOL CONTAINER ==================== */
+
+.protocol-container {
+    margin: var(--space-xl) 0;
+}
+
+.protocol-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.protocol-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-black);
+    color: var(--text-bright);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    margin-bottom: var(--space-sm);
+    position: relative;
+}
+
+.protocol-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--neon-red),
+        transparent
+    );
+    margin: var(--space-sm) auto 0;
+}
+
+.protocol-subtitle {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: var(--leading-relaxed);
+}
+
+/* ==================== PROTOCOL STEPS GRID ==================== */
+
+.protocol-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    position: relative;
+}
+
+/* Connection lines between steps */
+.protocol-steps::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        var(--border-light) 0%,
+        var(--border-light) 25%,
+        transparent 25%,
+        transparent 50%,
+        var(--border-light) 50%,
+        var(--border-light) 75%,
+        transparent 75%
+    );
+    background-size: 20px 2px;
+    z-index: 0;
+}
+
+/* ==================== PROTOCOL STEP ==================== */
+
+.protocol-step {
+    background-color: var(--bg-cell);
+    border: 1px solid var(--border-light);
+    padding: var(--space-lg) var(--space-md);
+    position: relative;
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+}
+
+.protocol-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Step connector dot */
+.protocol-step::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    right: -21px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--border-light);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.protocol-step:last-child::before {
+    display: none;
+}
+
+/* ==================== STEP NUMBER ==================== */
+
+.step-number {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-darker);
+    border: 2px solid var(--border-light);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-black);
+    color: var(--text-dim);
+    margin-bottom: var(--space-md);
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+.step-number::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: all var(--transition-base);
+}
+
+/* ==================== STEP CONTENT ==================== */
+
+.step-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.step-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+.step-description {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* ==================== STEP STATES ==================== */
+
+/* Active Step */
+.protocol-step.active {
+    border-color: var(--neon-red);
+    background-color: var(--bg-window);
+    box-shadow: 0 0 20px rgba(255, 26, 62, 0.3);
+}
+
+.protocol-step.active .step-number {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    background-color: rgba(255, 26, 62, 0.1);
+    box-shadow: 0 0 20px var(--neon-red-glow);
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.protocol-step.active .step-number::after {
+    border-color: var(--neon-red);
+    animation: ringPulse 2s infinite;
+}
+
+@keyframes ringPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+.protocol-step.active .step-title {
+    color: var(--neon-red);
+}
+
+/* Badge for active step */
+.protocol-step.active::after {
+    content: 'CURRENT';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    padding: 2px 8px;
+    background-color: var(--neon-red);
+    color: var(--bg-darkest);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+/* Completed Step */
+.protocol-step.completed {
+    border-color: var(--success);
+    opacity: 0.8;
+}
+
+.protocol-step.completed .step-number {
+    border-color: var(--success);
+    color: var(--success);
+    background-color: rgba(102, 255, 102, 0.1);
+}
+
+.protocol-step.completed .step-number::before {
+    content: '✓';
+    position: absolute;
+    font-size: var(--text-3xl);
+}
+
+.protocol-step.completed .step-title {
+    color: var(--success);
+}
+
+/* Badge for completed step */
+.protocol-step.completed::after {
+    content: 'DONE';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    padding: 2px 8px;
+    background-color: var(--success);
+    color: var(--bg-darkest);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+/* Locked Step */
+.protocol-step.locked {
+    opacity: 0.5;
+    filter: grayscale(50%);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.protocol-step.locked .step-content {
+    filter: blur(1px);
+}
+
+.protocol-step.locked .step-number {
+    border-color: var(--border-dim);
+}
+
+/* Badge for locked step */
+.protocol-step.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: var(--text-lg);
+}
+
+/* ==================== STEP ACTIONS ==================== */
+
+.step-actions {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-light);
+    width: 100%;
+}
+
+.step-action-btn {
+    width: 100%;
+}
+
+/* ==================== STEP METRICS ==================== */
+
+.step-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-light);
+    width: 100%;
+}
+
+.step-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+}
+
+.step-metric-label {
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+.step-metric-value {
+    color: var(--neon-blue);
+    font-weight: var(--font-medium);
+}
+
+/* ==================== PROGRESS TRACKER ==================== */
+
+.protocol-progress {
+    margin-top: var(--space-2xl);
+    padding: var(--space-md);
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.progress-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+.progress-percentage {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--neon-red);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: var(--bg-darkest);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-red);
+    transition: width 1s ease-out;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3)
+    );
+    animation: shimmer 2s infinite;
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+}
+
+/* ==================== STEP CHECKLIST ==================== */
+
+.step-checklist {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-light);
+}
+
+.checklist-title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    margin-bottom: var(--space-sm);
+}
+
+.checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.checklist-item::before {
+    content: '☐';
+    color: var(--text-dim);
+    font-size: var(--text-base);
+}
+
+.checklist-item.checked::before {
+    content: '☑';
+    color: var(--success);
+}
+
+.checklist-item.checked {
+    color: var(--text-dim);
+    text-decoration: line-through;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 1200px) {
+    .protocol-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .protocol-steps::before {
+        display: none;
+    }
+    
+    .protocol-step::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .protocol-steps {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .protocol-title {
+        font-size: var(--text-3xl);
+    }
+    
+    .protocol-subtitle {
+        font-size: var(--text-sm);
+    }
+    
+    .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: var(--text-3xl);
+    }
+    
+    .step-title {
+        font-size: var(--text-lg);
+    }
+    
+    .step-description {
+        font-size: var(--text-xs);
+    }
+    
+    .protocol-step.active::after,
+    .protocol-step.completed::after,
+    .protocol-step.locked::after {
+        top: var(--space-xs);
+        right: var(--space-xs);
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .protocol-container {
+        margin: var(--space-lg) 0;
+    }
+    
+    .protocol-header {
+        margin-bottom: var(--space-xl);
+    }
+    
+    .protocol-title {
+        font-size: var(--text-2xl);
+    }
+    
+    .protocol-step {
+        padding: var(--space-md) var(--space-sm);
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: var(--text-2xl);
+    }
+    
+    .step-metrics,
+    .step-actions {
+        margin-top: var(--space-sm);
+        padding-top: var(--space-sm);
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+.protocol-step:focus-within {
+    outline: 2px solid var(--neon-red);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .protocol-step {
+        border-width: 2px;
+    }
+    
+    .step-number {
+        border-width: 3px;
+    }
+    
+    .protocol-step.active,
+    .protocol-step.completed {
+        border-width: 3px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .protocol-step.active .step-number {
+        animation: none;
+    }
+    
+    .protocol-step.active .step-number::after {
+        animation: none;
+    }
+    
+    .progress-fill::after {
+        animation: none;
+    }
+    
+    .protocol-step:hover {
+        transform: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .protocol-steps {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .protocol-steps::before {
+        display: none;
+    }
+    
+    .protocol-step {
+        break-inside: avoid;
+        border: 1px solid #000;
+        box-shadow: none;
+    }
+    
+    .protocol-step::before {
+        display: none;
+    }
+    
+    .protocol-step.active::after,
+    .protocol-step.completed::after,
+    .protocol-step.locked::after {
+        position: static;
+        display: inline;
+        margin-left: var(--space-xs);
+    }
+}

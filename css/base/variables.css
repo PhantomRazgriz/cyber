@@ -1,0 +1,218 @@
+/* ==========================================================================
+   CSS VARIABLES (Design Tokens)
+   Central configuration for colors, typography, spacing, and effects
+   ========================================================================== */
+
+:root {
+    /* ==================== COLORS ==================== */
+    
+    /* Primary Palette - Red Cyberpunk Theme */
+    --neon-red: #ff1a3e;
+    --neon-red-dim: #cc1632;
+    --neon-red-dark: #8c0f22;
+    --neon-red-glow: rgba(255, 26, 62, 0.8);
+
+    --neon-magenta: #ff0066;
+    --neon-magenta-dim: #cc0052;
+    --neon-magenta-dark: #990040;
+    --neon-magenta-glow: rgba(255, 0, 102, 0.8);
+
+    --neon-orange: #ff3300;
+    --neon-yellow: #ffcc00;
+
+    /* Accent/Contrast Color */
+    --neon-blue: #00ccff;
+    --neon-blue-dim: #00a3cc;
+    --neon-blue-dark: #007a99;
+    --neon-blue-glow: rgba(0, 204, 255, 0.8);
+
+    --neon-purple: #cc33ff;
+    --neon-green: #66ff66;
+
+    /* Status Colors */
+    --success: #66ff66;
+    --success-dim: #33cc33;
+    --success-glow: rgba(102, 255, 102, 0.8);
+
+    --warning: #ffcc00;
+    --warning-dim: #e6b800;
+    --warning-glow: rgba(255, 204, 0, 0.8);
+
+    --error: #ff1a3e;
+    --error-dim: #cc1632;
+    --error-glow: rgba(255, 26, 62, 0.8);
+
+    --critical: #ff0000;
+    --critical-glow: rgba(255, 0, 0, 1);
+
+    /* Background Colors */
+    --bg-darkest: #0e0607;
+    --bg-darker: #120809;
+    --bg-dark: #150a0f;
+    --bg-terminal: #1a0c12;
+    --bg-window: #1d0e16;
+    --bg-cell: #180b10;
+    --bg-input: rgba(24, 11, 16, 0.8);
+
+    /* Border Colors */
+    --border-light: #2e1018;
+    --border-primary: var(--neon-red);
+    --border-secondary: var(--neon-magenta);
+    --border-dim: rgba(255, 26, 62, 0.25);
+    --border-header: #3d1620;
+
+    /* Text Colors */
+    --text-primary: #f2f2f2;
+    --text-secondary: #cccccc;
+    --text-dim: #a6a6a6;
+    --text-bright: #ffffff;
+    --text-code: #66ff66;
+
+    /* Overlay Colors */
+    --overlay-dark: rgba(14, 6, 7, 0.95);
+    --overlay-red: rgba(255, 26, 62, 0.15);
+    --overlay-magenta: rgba(255, 0, 102, 0.15);
+
+    /* ==================== TYPOGRAPHY ==================== */
+    
+    /* Font Families */
+    --font-display: 'Orbitron', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+
+    /* Font Sizes */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --text-4xl: 2.25rem;     /* 36px */
+    --text-5xl: 3rem;        /* 48px */
+    --text-6xl: 3.75rem;     /* 60px */
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+
+    /* Font Weights */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-bold: 700;
+    --font-black: 900;
+
+    /* ==================== SPACING ==================== */
+    
+    --space-xs: 0.5rem;      /* 8px */
+    --space-sm: 1rem;        /* 16px */
+    --space-md: 1.5rem;      /* 24px */
+    --space-lg: 2rem;        /* 32px */
+    --space-xl: 3rem;        /* 48px */
+    --space-2xl: 4rem;       /* 64px */
+    --space-3xl: 6rem;       /* 96px */
+
+    /* ==================== EFFECTS ==================== */
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+    
+    --shadow-red: 0 0 15px rgba(255, 26, 62, 0.3);
+    --shadow-red-lg: 0 0 30px rgba(255, 26, 62, 0.5);
+    
+    --shadow-blue: 0 0 15px rgba(0, 204, 255, 0.3);
+    --shadow-blue-lg: 0 0 30px rgba(0, 204, 255, 0.5);
+    
+    --shadow-inset: inset 0 0 20px rgba(0, 0, 0, 0.5);
+
+    /* Glows */
+    --glow-red: 0 0 10px var(--neon-red-glow);
+    --glow-red-intense: 0 0 20px var(--neon-red-glow), 
+                        0 0 40px var(--neon-red-glow);
+    
+    --glow-blue: 0 0 10px var(--neon-blue-glow);
+    --glow-blue-intense: 0 0 20px var(--neon-blue-glow), 
+                         0 0 40px var(--neon-blue-glow);
+    
+    --glow-magenta: 0 0 10px var(--neon-magenta-glow);
+
+    /* Gradients */
+    --gradient-red: linear-gradient(90deg, var(--neon-red-dark), var(--neon-red));
+    --gradient-magenta: linear-gradient(90deg, var(--neon-magenta-dark), var(--neon-magenta));
+    --gradient-cyber: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-magenta) 50%, var(--neon-purple) 100%);
+    --gradient-terminal: linear-gradient(180deg, var(--bg-terminal), var(--bg-darker));
+
+    /* ==================== TRANSITIONS ==================== */
+    
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-slower: 0.8s ease;
+
+    /* ==================== Z-INDEX SCALE ==================== */
+    
+    --z-background: -1;
+    --z-base: 0;
+    --z-content: 1;
+    --z-elevated: 10;
+    --z-sticky: 50;
+    --z-fixed: 100;
+    --z-overlay: 500;
+    --z-modal: 1000;
+    --z-notification: 1500;
+    --z-supreme: 9999;
+
+    /* ==================== DIMENSIONS ==================== */
+    
+    --system-panel-height: 40px;
+    --terminal-header-height: 36px;
+    --terminal-footer-height: 44px;
+    
+    --container-max-width: 1280px;
+    --content-max-width: 900px;
+
+    /* Border Radius (minimal, cyberpunk style) */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+
+    /* ==================== ANIMATION DURATIONS ==================== */
+    
+    --glitch-duration: 2s;
+    --scan-duration: 6s;
+    --pulse-duration: 4s;
+    --blink-duration: 1s;
+}
+
+/* ==================== DARK MODE OVERRIDE (if needed) ==================== */
+/* Currently everything is dark by default, but prepared for future light mode */
+
+@media (prefers-color-scheme: light) {
+    /* We stay dark. This is The Awakening. No light mode. */
+    /* "You can't wake up in the light, you're already asleep" */
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+/* Not CSS variables, but documented here for consistency */
+
+/*
+  --breakpoint-xs: 0px
+  --breakpoint-sm: 576px
+  --breakpoint-md: 768px
+  --breakpoint-lg: 992px
+  --breakpoint-xl: 1200px
+  --breakpoint-2xl: 1400px
+*/

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Awakening - Component Test</title>
+    
+    <!-- Font Imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="css/base/variables.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/typography.css">
+    <link rel="stylesheet" href="css/base/animations.css">
+    <link rel="stylesheet" href="css/layout/system-panel.css">
+    <link rel="stylesheet" href="css/layout/terminal.css">
+    <link rel="stylesheet" href="css/layout/navigation.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/terminal-window.css">
+    <link rel="stylesheet" href="css/components/data-cell.css">
+</head>
+<body>
+    
+    <!-- SYSTEM PANEL -->
+    <div class="system-panel">
+        <div class="system-panel-content">
+            <div class="system-panel-left">
+                <div class="system-logo">NEXUS-II</div>
+                <div class="system-status system-status-active">
+                    <span class="system-status-label">SYSTEM:</span>
+                    <span class="system-status-value">ACTIVE</span>
+                </div>
+            </div>
+            <div class="system-panel-right">
+                <div class="system-time" id="system-time">14:35:27</div>
+                <div class="system-separator"></div>
+                <div class="system-date" id="system-date">02/10/2025</div>
+                <div class="system-separator"></div>
+                <div class="system-user">
+                    <span class="system-user-label">USER:</span>
+                    <span class="system-user-id">GUEST#3192</span>
+                    <span class="consciousness-indicator consciousness-high"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMINAL CONTAINER -->
+    <div class="terminal-container">
+        
+        <!-- TERMINAL HEADER -->
+        <div class="terminal-header">
+            <div class="terminal-controls">
+                <span class="terminal-control control-close"></span>
+                <span class="terminal-control control-minimize"></span>
+                <span class="terminal-control control-maximize"></span>
+            </div>
+            <div class="terminal-title">THE AWAKENING - COMPONENT TEST</div>
+            <div class="terminal-status">
+                <span class="connection-status">CONNECTED</span>
+                <div class="terminal-indicators">
+                    <span class="terminal-indicator indicator-rx active">RX</span>
+                    <span class="terminal-indicator indicator-tx">TX</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TERMINAL BODY -->
+        <div class="terminal-body">
+            
+            <!-- SECTION: TYPOGRAPHY -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Typography Test</h2>
+                </div>
+                <h1>H1 - THE AWAKENING PROJECT</h1>
+                <h2>H2 - Collective Consciousness</h2>
+                <h3>H3 - Digital Liberation</h3>
+                <p class="lead">This is a lead paragraph. The revolution will not be televised, but it will be digitized.</p>
+                <p>Regular paragraph text. <strong>Bold text</strong>, <em>italic text</em>, and <code>inline code</code>.</p>
+                <p class="text-glow-red">Text with red glow effect</p>
+                <p class="text-glitch" data-text="GLITCH EFFECT">GLITCH EFFECT</p>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <!-- SECTION: BUTTONS -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Button Variants</h2>
+                </div>
+                
+                <h4>Primary Buttons</h4>
+                <div class="btn-group" style="margin-bottom: 1rem;">
+                    <button class="btn btn-primary btn-sm">Small Primary</button>
+                    <button class="btn btn-primary">Medium Primary</button>
+                    <button class="btn btn-primary btn-lg">Large Primary</button>
+                </div>
+
+                <h4>Button Variants</h4>
+                <div class="btn-group" style="margin-bottom: 1rem;">
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-secondary">Secondary</button>
+                    <button class="btn btn-outline">Outline</button>
+                    <button class="btn btn-ghost">Ghost</button>
+                    <button class="btn btn-danger">Danger</button>
+                </div>
+
+                <h4>Special Buttons</h4>
+                <div class="btn-group" style="margin-bottom: 1rem;">
+                    <button class="btn btn-command">sys.init</button>
+                    <button class="btn btn-pulse btn-primary">Pulse Effect</button>
+                    <button class="btn btn-primary loading">Loading...</button>
+                    <button class="btn btn-primary" disabled>Disabled</button>
+                </div>
+
+                <h4>Hero CTA</h4>
+                <button class="btn btn-awaken">BEGIN AWAKENING SEQUENCE</button>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <!-- SECTION: TERMINAL OUTPUT -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Terminal Output</h2>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-command">sys.init --awakening</span>
+                </div>
+                <div class="terminal-output">Initializing awakening protocol...</div>
+                <div class="terminal-output success">System initialized successfully</div>
+                <div class="terminal-output warning">Warning: Consciousness level critically low</div>
+                <div class="terminal-output error">Error: Digital dependency detected</div>
+                <div class="terminal-output info">Info: 8,421 days of control active</div>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <!-- SECTION: WINDOWS -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Terminal Windows</h2>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                    <!-- Info Window -->
+                    <div class="window window-info">
+                        <div class="window-header">
+                            <div class="window-title">System Information</div>
+                            <div class="window-controls">
+                                <span class="window-control window-control-help"></span>
+                                <span class="window-control window-control-close"></span>
+                            </div>
+                        </div>
+                        <div class="window-content window-content-compact">
+                            <p>This is an informational window with blue accent.</p>
+                        </div>
+                    </div>
+
+                    <!-- Warning Window -->
+                    <div class="window window-warning">
+                        <div class="window-header">
+                            <div class="window-title">System Alert</div>
+                            <div class="window-controls">
+                                <span class="window-control window-control-close"></span>
+                            </div>
+                        </div>
+                        <div class="window-content window-content-compact">
+                            <p>Your attention has been compromised.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Width Window -->
+                <div class="window window-terminal window-scan">
+                    <div class="window-header">
+                        <div class="window-title">access.log</div>
+                        <div class="window-controls">
+                            <span class="window-control window-control-minimize"></span>
+                            <span class="window-control window-control-close"></span>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <p>$ Scanning consciousness levels...</p>
+                        <p>> Neural pathways: ACTIVE</p>
+                        <p>> Digital dependencies: DETECTED</p>
+                        <p>> Awakening potential: HIGH</p>
+                    </div>
+                    <div class="window-footer">
+                        <div class="window-footer-info">Last scan: 2 minutes ago</div>
+                        <div class="window-footer-actions">
+                            <button class="btn btn-sm btn-primary">Refresh</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <!-- SECTION: DATA CELLS -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Data Cells</h2>
+                </div>
+
+                <div class="data-grid data-grid-3">
+                    
+                    <!-- Standard Data Cell -->
+                    <div class="data-cell data-cell-neural">
+                        <div class="cell-header">
+                            DATA REPORT//MANIPULATION
+                            <span class="cell-id">#001</span>
+                        </div>
+                        <div class="cell-icon">📱</div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Digital Addiction</h3>
+                            <p class="cell-description">
+                                Apps are designed to maximize engagement, not your wellbeing.
+                            </p>
+                            <div class="cell-stats">
+                                <div class="stat-bar-container">
+                                    <div class="stat-label">Population Affected</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" style="width: 87%"></div>
+                                    </div>
+                                    <div class="stat-percentage">87%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell-footer">
+                            <a href="#" class="cell-link">Access Full Data</a>
+                            <span class="cell-timestamp">2h ago</span>
+                        </div>
+                    </div>
+
+                    <!-- Warning Cell -->
+                    <div class="data-cell data-cell-warning data-cell-scan">
+                        <div class="cell-header">
+                            ALERT//SURVEILLANCE
+                            <span class="cell-id">#002</span>
+                        </div>
+                        <div class="cell-icon">👁</div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Total Surveillance</h3>
+                            <p class="cell-description">
+                                Every click, every scroll, every moment is being tracked and analyzed.
+                            </p>
+                            <div class="cell-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Data Collected Daily</div>
+                                    <div class="stat-value">4.2TB</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell-footer">
+                            <a href="#" class="cell-link">View Sources</a>
+                            <span class="cell-timestamp">5h ago</span>
+                        </div>
+                    </div>
+
+                    <!-- Success Cell -->
+                    <div class="data-cell data-cell-success data-cell-sidelight">
+                        <div class="cell-header">
+                            STATUS//AWAKENING
+                            <span class="cell-id">#003</span>
+                        </div>
+                        <div class="cell-icon">⚡</div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Liberation Active</h3>
+                            <p class="cell-description">
+                                Users completing the awakening protocol every day.
+                            </p>
+                            <div class="cell-stats">
+                                <div class="stat-bar-container">
+                                    <div class="stat-label">Protocol Completion</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" style="width: 64%"></div>
+                                    </div>
+                                    <div class="stat-percentage">64%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell-footer">
+                            <a href="#" class="cell-link">Join Protocol</a>
+                            <span class="cell-timestamp">1h ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Log Cell -->
+                <div class="data-cell data-cell-memory" style="margin-top: 1rem;">
+                    <div class="cell-header">
+                        MEM.LOG//#9247
+                    </div>
+                    <div class="cell-content">
+                        <div class="cell-quote">
+                            The true prison of the modern era is not built with bricks and bars, 
+                            but with notifications, algorithms, and the constant flow of dopamine 
+                            that keeps us chained to screens while the real world fades before our tired eyes.
+                            <div class="cell-quote-source">
+                                Collective Awakening Project, 2023
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <!-- SECTION: NAVIGATION -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Navigation Elements</h2>
+                </div>
+
+                <h4>Breadcrumb</h4>
+                <nav class="breadcrumb">
+                    <div class="breadcrumb-item">
+                        <a href="#" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator"></span>
+                    </div>
+                    <div class="breadcrumb-item">
+                        <a href="#" class="breadcrumb-link">Components</a>
+                        <span class="breadcrumb-separator"></span>
+                    </div>
+                    <div class="breadcrumb-item">
+                        <span class="breadcrumb-current">Test</span>
+                    </div>
+                </nav>
+
+                <h4>Tab Navigation</h4>
+                <div class="tab-nav">
+                    <div class="tab-item active">Overview</div>
+                    <div class="tab-item">Details</div>
+                    <div class="tab-item">Settings</div>
+                    <div class="tab-item">Advanced</div>
+                </div>
+
+                <h4>Pagination</h4>
+                <div class="pagination">
+                    <div class="pagination-item pagination-prev"></div>
+                    <div class="pagination-item">1</div>
+                    <div class="pagination-item active">2</div>
+                    <div class="pagination-item">3</div>
+                    <div class="pagination-item">4</div>
+                    <div class="pagination-item pagination-next"></div>
+                </div>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <!-- SECTION: ANIMATIONS -->
+            <div class="terminal-section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Animation Effects</h2>
+                </div>
+
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <div>
+                        <h4>Blink</h4>
+                        <span class="blink text-red">BLINKING TEXT</span>
+                    </div>
+                    <div>
+                        <h4>Pulse</h4>
+                        <span class="pulse text-blue">PULSING TEXT</span>
+                    </div>
+                    <div>
+                        <h4>Flicker</h4>
+                        <span class="flicker text-magenta">FLICKERING</span>
+                    </div>
+                    <div>
+                        <h4>Spinner</h4>
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TERMINAL FOOTER -->
+        <div class="terminal-footer">
+            <nav class="terminal-nav">
+                <a href="#" class="terminal-nav-item active">TEST</a>
+                <a href="#" class="terminal-nav-item">HOME</a>
+                <a href="#" class="terminal-nav-item">MANIFESTO</a>
+                <a href="#" class="terminal-nav-item">REVELATIONS</a>
+                <a href="#" class="terminal-nav-item">LIBERATION</a>
+            </nav>
+            
+            <div class="terminal-status-bar">
+                <div class="status-item">
+                    <span class="status-label">SESSION</span>
+                    <span class="status-value session-timer">00:15:42</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">NETWORK</span>
+                    <span class="status-value secure">SECURE</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">TRAFFIC</span>
+                    <span class="traffic-indicator">▂▃▅▇</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Simple clock update
+        function updateTime() {
+            const now = new Date();
+            const time = now.toTimeString().split(' ')[0];
+            const date = now.toLocaleDateString('en-GB').replace(/\//g, '/');
+            
+            const timeEl = document.getElementById('system-time');
+            const dateEl = document.getElementById('system-date');
+            
+            if (timeEl) timeEl.textContent = time;
+            if (dateEl) dateEl.textContent = date;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+
+</body>
+</html>

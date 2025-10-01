@@ -1,2 +1,0 @@
-# cyber
- cyberpunk website

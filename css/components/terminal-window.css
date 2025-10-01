@@ -1,0 +1,678 @@
+/* ==========================================================================
+   TERMINAL WINDOW
+   Modular window components for content sections
+   ========================================================================== */
+
+/* ==================== BASE WINDOW ==================== */
+
+.window {
+    background-color: var(--bg-window);
+    border: 1px solid var(--border-light);
+    margin-bottom: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 26, 62, 0.03) 0%,
+        transparent 50%,
+        rgba(0, 204, 255, 0.03) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.window:hover::before {
+    opacity: 1;
+}
+
+.window:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5),
+                0 0 15px rgba(255, 26, 62, 0.2);
+}
+
+/* ==================== WINDOW HEADER ==================== */
+
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid var(--border-light);
+    position: relative;
+}
+
+.window-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-red),
+        transparent
+    );
+    opacity: 0.5;
+}
+
+/* Window Title */
+.window-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    font-weight: var(--font-medium);
+}
+
+.window-title::before {
+    content: '▸';
+    color: var(--neon-red);
+}
+
+/* Window Title Icon */
+.window-title-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================== WINDOW CONTROLS ==================== */
+
+.window-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.window-control {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 2px;
+}
+
+.window-control:hover {
+    color: var(--text-bright);
+    border-color: var(--border-light);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.window-control-help::before {
+    content: '[?]';
+}
+
+.window-control-minimize::before {
+    content: '[–]';
+}
+
+.window-control-maximize::before {
+    content: '[□]';
+}
+
+.window-control-close::before {
+    content: '[×]';
+}
+
+.window-control-close:hover {
+    color: var(--error);
+    border-color: var(--error);
+}
+
+/* ==================== WINDOW CONTENT ==================== */
+
+.window-content {
+    padding: var(--space-lg);
+    position: relative;
+    z-index: 1;
+}
+
+.window-content > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Content with background pattern */
+.window-content.patterned::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 26, 62, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 26, 62, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* ==================== WINDOW FOOTER ==================== */
+
+.window-footer {
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-darker);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-footer-info {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+}
+
+.window-footer-actions {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+/* ==================== WINDOW VARIANTS ==================== */
+
+/* Info Window (Blue) */
+.window-info {
+    border-color: var(--neon-blue);
+}
+
+.window-info .window-header {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 204, 255, 0.1),
+        var(--bg-darker)
+    );
+}
+
+.window-info .window-title {
+    color: var(--neon-blue);
+}
+
+.window-info .window-header::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-blue),
+        transparent
+    );
+}
+
+/* Warning Window (Yellow) */
+.window-warning {
+    border-color: var(--warning);
+}
+
+.window-warning .window-header {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 204, 0, 0.1),
+        var(--bg-darker)
+    );
+}
+
+.window-warning .window-title {
+    color: var(--warning);
+}
+
+.window-warning .window-title::before {
+    content: '⚠';
+}
+
+.window-warning .window-header::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--warning),
+        transparent
+    );
+}
+
+/* Error Window (Red) */
+.window-error {
+    border-color: var(--error);
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.window-error .window-header {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 26, 62, 0.15),
+        var(--bg-darker)
+    );
+}
+
+.window-error .window-title {
+    color: var(--error);
+}
+
+.window-error .window-title::before {
+    content: '✗';
+}
+
+.window-error .window-header::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--error),
+        transparent
+    );
+}
+
+/* Success Window (Green) */
+.window-success {
+    border-color: var(--success);
+}
+
+.window-success .window-header {
+    background: linear-gradient(
+        90deg,
+        rgba(102, 255, 102, 0.1),
+        var(--bg-darker)
+    );
+}
+
+.window-success .window-title {
+    color: var(--success);
+}
+
+.window-success .window-title::before {
+    content: '✓';
+}
+
+.window-success .window-header::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--success),
+        transparent
+    );
+}
+
+/* Critical Window (Intense Red) */
+.window-critical {
+    border-color: var(--critical);
+    border-width: 2px;
+    animation: alertPulse 1s ease-in-out infinite;
+}
+
+.window-critical .window-header {
+    background-color: rgba(255, 0, 0, 0.2);
+    animation: blink 0.5s infinite;
+}
+
+.window-critical .window-title {
+    color: var(--critical);
+    font-weight: var(--font-bold);
+}
+
+.window-critical .window-title::before {
+    content: '⚠';
+}
+
+/* ==================== WINDOW SIZES ==================== */
+
+.window-sm {
+    max-width: 400px;
+}
+
+.window-md {
+    max-width: 600px;
+}
+
+.window-lg {
+    max-width: 800px;
+}
+
+.window-xl {
+    max-width: 1000px;
+}
+
+.window-full {
+    max-width: none;
+}
+
+/* ==================== WINDOW STATES ==================== */
+
+/* Minimized Window */
+.window.minimized .window-content,
+.window.minimized .window-footer {
+    display: none;
+}
+
+.window.minimized {
+    margin-bottom: var(--space-sm);
+}
+
+/* Closed/Hidden Window */
+.window.closed {
+    display: none;
+}
+
+/* Loading Window */
+.window.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.window.loading .window-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-red),
+        transparent
+    );
+    animation: loading 2s linear infinite;
+}
+
+/* Focused Window */
+.window.focused {
+    border-color: var(--neon-red);
+    box-shadow: 0 0 30px rgba(255, 26, 62, 0.4);
+    z-index: var(--z-elevated);
+}
+
+/* Disabled Window */
+.window.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(50%);
+}
+
+/* ==================== SPECIAL WINDOW TYPES ==================== */
+
+/* Glitch Window */
+.window-glitch {
+    position: relative;
+}
+
+.window-glitch:hover {
+    animation: glitch-anim 0.3s ease-in-out;
+}
+
+/* Scan Window (with scan line) */
+.window-scan {
+    position: relative;
+}
+
+.window-scan::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-red),
+        transparent
+    );
+    animation: scan var(--scan-duration) linear infinite;
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+/* Terminal Style Window */
+.window-terminal {
+    background-color: var(--bg-darkest);
+    border-color: var(--neon-green);
+    font-family: var(--font-mono);
+}
+
+.window-terminal .window-header {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.window-terminal .window-title {
+    color: var(--neon-green);
+}
+
+.window-terminal .window-title::before {
+    content: '$ ';
+}
+
+.window-terminal .window-content {
+    color: var(--neon-green);
+    font-size: var(--text-sm);
+}
+
+/* Data Window (bordered top) */
+.window-data {
+    border-top: 3px solid var(--neon-red);
+}
+
+.window-data .window-header {
+    background: transparent;
+    border-bottom: none;
+}
+
+/* Floating Window */
+.window-floating {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: var(--z-modal);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: var(--shadow-xl), 0 0 50px rgba(255, 26, 62, 0.4);
+}
+
+/* ==================== WINDOW ANIMATIONS ==================== */
+
+.window-enter {
+    animation: windowEnter 0.4s ease-out forwards;
+}
+
+@keyframes windowEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.window-exit {
+    animation: windowExit 0.3s ease-in forwards;
+}
+
+@keyframes windowExit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+/* ==================== WINDOW CONTENT VARIANTS ==================== */
+
+/* Centered content */
+.window-content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 200px;
+}
+
+/* Scrollable content */
+.window-content-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.window-content-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.window-content-scroll::-webkit-scrollbar-track {
+    background: var(--bg-darkest);
+}
+
+.window-content-scroll::-webkit-scrollbar-thumb {
+    background: var(--neon-red);
+    border-radius: var(--radius-sm);
+}
+
+/* Compact content */
+.window-content-compact {
+    padding: var(--space-sm) var(--space-md);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 768px) {
+    .window {
+        margin-bottom: var(--space-md);
+    }
+    
+    .window-content {
+        padding: var(--space-md);
+    }
+    
+    .window-header {
+        padding: var(--space-xs) var(--space-sm);
+    }
+    
+    .window-title {
+        font-size: var(--text-xs);
+    }
+    
+    .window-controls {
+        gap: var(--space-xs);
+    }
+    
+    .window-floating {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .window-content {
+        padding: var(--space-sm);
+    }
+    
+    .window-header {
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+    }
+    
+    .window-controls {
+        margin-left: auto;
+    }
+    
+    .window-footer {
+        flex-direction: column;
+        gap: var(--space-xs);
+        align-items: stretch;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+.window-control:focus-visible {
+    outline: 2px solid var(--neon-red);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .window {
+        border-width: 2px;
+    }
+    
+    .window-header {
+        border-bottom-width: 2px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .window {
+        transition: none;
+    }
+    
+    .window:hover {
+        transform: none;
+    }
+    
+    .window-scan::after,
+    .window-error,
+    .window-critical {
+        animation: none;
+    }
+    
+    .window-enter,
+    .window-exit {
+        animation: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .window {
+        border: 1px solid #000;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+    
+    .window-header {
+        background: white;
+        border-bottom: 1px solid #000;
+    }
+    
+    .window-controls {
+        display: none;
+    }
+    
+    .window-floating {
+        position: static;
+        transform: none;
+    }
+}
