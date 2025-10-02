@@ -1,0 +1,574 @@
+/* ==========================================================================
+   QUOTE BLOCK
+   Blockquote and quote components with cyberpunk styling
+   ========================================================================== */
+
+/* ==================== BASE QUOTE BLOCK ==================== */
+
+.quote-block {
+    padding: var(--space-lg);
+    background-color: var(--bg-darker);
+    border-left: 4px solid var(--neon-red);
+    margin: var(--space-xl) 0;
+    position: relative;
+    box-shadow: inset 0 0 30px rgba(255, 26, 62, 0.05);
+}
+
+.quote-block::before {
+    content: '"';
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    font-family: var(--font-display);
+    font-size: 6rem;
+    color: rgba(255, 26, 62, 0.15);
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* ==================== QUOTE TEXT ==================== */
+
+.quote-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-primary);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    margin-bottom: var(--space-md);
+}
+
+.quote-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Large quote variant */
+.quote-text-large {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+}
+
+.quote-text-small {
+    font-size: var(--text-base);
+}
+
+/* ==================== QUOTE AUTHOR ==================== */
+
+.quote-author {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-dim);
+    font-style: normal;
+    text-align: right;
+    margin-top: var(--space-sm);
+}
+
+.quote-author::before {
+    content: '— ';
+    color: var(--neon-red);
+}
+
+.quote-source {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+
+.quote-date {
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    opacity: 0.7;
+}
+
+/* ==================== QUOTE VARIANTS ==================== */
+
+/* Blue variant */
+.quote-block-blue {
+    border-left-color: var(--neon-blue);
+    box-shadow: inset 0 0 30px rgba(0, 204, 255, 0.05);
+}
+
+.quote-block-blue::before {
+    color: rgba(0, 204, 255, 0.15);
+}
+
+.quote-block-blue .quote-author::before {
+    color: var(--neon-blue);
+}
+
+/* Magenta variant */
+.quote-block-magenta {
+    border-left-color: var(--neon-magenta);
+    box-shadow: inset 0 0 30px rgba(255, 0, 102, 0.05);
+}
+
+.quote-block-magenta::before {
+    color: rgba(255, 0, 102, 0.15);
+}
+
+.quote-block-magenta .quote-author::before {
+    color: var(--neon-magenta);
+}
+
+/* Success variant */
+.quote-block-success {
+    border-left-color: var(--success);
+    box-shadow: inset 0 0 30px rgba(102, 255, 102, 0.05);
+}
+
+.quote-block-success::before {
+    color: rgba(102, 255, 102, 0.15);
+}
+
+.quote-block-success .quote-author::before {
+    color: var(--success);
+}
+
+/* ==================== CENTERED QUOTE ==================== */
+
+.quote-centered {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+    border-left: none;
+    border-top: 2px solid var(--neon-red);
+    border-bottom: 2px solid var(--neon-red);
+}
+
+.quote-centered::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.quote-centered .quote-author {
+    text-align: center;
+}
+
+/* ==================== TERMINAL QUOTE ==================== */
+
+.quote-terminal {
+    background-color: var(--bg-darkest);
+    border: 1px solid var(--neon-green);
+    border-left-width: 4px;
+    padding: var(--space-md);
+    position: relative;
+}
+
+.quote-terminal::before {
+    content: '$ INSIGHT';
+    position: absolute;
+    top: -10px;
+    left: var(--space-sm);
+    background-color: var(--bg-darkest);
+    padding: 0 var(--space-xs);
+    color: var(--neon-green);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+}
+
+.quote-terminal .quote-text {
+    color: var(--neon-green);
+    font-style: normal;
+    font-size: var(--text-base);
+}
+
+.quote-terminal .quote-author {
+    color: var(--text-secondary);
+}
+
+.quote-terminal .quote-author::before {
+    color: var(--neon-green);
+}
+
+/* ==================== CARD QUOTE ==================== */
+
+.quote-card {
+    background-color: var(--bg-cell);
+    border: 1px solid var(--border-light);
+    padding: var(--space-xl);
+    position: relative;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+}
+
+.quote-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(255, 26, 62, 0.2);
+}
+
+.quote-card::before {
+    font-size: 8rem;
+    color: rgba(255, 26, 62, 0.08);
+    top: var(--space-lg);
+    right: var(--space-lg);
+    left: auto;
+}
+
+.quote-card::after {
+    content: '"';
+    position: absolute;
+    bottom: var(--space-lg);
+    right: var(--space-xl);
+    font-family: var(--font-display);
+    font-size: 8rem;
+    color: rgba(255, 26, 62, 0.08);
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* ==================== INLINE QUOTE ==================== */
+
+.quote-inline {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.quote-inline::before {
+    content: '"';
+    position: static;
+    font-size: inherit;
+    color: var(--neon-red);
+    opacity: 1;
+}
+
+.quote-inline .quote-text {
+    display: inline;
+    font-size: inherit;
+    margin: 0;
+}
+
+.quote-inline .quote-text::after {
+    content: '"';
+    color: var(--neon-red);
+}
+
+/* ==================== HIGHLIGHTED QUOTE ==================== */
+
+.quote-highlighted {
+    background: none;
+    border: none;
+    padding: var(--space-lg) 0;
+    text-align: center;
+}
+
+.quote-highlighted::before {
+    display: none;
+}
+
+.quote-highlighted .quote-text {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    font-style: normal;
+    line-height: var(--leading-tight);
+    position: relative;
+    display: inline;
+}
+
+.quote-highlighted .quote-text::before {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 26, 62, 0.3),
+        rgba(255, 0, 102, 0.3)
+    );
+    z-index: -1;
+}
+
+/* ==================== MEMORY LOG QUOTE ==================== */
+
+.quote-memory {
+    background-color: var(--bg-darkest);
+    border: 1px solid var(--neon-red);
+    border-left-width: 4px;
+    padding: var(--space-lg);
+    position: relative;
+}
+
+.quote-memory::before {
+    content: 'MEM.LOG//';
+    position: absolute;
+    top: -10px;
+    left: var(--space-sm);
+    background-color: var(--bg-darkest);
+    padding: 0 var(--space-xs);
+    color: var(--neon-red);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+}
+
+.quote-memory-id {
+    position: absolute;
+    top: -10px;
+    right: var(--space-sm);
+    background-color: var(--bg-darkest);
+    padding: 0 var(--space-xs);
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+}
+
+/* ==================== PULL QUOTE ==================== */
+
+.quote-pull {
+    float: right;
+    width: 40%;
+    margin: 0 0 var(--space-lg) var(--space-lg);
+    padding: var(--space-md);
+    background-color: var(--bg-cell);
+    border-top: 3px solid var(--neon-red);
+    border-bottom: 3px solid var(--neon-red);
+}
+
+.quote-pull::before {
+    display: none;
+}
+
+.quote-pull .quote-text {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    color: var(--neon-red);
+}
+
+.quote-pull-left {
+    float: left;
+    margin: 0 var(--space-lg) var(--space-lg) 0;
+}
+
+/* ==================== GLITCH QUOTE ==================== */
+
+.quote-glitch {
+    position: relative;
+}
+
+.quote-glitch .quote-text {
+    position: relative;
+}
+
+.quote-glitch:hover .quote-text {
+    animation: glitch-anim 0.3s ease-in-out;
+}
+
+/* ==================== SCAN QUOTE ==================== */
+
+.quote-scan {
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-scan::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-red),
+        transparent
+    );
+    animation: scan 4s linear infinite;
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+/* ==================== QUOTE GRID ==================== */
+
+.quote-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 992px) {
+    .quote-pull {
+        width: 50%;
+    }
+    
+    .quote-grid {
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .quote-block {
+        padding: var(--space-md);
+    }
+    
+    .quote-block::before {
+        font-size: 4rem;
+        top: var(--space-sm);
+        left: var(--space-sm);
+    }
+    
+    .quote-text {
+        font-size: var(--text-base);
+    }
+    
+    .quote-text-large {
+        font-size: var(--text-xl);
+    }
+    
+    .quote-highlighted .quote-text {
+        font-size: var(--text-2xl);
+    }
+    
+    .quote-pull {
+        float: none;
+        width: 100%;
+        margin: var(--space-lg) 0;
+    }
+    
+    .quote-pull-left {
+        float: none;
+        margin: var(--space-lg) 0;
+    }
+    
+    .quote-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quote-centered {
+        padding: var(--space-lg) var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-block {
+        padding: var(--space-sm);
+        margin: var(--space-lg) 0;
+    }
+    
+    .quote-block::before {
+        font-size: 3rem;
+    }
+    
+    .quote-text {
+        font-size: var(--text-sm);
+    }
+    
+    .quote-author {
+        font-size: var(--text-xs);
+    }
+    
+    .quote-card::before,
+    .quote-card::after {
+        font-size: 4rem;
+    }
+    
+    .quote-highlighted .quote-text {
+        font-size: var(--text-xl);
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .quote-block {
+        border-left-width: 6px;
+    }
+    
+    .quote-block::before {
+        opacity: 0.3;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .quote-glitch:hover .quote-text {
+        animation: none;
+    }
+    
+    .quote-scan::after {
+        animation: none;
+    }
+    
+    .quote-card:hover {
+        transform: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .quote-block {
+        background: white;
+        border-left: 4px solid #000;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+    
+    .quote-block::before {
+        color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .quote-text {
+        color: #000;
+    }
+    
+    .quote-author {
+        color: #666;
+    }
+    
+    .quote-pull {
+        float: none;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+}
+
+/* ==================== SPECIAL EFFECTS ==================== */
+
+/* Typewriter effect for quotes */
+.quote-typewriter .quote-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--neon-red);
+    width: 0;
+    animation: typing 4s steps(60, end) forwards,
+               blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    to {
+        width: 100%;
+    }
+}
+
+/* Fade in animation */
+.quote-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.quote-fade-in.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.quote-fade-in.delay-2 {
+    animation-delay: 0.6s;
+}
+
+.quote-fade-in.delay-3 {
+    animation-delay: 0.9s;
+}
