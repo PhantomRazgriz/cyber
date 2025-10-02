@@ -1,0 +1,745 @@
+/* ==========================================================================
+   SCANLINES EFFECTS
+   CRT monitor effects, scan lines, and retro display simulations
+   ========================================================================== */
+
+/* ==================== BASE SCANLINES ==================== */
+
+.scanlines {
+    position: relative;
+    overflow: hidden;
+}
+
+.scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 3px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    opacity: 0.5;
+}
+
+/* ==================== SCANLINE VARIANTS ==================== */
+
+/* Horizontal scanlines (default) */
+.scanlines-horizontal::before {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 3px
+    );
+}
+
+/* Vertical scanlines */
+.scanlines-vertical::before {
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 3px
+    );
+}
+
+/* Dense scanlines */
+.scanlines-dense::before {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.2) 0px,
+        transparent 1px,
+        transparent 1px,
+        rgba(0, 0, 0, 0.2) 2px
+    );
+}
+
+/* Sparse scanlines */
+.scanlines-sparse::before {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        transparent 2px,
+        transparent 5px,
+        rgba(0, 0, 0, 0.1) 6px
+    );
+}
+
+/* Subtle scanlines */
+.scanlines-subtle::before {
+    opacity: 0.2;
+}
+
+/* Intense scanlines */
+.scanlines-intense::before {
+    opacity: 0.8;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.3) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.3) 3px
+    );
+}
+
+/* ==================== ANIMATED SCANLINES ==================== */
+
+/* Moving scanline (single line) */
+.scanlines-moving {
+    position: relative;
+    overflow: hidden;
+}
+
+.scanlines-moving::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 26, 62, 0.8),
+        transparent
+    );
+    animation: scanlineMove 4s linear infinite;
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    box-shadow: 0 0 10px rgba(255, 26, 62, 0.8);
+}
+
+@keyframes scanlineMove {
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* Fast scanning */
+.scanlines-moving-fast::after {
+    animation-duration: 2s;
+}
+
+/* Slow scanning */
+.scanlines-moving-slow::after {
+    animation-duration: 8s;
+}
+
+/* Blue scanline */
+.scanlines-moving-blue::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 204, 255, 0.8),
+        transparent
+    );
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.8);
+}
+
+/* Green scanline */
+.scanlines-moving-green::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(102, 255, 102, 0.8),
+        transparent
+    );
+    box-shadow: 0 0 10px rgba(102, 255, 102, 0.8);
+}
+
+/* ==================== CRT MONITOR EFFECT ==================== */
+
+.crt-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Scanlines layer */
+.crt-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 3px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    opacity: 0.5;
+}
+
+/* Flicker layer */
+.crt-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 16, 16, 0.1);
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: crtFlicker 0.15s infinite;
+}
+
+@keyframes crtFlicker {
+    0%, 100% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* CRT curvature (subtle) */
+.crt-curved {
+    border-radius: 8px;
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+/* CRT vignette */
+.crt-vignette {
+    position: relative;
+}
+
+.crt-vignette::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+/* ==================== INTERLACED EFFECT ==================== */
+
+.interlaced {
+    position: relative;
+    overflow: hidden;
+}
+
+.interlaced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.3) 2px,
+        rgba(0, 0, 0, 0.3) 4px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: interlaceShift 0.1s infinite;
+}
+
+@keyframes interlaceShift {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(4px);
+    }
+}
+
+/* ==================== PHOSPHOR GLOW ==================== */
+
+.phosphor-glow {
+    position: relative;
+    text-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 15px currentColor;
+}
+
+.phosphor-glow-red {
+    color: var(--neon-red);
+    text-shadow: 
+        0 0 5px var(--neon-red-glow),
+        0 0 10px var(--neon-red-glow),
+        0 0 15px var(--neon-red-glow);
+}
+
+.phosphor-glow-green {
+    color: var(--neon-green);
+    text-shadow: 
+        0 0 5px rgba(102, 255, 102, 0.8),
+        0 0 10px rgba(102, 255, 102, 0.8),
+        0 0 15px rgba(102, 255, 102, 0.8);
+}
+
+.phosphor-glow-blue {
+    color: var(--neon-blue);
+    text-shadow: 
+        0 0 5px var(--neon-blue-glow),
+        0 0 10px var(--neon-blue-glow),
+        0 0 15px var(--neon-blue-glow);
+}
+
+/* ==================== SCREEN DOOR EFFECT ==================== */
+
+.screen-door {
+    position: relative;
+    overflow: hidden;
+}
+
+.screen-door::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.2) 0px,
+            transparent 1px,
+            transparent 2px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.2) 0px,
+            transparent 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    opacity: 0.3;
+}
+
+/* ==================== RASTER EFFECT ==================== */
+
+.raster-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.raster-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 26, 62, 0.05) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 204, 255, 0.05) 3px,
+        transparent 4px,
+        transparent 5px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+/* ==================== ROLLING SHUTTER ==================== */
+
+.rolling-shutter {
+    position: relative;
+    overflow: hidden;
+}
+
+.rolling-shutter::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: rollingShutter 3s linear infinite;
+}
+
+@keyframes rollingShutter {
+    0% {
+        top: -20%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* ==================== ANALOG STATIC ==================== */
+
+.analog-static {
+    position: relative;
+    overflow: hidden;
+}
+
+.analog-static::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: staticMove 0.2s infinite;
+}
+
+@keyframes staticMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-5%, -5%);
+    }
+    20% {
+        transform: translate(-10%, 5%);
+    }
+    30% {
+        transform: translate(5%, -10%);
+    }
+    40% {
+        transform: translate(-5%, 15%);
+    }
+    50% {
+        transform: translate(-10%, 5%);
+    }
+    60% {
+        transform: translate(15%, 0);
+    }
+    70% {
+        transform: translate(0, 10%);
+    }
+    80% {
+        transform: translate(-15%, 0);
+    }
+    90% {
+        transform: translate(10%, 5%);
+    }
+    100% {
+        transform: translate(5%, 0);
+    }
+}
+
+/* ==================== SIGNAL INTERFERENCE LINES ==================== */
+
+.interference-lines {
+    position: relative;
+    overflow: hidden;
+}
+
+.interference-lines::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: interferenceMove 2s ease-in-out infinite;
+}
+
+@keyframes interferenceMove {
+    0%, 100% {
+        top: 30%;
+        opacity: 0.3;
+    }
+    50% {
+        top: 70%;
+        opacity: 0.7;
+    }
+}
+
+/* ==================== VHS TRACKING LINES ==================== */
+
+.vhs-tracking {
+    position: relative;
+    overflow: hidden;
+}
+
+.vhs-tracking::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 2px,
+            transparent 20px
+        );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: vhsTracking 0.1s infinite;
+}
+
+@keyframes vhsTracking {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+.vhs-tracking::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: vhsTrackingLine 5s ease-in-out infinite;
+}
+
+@keyframes vhsTrackingLine {
+    0%, 100% {
+        top: 40%;
+        opacity: 0.3;
+    }
+    25% {
+        top: 20%;
+        opacity: 0.5;
+    }
+    50% {
+        top: 60%;
+        opacity: 0.7;
+    }
+    75% {
+        top: 80%;
+        opacity: 0.5;
+    }
+}
+
+/* ==================== COMPOSITE VIDEO ARTIFACTS ==================== */
+
+.composite-artifacts {
+    position: relative;
+}
+
+.composite-artifacts::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(255, 0, 0, 0.05) 1px,
+        transparent 2px,
+        rgba(0, 255, 0, 0.05) 3px,
+        transparent 4px,
+        rgba(0, 0, 255, 0.05) 5px,
+        transparent 6px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    opacity: 0.5;
+}
+
+/* ==================== REFRESH RATE EFFECT ==================== */
+
+.refresh-rate {
+    animation: refreshRate 0.016s infinite; /* ~60Hz */
+}
+
+@keyframes refreshRate {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.98;
+    }
+}
+
+.refresh-rate-30 {
+    animation-duration: 0.033s; /* ~30Hz */
+}
+
+.refresh-rate-120 {
+    animation-duration: 0.008s; /* ~120Hz */
+}
+
+/* ==================== OVERSCAN BORDER ==================== */
+
+.overscan-border {
+    position: relative;
+    padding: var(--space-md);
+}
+
+.overscan-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+/* ==================== SCANLINE OVERLAY (FOR BODY) ==================== */
+
+body.scanlines-overlay::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 3px
+    );
+    pointer-events: none;
+    z-index: var(--z-supreme);
+    opacity: 0.3;
+}
+
+/* ==================== UTILITIES ==================== */
+
+/* Disable scanlines on mobile */
+@media (max-width: 768px) {
+    .scanlines-mobile-off::before,
+    .scanlines-mobile-off::after,
+    .crt-effect::before,
+    .crt-effect::after,
+    body.scanlines-overlay::before {
+        display: none;
+    }
+}
+
+/* Scanlines on hover only */
+.scanlines-hover::before {
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.scanlines-hover:hover::before {
+    opacity: 0.5;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/* Reduced motion - disable all scanline animations */
+@media (prefers-reduced-motion: reduce) {
+    .scanlines-moving::after,
+    .crt-effect::after,
+    .interlaced::before,
+    .rolling-shutter::after,
+    .analog-static::before,
+    .interference-lines::after,
+    .vhs-tracking::before,
+    .vhs-tracking::after,
+    .refresh-rate {
+        animation: none !important;
+    }
+    
+    .scanlines-moving::after {
+        display: none;
+    }
+}
+
+/* High contrast - reduce scanline opacity */
+@media (prefers-contrast: high) {
+    .scanlines::before,
+    .crt-effect::before,
+    .interlaced::before,
+    .screen-door::before {
+        opacity: 0.2;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .scanlines::before,
+    .scanlines::after,
+    .scanlines-moving::after,
+    .crt-effect::before,
+    .crt-effect::after,
+    .interlaced::before,
+    .screen-door::before,
+    .raster-effect::before,
+    .rolling-shutter::after,
+    .analog-static::before,
+    .interference-lines::after,
+    .vhs-tracking::before,
+    .vhs-tracking::after,
+    .composite-artifacts::before,
+    body.scanlines-overlay::before {
+        display: none;
+    }
+    
+    .phosphor-glow,
+    .phosphor-glow-red,
+    .phosphor-glow-green,
+    .phosphor-glow-blue {
+        text-shadow: none;
+    }
+}
+
+/* ==================== PERFORMANCE OPTIMIZATION ==================== */
+
+/* Use will-change for animated elements */
+.scanlines-moving::after,
+.rolling-shutter::after,
+.interference-lines::after,
+.vhs-tracking::after {
+    will-change: transform, top;
+}
+
+.analog-static::before {
+    will-change: transform;
+}

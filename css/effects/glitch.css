@@ -1,0 +1,764 @@
+/* ==========================================================================
+   GLITCH EFFECTS
+   Advanced glitch, distortion, and corruption visual effects
+   ========================================================================== */
+
+/* ==================== BASE GLITCH ANIMATIONS ==================== */
+
+/* Glitch animation 1 - RGB Split */
+@keyframes glitch-1 {
+    0% {
+        clip-path: inset(40% 0 61% 0);
+        transform: translate(-2px, 2px);
+    }
+    20% {
+        clip-path: inset(92% 0 1% 0);
+        transform: translate(2px, -1px);
+    }
+    40% {
+        clip-path: inset(43% 0 1% 0);
+        transform: translate(-3px, 1px);
+    }
+    60% {
+        clip-path: inset(25% 0 58% 0);
+        transform: translate(2px, -2px);
+    }
+    80% {
+        clip-path: inset(54% 0 7% 0);
+        transform: translate(-1px, 2px);
+    }
+    100% {
+        clip-path: inset(58% 0 43% 0);
+        transform: translate(1px, -2px);
+    }
+}
+
+/* Glitch animation 2 - Reverse */
+@keyframes glitch-2 {
+    0% {
+        clip-path: inset(67% 0 91% 0);
+        transform: translate(2px, -2px);
+    }
+    20% {
+        clip-path: inset(79% 0 97% 0);
+        transform: translate(-1px, 1px);
+    }
+    40% {
+        clip-path: inset(21% 0 35% 0);
+        transform: translate(3px, -1px);
+    }
+    60% {
+        clip-path: inset(70% 0 60% 0);
+        transform: translate(-2px, 2px);
+    }
+    80% {
+        clip-path: inset(96% 0 78% 0);
+        transform: translate(1px, -1px);
+    }
+    100% {
+        clip-path: inset(10% 0 35% 0);
+        transform: translate(-3px, 1px);
+    }
+}
+
+/* Simple glitch movement */
+@keyframes glitch-anim {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* ==================== TEXT GLITCH EFFECT ==================== */
+
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch-text::before {
+    color: var(--neon-blue);
+    z-index: -1;
+    animation: glitch-1 2s infinite;
+}
+
+.glitch-text::after {
+    color: var(--neon-red);
+    z-index: -2;
+    animation: glitch-2 2s infinite reverse;
+}
+
+/* Glitch text on hover */
+.glitch-text-hover {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text-hover::before,
+.glitch-text-hover::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.glitch-text-hover:hover::before,
+.glitch-text-hover:hover::after {
+    opacity: 0.8;
+}
+
+.glitch-text-hover::before {
+    color: var(--neon-blue);
+    z-index: -1;
+}
+
+.glitch-text-hover:hover::before {
+    animation: glitch-1 0.3s;
+}
+
+.glitch-text-hover::after {
+    color: var(--neon-red);
+    z-index: -2;
+}
+
+.glitch-text-hover:hover::after {
+    animation: glitch-2 0.3s reverse;
+}
+
+/* ==================== ELEMENT GLITCH ==================== */
+
+.glitch {
+    position: relative;
+    animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+/* Subtle glitch (less frequent) */
+.glitch-subtle {
+    animation: glitch-anim 0.3s ease-in-out;
+    animation-iteration-count: 1;
+}
+
+/* Intense glitch */
+.glitch-intense {
+    animation: glitch-intense 0.5s infinite;
+}
+
+@keyframes glitch-intense {
+    0%, 100% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0deg);
+    }
+    10% {
+        transform: translate(-5px, 2px) skew(2deg);
+        filter: hue-rotate(90deg);
+    }
+    20% {
+        transform: translate(5px, -2px) skew(-2deg);
+        filter: hue-rotate(180deg);
+    }
+    30% {
+        transform: translate(-2px, -5px) skew(1deg);
+        filter: hue-rotate(270deg);
+    }
+    40% {
+        transform: translate(2px, 5px) skew(-1deg);
+        filter: hue-rotate(360deg);
+    }
+    50% {
+        transform: translate(-5px, -2px) skew(2deg);
+        filter: hue-rotate(45deg);
+    }
+    60% {
+        transform: translate(5px, 2px) skew(-2deg);
+        filter: hue-rotate(135deg);
+    }
+    70% {
+        transform: translate(-2px, 5px) skew(1deg);
+        filter: hue-rotate(225deg);
+    }
+    80% {
+        transform: translate(2px, -5px) skew(-1deg);
+        filter: hue-rotate(315deg);
+    }
+    90% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0deg);
+    }
+}
+
+/* ==================== RGB SPLIT EFFECT ==================== */
+
+.glitch-rgb {
+    position: relative;
+}
+
+.glitch-rgb::before,
+.glitch-rgb::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.8;
+    mix-blend-mode: screen;
+}
+
+.glitch-rgb::before {
+    background-color: rgba(255, 0, 0, 0.5);
+    transform: translate(-2px, 0);
+    animation: rgbSplit1 2s infinite;
+}
+
+.glitch-rgb::after {
+    background-color: rgba(0, 255, 255, 0.5);
+    transform: translate(2px, 0);
+    animation: rgbSplit2 2s infinite;
+}
+
+@keyframes rgbSplit1 {
+    0%, 100% {
+        transform: translate(-2px, 0);
+    }
+    50% {
+        transform: translate(2px, 0);
+    }
+}
+
+@keyframes rgbSplit2 {
+    0%, 100% {
+        transform: translate(2px, 0);
+    }
+    50% {
+        transform: translate(-2px, 0);
+    }
+}
+
+/* ==================== SCAN LINE GLITCH ==================== */
+
+.glitch-scanline {
+    position: relative;
+    overflow: hidden;
+}
+
+.glitch-scanline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        transparent 2px,
+        transparent 4px,
+        rgba(0, 0, 0, 0.1) 6px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: scanlineGlitch 0.1s infinite;
+}
+
+@keyframes scanlineGlitch {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.glitch-scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 26, 62, 0.5),
+        transparent
+    );
+    animation: scanlineMove 4s linear infinite;
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+@keyframes scanlineMove {
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* ==================== DIGITAL DISTORTION ==================== */
+
+.glitch-distort {
+    animation: digitalDistort 0.2s infinite;
+}
+
+@keyframes digitalDistort {
+    0%, 100% {
+        transform: scale(1) skew(0deg);
+    }
+    25% {
+        transform: scale(1.01) skew(0.5deg);
+    }
+    50% {
+        transform: scale(0.99) skew(-0.5deg);
+    }
+    75% {
+        transform: scale(1.01) skew(0.5deg);
+    }
+}
+
+/* ==================== CHROMATIC ABERRATION ==================== */
+
+.glitch-chromatic {
+    position: relative;
+}
+
+.glitch-chromatic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.5;
+    filter: blur(1px);
+    transform: translateX(-3px);
+    mix-blend-mode: screen;
+    animation: chromaticShift 2s infinite;
+}
+
+@keyframes chromaticShift {
+    0%, 100% {
+        transform: translateX(-3px);
+    }
+    50% {
+        transform: translateX(3px);
+    }
+}
+
+/* ==================== STATIC NOISE ==================== */
+
+.glitch-static {
+    position: relative;
+    overflow: hidden;
+}
+
+.glitch-static::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: staticNoise 0.2s infinite;
+    opacity: 0;
+}
+
+.glitch-static:hover::before {
+    opacity: 0.1;
+}
+
+@keyframes staticNoise {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-5%, -5%);
+    }
+    20% {
+        transform: translate(-10%, 5%);
+    }
+    30% {
+        transform: translate(5%, -10%);
+    }
+    40% {
+        transform: translate(-5%, 15%);
+    }
+    50% {
+        transform: translate(-10%, 5%);
+    }
+    60% {
+        transform: translate(15%, 0);
+    }
+    70% {
+        transform: translate(0, 10%);
+    }
+    80% {
+        transform: translate(-15%, 0);
+    }
+    90% {
+        transform: translate(10%, 5%);
+    }
+    100% {
+        transform: translate(5%, 0);
+    }
+}
+
+/* ==================== PIXEL CORRUPTION ==================== */
+
+.glitch-pixel {
+    position: relative;
+    animation: pixelGlitch 3s infinite;
+}
+
+@keyframes pixelGlitch {
+    0%, 90%, 100% {
+        filter: none;
+    }
+    91% {
+        filter: blur(1px) contrast(150%);
+    }
+    92% {
+        filter: blur(0) contrast(100%);
+    }
+    93% {
+        filter: blur(2px) contrast(200%);
+    }
+    94% {
+        filter: blur(0) contrast(100%);
+    }
+    95% {
+        filter: blur(1px) brightness(150%);
+    }
+}
+
+/* ==================== VHS DISTORTION ==================== */
+
+.glitch-vhs {
+    position: relative;
+}
+
+.glitch-vhs::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+}
+
+.glitch-vhs::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 26, 62, 0.05) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: vhsDistort 0.1s infinite;
+}
+
+@keyframes vhsDistort {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+/* ==================== CORRUPTED DATA EFFECT ==================== */
+
+.glitch-corrupt {
+    position: relative;
+}
+
+.glitch-corrupt::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--neon-red);
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation: corruptionGlitch 5s infinite;
+}
+
+@keyframes corruptionGlitch {
+    0%, 95%, 100% {
+        opacity: 0;
+    }
+    96% {
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+    97% {
+        opacity: 1;
+        clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    }
+    98% {
+        opacity: 1;
+        clip-path: polygon(0 20%, 100% 20%, 100% 80%, 0 80%);
+    }
+}
+
+/* ==================== HOLOGRAM INTERFERENCE ==================== */
+
+.glitch-hologram {
+    position: relative;
+    animation: hologramGlitch 0.3s infinite;
+}
+
+@keyframes hologramGlitch {
+    0%, 90%, 100% {
+        opacity: 1;
+    }
+    91% {
+        opacity: 0.7;
+    }
+    92% {
+        opacity: 1;
+    }
+    93% {
+        opacity: 0.5;
+    }
+    94% {
+        opacity: 1;
+    }
+}
+
+.glitch-hologram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 204, 255, 0.1) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: hologramSweep 2s infinite;
+}
+
+@keyframes hologramSweep {
+    0%, 100% {
+        transform: translateY(-100%);
+    }
+    50% {
+        transform: translateY(100%);
+    }
+}
+
+/* ==================== SIGNAL INTERFERENCE ==================== */
+
+.glitch-signal {
+    animation: signalInterference 4s infinite;
+}
+
+@keyframes signalInterference {
+    0%, 85%, 100% {
+        filter: none;
+        transform: translate(0);
+    }
+    86% {
+        filter: blur(2px);
+        transform: translate(-5px, 2px);
+    }
+    87% {
+        filter: blur(0);
+        transform: translate(3px, -1px);
+    }
+    88% {
+        filter: blur(1px);
+        transform: translate(-2px, 3px);
+    }
+    89% {
+        filter: none;
+        transform: translate(0);
+    }
+}
+
+/* ==================== GLITCH ON HOVER ==================== */
+
+.glitch-hover:hover {
+    animation: glitch-anim 0.3s ease-in-out;
+}
+
+.glitch-hover-intense:hover {
+    animation: glitch-intense 0.5s;
+}
+
+/* ==================== RANDOM GLITCH (PERIODIC) ==================== */
+
+.glitch-random {
+    animation: randomGlitch 10s infinite;
+}
+
+@keyframes randomGlitch {
+    0%, 94%, 96%, 100% {
+        transform: translate(0);
+        filter: none;
+    }
+    95% {
+        transform: translate(-3px, 2px);
+        filter: hue-rotate(90deg);
+    }
+    97% {
+        transform: translate(2px, -3px);
+        filter: hue-rotate(-90deg);
+    }
+}
+
+/* ==================== GLITCH UTILITIES ==================== */
+
+/* Glitch delay variations */
+.glitch-delay-1 {
+    animation-delay: 0.5s;
+}
+
+.glitch-delay-2 {
+    animation-delay: 1s;
+}
+
+.glitch-delay-3 {
+    animation-delay: 1.5s;
+}
+
+/* Glitch speed variations */
+.glitch-slow {
+    animation-duration: 4s;
+}
+
+.glitch-fast {
+    animation-duration: 0.15s;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/* Reduced motion - disable all glitch animations */
+@media (prefers-reduced-motion: reduce) {
+    .glitch,
+    .glitch-text,
+    .glitch-text-hover,
+    .glitch-subtle,
+    .glitch-intense,
+    .glitch-rgb,
+    .glitch-scanline,
+    .glitch-distort,
+    .glitch-chromatic,
+    .glitch-static,
+    .glitch-pixel,
+    .glitch-vhs,
+    .glitch-corrupt,
+    .glitch-hologram,
+    .glitch-signal,
+    .glitch-hover,
+    .glitch-hover-intense,
+    .glitch-random {
+        animation: none !important;
+    }
+    
+    .glitch-text::before,
+    .glitch-text::after,
+    .glitch-text-hover::before,
+    .glitch-text-hover::after,
+    .glitch-rgb::before,
+    .glitch-rgb::after,
+    .glitch-scanline::before,
+    .glitch-scanline::after,
+    .glitch-chromatic::before,
+    .glitch-static::before,
+    .glitch-vhs::after,
+    .glitch-corrupt::before,
+    .glitch-hologram::before {
+        animation: none !important;
+        display: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .glitch,
+    .glitch-text,
+    .glitch-rgb,
+    .glitch-scanline,
+    .glitch-distort,
+    .glitch-chromatic,
+    .glitch-static,
+    .glitch-pixel,
+    .glitch-vhs,
+    .glitch-corrupt,
+    .glitch-hologram,
+    .glitch-signal {
+        animation: none !important;
+        filter: none !important;
+        transform: none !important;
+    }
+    
+    .glitch::before,
+    .glitch::after,
+    .glitch-text::before,
+    .glitch-text::after,
+    .glitch-scanline::before,
+    .glitch-scanline::after {
+        display: none;
+    }
+}

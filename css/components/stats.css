@@ -1,0 +1,863 @@
+/* ==========================================================================
+   STATS & METRICS
+   Advanced statistics, metrics displays, counters, and data visualization
+   ========================================================================== */
+
+/* ==================== STATS CONTAINER ==================== */
+
+.stats-container {
+    display: grid;
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+}
+
+.stats-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.stats-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.stats-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* ==================== BASE STAT CARD ==================== */
+
+.stat-card {
+    background-color: var(--bg-cell);
+    border: 1px solid var(--border-light);
+    padding: var(--space-md);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 26, 62, 0.05) 0%,
+        transparent 50%,
+        rgba(0, 204, 255, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(255, 26, 62, 0.2);
+    border-color: var(--neon-red);
+}
+
+/* ==================== STAT CARD HEADER ==================== */
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-sm);
+}
+
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    font-weight: var(--font-medium);
+}
+
+.stat-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xl);
+    color: var(--neon-red);
+    opacity: 0.7;
+}
+
+/* ==================== STAT VALUE ==================== */
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    font-weight: var(--font-black);
+    color: var(--text-bright);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+    text-shadow: 0 0 20px rgba(255, 26, 62, 0.3);
+}
+
+.stat-unit {
+    font-size: var(--text-xl);
+    color: var(--text-dim);
+    font-weight: var(--font-normal);
+    margin-left: 4px;
+}
+
+/* ==================== STAT CHANGE/TREND ==================== */
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-xs);
+}
+
+.stat-change-positive {
+    color: var(--success);
+}
+
+.stat-change-positive::before {
+    content: '▲';
+    margin-right: 2px;
+}
+
+.stat-change-negative {
+    color: var(--error);
+}
+
+.stat-change-negative::before {
+    content: '▼';
+    margin-right: 2px;
+}
+
+.stat-change-neutral {
+    color: var(--text-dim);
+}
+
+.stat-change-neutral::before {
+    content: '▬';
+    margin-right: 2px;
+}
+
+/* ==================== STAT DESCRIPTION ==================== */
+
+.stat-description {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* ==================== STAT WITH PROGRESS BAR ==================== */
+
+.stat-progress {
+    margin-top: var(--space-sm);
+}
+
+.stat-progress-bar {
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-dim);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-progress-fill {
+    height: 100%;
+    background: var(--gradient-red);
+    transition: width 1s ease-out;
+    position: relative;
+}
+
+.stat-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3)
+    );
+    animation: shimmer 2s infinite;
+}
+
+.stat-progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+
+/* ==================== STAT VARIANTS ==================== */
+
+/* Red/Alert Stat */
+.stat-card-red {
+    border-left: 4px solid var(--neon-red);
+}
+
+.stat-card-red .stat-value {
+    color: var(--neon-red);
+    text-shadow: var(--glow-red);
+}
+
+/* Blue/Info Stat */
+.stat-card-blue {
+    border-left: 4px solid var(--neon-blue);
+}
+
+.stat-card-blue .stat-value {
+    color: var(--neon-blue);
+    text-shadow: var(--glow-blue);
+}
+
+/* Green/Success Stat */
+.stat-card-green {
+    border-left: 4px solid var(--success);
+}
+
+.stat-card-green .stat-value {
+    color: var(--success);
+    text-shadow: 0 0 20px var(--success-glow);
+}
+
+/* Yellow/Warning Stat */
+.stat-card-yellow {
+    border-left: 4px solid var(--warning);
+}
+
+.stat-card-yellow .stat-value {
+    color: var(--warning);
+    text-shadow: 0 0 20px var(--warning-glow);
+}
+
+/* Magenta Stat */
+.stat-card-magenta {
+    border-left: 4px solid var(--neon-magenta);
+}
+
+.stat-card-magenta .stat-value {
+    color: var(--neon-magenta);
+    text-shadow: var(--glow-magenta);
+}
+
+/* ==================== COUNTER ANIMATION ==================== */
+
+.stat-value.counting {
+    animation: counterPulse 0.3s ease-out;
+}
+
+@keyframes counterPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ==================== COMPACT STAT ==================== */
+
+.stat-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm);
+    background-color: var(--bg-darker);
+    border-left: 3px solid var(--neon-red);
+}
+
+.stat-compact .stat-value {
+    font-size: var(--text-2xl);
+    margin-bottom: 0;
+}
+
+.stat-compact .stat-label {
+    font-size: 0.65rem;
+}
+
+/* ==================== INLINE STAT ==================== */
+
+.stat-inline {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+}
+
+.stat-inline .stat-value {
+    font-size: var(--text-xl);
+    margin-bottom: 0;
+}
+
+.stat-inline .stat-label {
+    font-size: var(--text-xs);
+}
+
+/* ==================== CIRCULAR STAT (DONUT CHART) ==================== */
+
+.stat-circular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+}
+
+.stat-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-circle-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-circle-progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid var(--neon-red);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotate(-45deg);
+    transition: transform 1s ease-out;
+}
+
+.stat-circle-value {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-black);
+    color: var(--neon-red);
+    text-shadow: var(--glow-red);
+    z-index: 1;
+}
+
+.stat-circle-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    text-align: center;
+}
+
+/* ==================== COMPARISON STATS ==================== */
+
+.stat-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-light);
+}
+
+.stat-comparison-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-comparison-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+.stat-comparison-value {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--text-bright);
+}
+
+.stat-comparison-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--neon-red);
+    font-weight: var(--font-bold);
+}
+
+/* ==================== STAT LIST ==================== */
+
+.stat-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.stat-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm);
+    background-color: var(--bg-darker);
+    border-left: 2px solid var(--border-light);
+    transition: all var(--transition-base);
+}
+
+.stat-list-item:hover {
+    background-color: var(--bg-cell);
+    border-left-color: var(--neon-red);
+    transform: translateX(3px);
+}
+
+.stat-list-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.stat-list-value {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--neon-red);
+}
+
+/* ==================== STAT TIMELINE ==================== */
+
+.stat-timeline {
+    position: relative;
+    padding-left: var(--space-xl);
+}
+
+.stat-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        var(--neon-red),
+        var(--neon-magenta)
+    );
+}
+
+.stat-timeline-item {
+    position: relative;
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm);
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-dim);
+}
+
+.stat-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-xl) - 1px);
+    top: var(--space-sm);
+    width: 10px;
+    height: 10px;
+    background-color: var(--neon-red);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-red-glow);
+}
+
+.stat-timeline-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    margin-bottom: 4px;
+}
+
+.stat-timeline-value {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--neon-red);
+}
+
+/* ==================== LEADERBOARD/RANKING ==================== */
+
+.stat-leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.stat-rank-item {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: var(--space-sm);
+    align-items: center;
+    padding: var(--space-sm);
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-dim);
+    transition: all var(--transition-base);
+}
+
+.stat-rank-item:hover {
+    background-color: var(--bg-cell);
+    border-color: var(--neon-red);
+    transform: scale(1.02);
+}
+
+.stat-rank-position {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-black);
+    color: var(--text-dim);
+    text-align: center;
+}
+
+.stat-rank-item:nth-child(1) .stat-rank-position {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+}
+
+.stat-rank-item:nth-child(2) .stat-rank-position {
+    color: var(--text-secondary);
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+
+.stat-rank-item:nth-child(3) .stat-rank-position {
+    color: var(--neon-orange);
+    text-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
+}
+
+.stat-rank-name {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.stat-rank-score {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--neon-red);
+}
+
+/* ==================== GAUGE/METER STAT ==================== */
+
+.stat-gauge {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+}
+
+.stat-gauge-container {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.stat-gauge-fill {
+    height: 100%;
+    background: var(--gradient-red);
+    transition: width 1s ease-out;
+    position: relative;
+}
+
+.stat-gauge-marker {
+    position: absolute;
+    top: -4px;
+    width: 2px;
+    height: 20px;
+    background-color: var(--text-bright);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transition: left 1s ease-out;
+}
+
+.stat-gauge-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+}
+
+/* ==================== SPECIAL EFFECTS ==================== */
+
+/* Pulsing stat (for critical values) */
+.stat-card.pulsing {
+    animation: statPulse 2s ease-in-out infinite;
+}
+
+@keyframes statPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(255, 26, 62, 0);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 26, 62, 0.6);
+    }
+}
+
+/* Glowing stat value */
+.stat-value.glowing {
+    animation: valueGlow 2s ease-in-out infinite;
+}
+
+@keyframes valueGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 26, 62, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(255, 26, 62, 0.8),
+                     0 0 60px rgba(255, 26, 62, 0.4);
+    }
+}
+
+/* Scanning effect */
+.stat-card.scanning::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-red),
+        transparent
+    );
+    animation: scan 3s linear infinite;
+    pointer-events: none;
+}
+
+/* ==================== LOADING STATE ==================== */
+
+.stat-card.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.stat-card.loading .stat-value {
+    position: relative;
+}
+
+.stat-card.loading .stat-value::after {
+    content: '...';
+    animation: loadingDots 1.5s infinite;
+}
+
+/* ==================== EMPTY STATE ==================== */
+
+.stat-card.empty {
+    opacity: 0.5;
+}
+
+.stat-card.empty .stat-value {
+    color: var(--text-dim);
+}
+
+.stat-card.empty .stat-value::before {
+    content: '—';
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 992px) {
+    .stats-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid,
+    .stats-grid-2,
+    .stats-grid-3,
+    .stats-grid-4 {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .stat-card {
+        padding: var(--space-sm);
+    }
+    
+    .stat-value {
+        font-size: var(--text-4xl);
+    }
+    
+    .stat-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .stat-circle-value {
+        font-size: var(--text-2xl);
+    }
+    
+    .stat-comparison {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .stat-comparison-vs {
+        transform: rotate(90deg);
+        margin: var(--space-xs) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-value {
+        font-size: var(--text-3xl);
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
+    }
+    
+    .stat-description {
+        font-size: 0.7rem;
+    }
+    
+    .stat-rank-item {
+        grid-template-columns: 30px 1fr auto;
+        gap: var(--space-xs);
+    }
+    
+    .stat-rank-position {
+        font-size: var(--text-xl);
+    }
+    
+    .stat-timeline {
+        padding-left: var(--space-lg);
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+.stat-card:focus-within {
+    outline: 2px solid var(--neon-red);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .stat-card {
+        border-width: 2px;
+    }
+    
+    .stat-progress-bar,
+    .stat-gauge-container {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .stat-card:hover {
+        transform: translateY(-1px);
+    }
+    
+    .stat-progress-fill,
+    .stat-gauge-fill,
+    .stat-gauge-marker,
+    .stat-circle-progress {
+        transition: none;
+    }
+    
+    .stat-value.counting,
+    .stat-card.pulsing,
+    .stat-value.glowing,
+    .stat-card.scanning::after {
+        animation: none;
+    }
+    
+    .stat-progress-fill::after {
+        animation: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        break-inside: avoid;
+    }
+    
+    .stat-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+        box-shadow: none;
+    }
+    
+    .stat-value {
+        color: #000;
+        text-shadow: none;
+    }
+    
+    .stat-card::before,
+    .stat-card::after {
+        display: none;
+    }
+}
+
+/* ==================== THEME UTILITIES ==================== */
+
+/* Minimal stat (no borders/effects) */
+.stat-minimal {
+    border: none;
+    background: none;
+    padding: var(--space-sm);
+}
+
+.stat-minimal:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Boxed stat (strong borders) */
+.stat-boxed {
+    border-width: 2px;
+    border-color: var(--neon-red);
+}
+
+/* Transparent stat */
+.stat-transparent {
+    background-color: transparent;
+    border-color: rgba(255, 26, 62, 0.3);
+}

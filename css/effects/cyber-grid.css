@@ -1,0 +1,593 @@
+/* ==========================================================================
+   CYBER GRID EFFECTS
+   Advanced grid patterns, neural networks, and cyberpunk visual effects
+   ========================================================================== */
+
+/* ==================== BASE GRID OVERLAY ==================== */
+
+.cyber-grid {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 26, 62, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 26, 62, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+/* Grid with animation */
+.cyber-grid-animated::before {
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% {
+        opacity: 0.2;
+        background-size: 40px 40px;
+    }
+    50% {
+        opacity: 0.4;
+        background-size: 42px 42px;
+    }
+}
+
+/* ==================== GRID VARIANTS ==================== */
+
+/* Dense Grid */
+.cyber-grid-dense::before {
+    background-size: 20px 20px;
+}
+
+/* Sparse Grid */
+.cyber-grid-sparse::before {
+    background-size: 80px 80px;
+}
+
+/* Blue Grid */
+.cyber-grid-blue::before {
+    background-image: 
+        linear-gradient(to right, rgba(0, 204, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 204, 255, 0.15) 1px, transparent 1px);
+}
+
+/* Green Grid (Matrix style) */
+.cyber-grid-green::before {
+    background-image: 
+        linear-gradient(to right, rgba(102, 255, 102, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(102, 255, 102, 0.15) 1px, transparent 1px);
+}
+
+/* Magenta Grid */
+.cyber-grid-magenta::before {
+    background-image: 
+        linear-gradient(to right, rgba(255, 0, 102, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 0, 102, 0.15) 1px, transparent 1px);
+}
+
+/* ==================== PERSPECTIVE GRID ==================== */
+
+.cyber-grid-perspective {
+    position: relative;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.cyber-grid-perspective::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 26, 62, 0.1) 0px,
+            transparent 1px,
+            transparent 40px,
+            rgba(255, 26, 62, 0.1) 41px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 26, 62, 0.1) 0px,
+            transparent 1px,
+            transparent 40px,
+            rgba(255, 26, 62, 0.1) 41px
+        );
+    transform: rotateX(60deg) translateY(-50%);
+    transform-origin: center bottom;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+.cyber-grid-perspective::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(
+        to top,
+        var(--bg-darkest),
+        transparent
+    );
+    pointer-events: none;
+    z-index: var(--z-content);
+}
+
+/* ==================== NEURAL NETWORK PATTERN ==================== */
+
+.neural-grid {
+    position: relative;
+    overflow: hidden;
+}
+
+.neural-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, rgba(255, 26, 62, 0.2) 2px, transparent 2px),
+        radial-gradient(circle, rgba(0, 204, 255, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px, 40px 40px;
+    background-position: 0 0, 30px 30px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.4;
+    animation: neuralPulse 6s ease-in-out infinite;
+}
+
+@keyframes neuralPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.02);
+    }
+}
+
+/* Neural connections lines */
+.neural-grid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, transparent 48%, rgba(255, 26, 62, 0.1) 49%, rgba(255, 26, 62, 0.1) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(0, 204, 255, 0.08) 49%, rgba(0, 204, 255, 0.08) 51%, transparent 52%);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+/* ==================== HEXAGONAL GRID ==================== */
+
+.cyber-grid-hex {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid-hex::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(30deg, transparent 48%, rgba(255, 26, 62, 0.1) 49%, rgba(255, 26, 62, 0.1) 51%, transparent 52%),
+        linear-gradient(90deg, transparent 48%, rgba(255, 26, 62, 0.1) 49%, rgba(255, 26, 62, 0.1) 51%, transparent 52%),
+        linear-gradient(150deg, transparent 48%, rgba(255, 26, 62, 0.1) 49%, rgba(255, 26, 62, 0.1) 51%, transparent 52%);
+    background-size: 60px 104px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+/* ==================== CIRCUIT BOARD PATTERN ==================== */
+
+.cyber-grid-circuit {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid-circuit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        /* Horizontal lines */
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 35px,
+            rgba(255, 26, 62, 0.15) 35px,
+            rgba(255, 26, 62, 0.15) 36px,
+            transparent 36px,
+            transparent 70px
+        ),
+        /* Vertical lines */
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 35px,
+            rgba(0, 204, 255, 0.12) 35px,
+            rgba(0, 204, 255, 0.12) 36px,
+            transparent 36px,
+            transparent 70px
+        );
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.4;
+}
+
+/* Circuit connection points */
+.cyber-grid-circuit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 0 0, rgba(255, 26, 62, 0.3) 3px, transparent 3px),
+        radial-gradient(circle at 70px 70px, rgba(0, 204, 255, 0.25) 2px, transparent 2px);
+    background-size: 70px 70px;
+    background-position: 35px 35px, 0 0;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.5;
+}
+
+/* ==================== DIAGONAL GRID ==================== */
+
+.cyber-grid-diagonal {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid-diagonal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 30px,
+            rgba(255, 26, 62, 0.1) 30px,
+            rgba(255, 26, 62, 0.1) 31px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 30px,
+            rgba(0, 204, 255, 0.08) 30px,
+            rgba(0, 204, 255, 0.08) 31px
+        );
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+/* ==================== SCANNING GRID ==================== */
+
+.cyber-grid-scan {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid-scan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 26, 62, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 26, 62, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+.cyber-grid-scan::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 26, 62, 0.3) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: gridScan 4s linear infinite;
+}
+
+@keyframes gridScan {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* ==================== MATRIX RAIN GRID ==================== */
+
+.cyber-grid-matrix {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-darkest);
+}
+
+.cyber-grid-matrix::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(102, 255, 102, 0.1) 1px, transparent 1px);
+    background-size: 20px 100%;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.3;
+}
+
+/* Matrix rain effect would need JS for full effect */
+.cyber-grid-matrix::after {
+    content: '10101010010101010101001010101010010101';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--neon-green);
+    opacity: 0.2;
+    word-wrap: break-word;
+    line-height: 1.2;
+    pointer-events: none;
+    z-index: var(--z-background);
+    animation: matrixRain 10s linear infinite;
+}
+
+@keyframes matrixRain {
+    0% {
+        top: -100%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.2;
+    }
+    90% {
+        opacity: 0.2;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* ==================== HOLOGRAM GRID ==================== */
+
+.cyber-grid-hologram {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid-hologram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 204, 255, 0.03) 0px,
+            transparent 1px,
+            transparent 2px,
+            rgba(0, 204, 255, 0.03) 3px
+        );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    opacity: 0.8;
+    animation: hologramFlicker 0.15s infinite;
+}
+
+@keyframes hologramFlicker {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.cyber-grid-hologram::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 204, 255, 0.05) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-elevated);
+    animation: hologramSweep 3s ease-in-out infinite;
+}
+
+@keyframes hologramSweep {
+    0%, 100% {
+        transform: translateY(-100%);
+    }
+    50% {
+        transform: translateY(100%);
+    }
+}
+
+/* ==================== DATA FLOW GRID ==================== */
+
+.cyber-grid-dataflow {
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-grid-dataflow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 26, 62, 0.1) 20px,
+            rgba(255, 26, 62, 0.1) 21px,
+            transparent 21px,
+            transparent 40px
+        );
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.4;
+    animation: dataFlow 20s linear infinite;
+}
+
+@keyframes dataFlow {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ==================== GRID OVERLAY (FOR BODY/MAIN) ==================== */
+
+body.cyber-grid-overlay::before,
+.main-content.cyber-grid-overlay::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 26, 62, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 26, 62, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    opacity: 0.5;
+}
+
+/* ==================== GRID UTILITIES ==================== */
+
+/* No grid on mobile */
+@media (max-width: 768px) {
+    .cyber-grid-mobile-off::before,
+    .cyber-grid-mobile-off::after {
+        display: none;
+    }
+}
+
+/* Subtle grid (lower opacity) */
+.cyber-grid-subtle::before {
+    opacity: 0.15;
+}
+
+/* Intense grid (higher opacity) */
+.cyber-grid-intense::before {
+    opacity: 0.6;
+}
+
+/* Static grid (no animation) */
+.cyber-grid-static::before {
+    animation: none;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/* Reduced motion - disable grid animations */
+@media (prefers-reduced-motion: reduce) {
+    .cyber-grid-animated::before,
+    .neural-grid::before,
+    .cyber-grid-scan::after,
+    .cyber-grid-matrix::after,
+    .cyber-grid-hologram::before,
+    .cyber-grid-hologram::after,
+    .cyber-grid-dataflow::before {
+        animation: none;
+    }
+}
+
+/* High contrast - increase grid visibility */
+@media (prefers-contrast: high) {
+    .cyber-grid::before,
+    .neural-grid::before,
+    .cyber-grid-hex::before,
+    .cyber-grid-circuit::before {
+        opacity: 0.5;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .cyber-grid::before,
+    .cyber-grid::after,
+    .neural-grid::before,
+    .neural-grid::after,
+    .cyber-grid-hex::before,
+    .cyber-grid-circuit::before,
+    .cyber-grid-circuit::after,
+    body.cyber-grid-overlay::before {
+        display: none;
+    }
+}
